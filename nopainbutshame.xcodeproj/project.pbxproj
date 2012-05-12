@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		741C7A92155E70210056AF55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A91155E70210056AF55 /* UIKit.framework */; };
+		741C7A94155E70210056AF55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A93155E70210056AF55 /* Foundation.framework */; };
+		741C7A96155E70210056AF55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A95155E70210056AF55 /* CoreGraphics.framework */; };
+		741C7A9C155E70210056AF55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 741C7A9A155E70210056AF55 /* InfoPlist.strings */; };
+		741C7A9E155E70210056AF55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C7A9D155E70210056AF55 /* main.m */; };
+		741C7AA2155E70210056AF55 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C7AA1155E70210056AF55 /* AppDelegate.m */; };
+		741C7AA5155E70210056AF55 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741C7AA3155E70210056AF55 /* MainStoryboard_iPhone.storyboard */; };
+		741C7AA8155E70220056AF55 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741C7AA6155E70220056AF55 /* MainStoryboard_iPad.storyboard */; };
+		741C7AAB155E70220056AF55 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C7AAA155E70220056AF55 /* ViewController.m */; };
+		741C7AB3155E70220056AF55 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7AB2155E70220056AF55 /* SenTestingKit.framework */; };
+		741C7AB4155E70220056AF55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A91155E70210056AF55 /* UIKit.framework */; };
+		741C7AB5155E70220056AF55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A93155E70210056AF55 /* Foundation.framework */; };
+		741C7ABD155E70220056AF55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 741C7ABB155E70220056AF55 /* InfoPlist.strings */; };
+		741C7AC0155E70230056AF55 /* nopainbutshameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C7ABF155E70230056AF55 /* nopainbutshameTests.m */; };
+		74E96606155EB83100C0486D /* SpielEnde.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E965FF155EB83100C0486D /* SpielEnde.png */; };
+		74E96607155EB83100C0486D /* InGameView.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96600155EB83100C0486D /* InGameView.png */; };
+		74E96608155EB83100C0486D /* ViewMultiplayerLobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96601155EB83100C0486D /* ViewMultiplayerLobby.png */; };
+		74E96609155EB83100C0486D /* ViewSingleplayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96602155EB83100C0486D /* ViewSingleplayer.png */; };
+		74E9660A155EB83100C0486D /* ViewEinstellungenProfil.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96603155EB83100C0486D /* ViewEinstellungenProfil.png */; };
+		74E9660B155EB83100C0486D /* ViewEinstellungenMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96604155EB83100C0486D /* ViewEinstellungenMain.png */; };
+		74E9660C155EB83100C0486D /* ViewMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96605155EB83100C0486D /* ViewMain.png */; };
+		74E9660F155EBFE600C0486D /* ViewMultiplayerOpengame.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E9660E155EBFE600C0486D /* ViewMultiplayerOpengame.png */; };
+		74E96612155EC42800C0486D /* IngameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E96611155EC42800C0486D /* IngameViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		741C7AB6155E70220056AF55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741C7A84155E70210056AF55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 741C7A8C155E70210056AF55;
+			remoteInfo = nopainbutshame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		741C7A8D155E70210056AF55 /* nopainbutshame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nopainbutshame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		741C7A91155E70210056AF55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		741C7A93155E70210056AF55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		741C7A95155E70210056AF55 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		741C7A99155E70210056AF55 /* nopainbutshame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "nopainbutshame-Info.plist"; sourceTree = "<group>"; };
+		741C7A9B155E70210056AF55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		741C7A9D155E70210056AF55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		741C7A9F155E70210056AF55 /* nopainbutshame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "nopainbutshame-Prefix.pch"; sourceTree = "<group>"; };
+		741C7AA0155E70210056AF55 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		741C7AA1155E70210056AF55 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		741C7AA4155E70210056AF55 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		741C7AA7155E70220056AF55 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		741C7AA9155E70220056AF55 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		741C7AAA155E70220056AF55 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		741C7AB1155E70220056AF55 /* nopainbutshameTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nopainbutshameTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		741C7AB2155E70220056AF55 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		741C7ABA155E70220056AF55 /* nopainbutshameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "nopainbutshameTests-Info.plist"; sourceTree = "<group>"; };
+		741C7ABC155E70220056AF55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		741C7ABE155E70230056AF55 /* nopainbutshameTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nopainbutshameTests.h; sourceTree = "<group>"; };
+		741C7ABF155E70230056AF55 /* nopainbutshameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nopainbutshameTests.m; sourceTree = "<group>"; };
+		74E965FF155EB83100C0486D /* SpielEnde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpielEnde.png; sourceTree = "<group>"; };
+		74E96600155EB83100C0486D /* InGameView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InGameView.png; sourceTree = "<group>"; };
+		74E96601155EB83100C0486D /* ViewMultiplayerLobby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewMultiplayerLobby.png; sourceTree = "<group>"; };
+		74E96602155EB83100C0486D /* ViewSingleplayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewSingleplayer.png; sourceTree = "<group>"; };
+		74E96603155EB83100C0486D /* ViewEinstellungenProfil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewEinstellungenProfil.png; sourceTree = "<group>"; };
+		74E96604155EB83100C0486D /* ViewEinstellungenMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewEinstellungenMain.png; sourceTree = "<group>"; };
+		74E96605155EB83100C0486D /* ViewMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewMain.png; sourceTree = "<group>"; };
+		74E9660E155EBFE600C0486D /* ViewMultiplayerOpengame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewMultiplayerOpengame.png; sourceTree = "<group>"; };
+		74E96610155EC42800C0486D /* IngameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngameViewController.h; sourceTree = "<group>"; };
+		74E96611155EC42800C0486D /* IngameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngameViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		741C7A8A155E70210056AF55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				741C7A92155E70210056AF55 /* UIKit.framework in Frameworks */,
+				741C7A94155E70210056AF55 /* Foundation.framework in Frameworks */,
+				741C7A96155E70210056AF55 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		741C7AAD155E70220056AF55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				741C7AB3155E70220056AF55 /* SenTestingKit.framework in Frameworks */,
+				741C7AB4155E70220056AF55 /* UIKit.framework in Frameworks */,
+				741C7AB5155E70220056AF55 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		741C7A82155E70210056AF55 = {
+			isa = PBXGroup;
+			children = (
+				741C7A97155E70210056AF55 /* nopainbutshame */,
+				741C7AB8155E70220056AF55 /* nopainbutshameTests */,
+				741C7A90155E70210056AF55 /* Frameworks */,
+				741C7A8E155E70210056AF55 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		741C7A8E155E70210056AF55 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				741C7A8D155E70210056AF55 /* nopainbutshame.app */,
+				741C7AB1155E70220056AF55 /* nopainbutshameTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		741C7A90155E70210056AF55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				741C7A91155E70210056AF55 /* UIKit.framework */,
+				741C7A93155E70210056AF55 /* Foundation.framework */,
+				741C7A95155E70210056AF55 /* CoreGraphics.framework */,
+				741C7AB2155E70220056AF55 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		741C7A97155E70210056AF55 /* nopainbutshame */ = {
+			isa = PBXGroup;
+			children = (
+				741C7AA0155E70210056AF55 /* AppDelegate.h */,
+				74E96610155EC42800C0486D /* IngameViewController.h */,
+				74E96611155EC42800C0486D /* IngameViewController.m */,
+				741C7AA1155E70210056AF55 /* AppDelegate.m */,
+				741C7AA3155E70210056AF55 /* MainStoryboard_iPhone.storyboard */,
+				741C7AA6155E70220056AF55 /* MainStoryboard_iPad.storyboard */,
+				741C7AA9155E70220056AF55 /* ViewController.h */,
+				741C7AAA155E70220056AF55 /* ViewController.m */,
+				741C7A98155E70210056AF55 /* Supporting Files */,
+			);
+			path = nopainbutshame;
+			sourceTree = "<group>";
+		};
+		741C7A98155E70210056AF55 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				74E9660E155EBFE600C0486D /* ViewMultiplayerOpengame.png */,
+				74E965FF155EB83100C0486D /* SpielEnde.png */,
+				74E96600155EB83100C0486D /* InGameView.png */,
+				74E96601155EB83100C0486D /* ViewMultiplayerLobby.png */,
+				74E96602155EB83100C0486D /* ViewSingleplayer.png */,
+				74E96603155EB83100C0486D /* ViewEinstellungenProfil.png */,
+				74E96604155EB83100C0486D /* ViewEinstellungenMain.png */,
+				74E96605155EB83100C0486D /* ViewMain.png */,
+				741C7A99155E70210056AF55 /* nopainbutshame-Info.plist */,
+				741C7A9A155E70210056AF55 /* InfoPlist.strings */,
+				741C7A9D155E70210056AF55 /* main.m */,
+				741C7A9F155E70210056AF55 /* nopainbutshame-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		741C7AB8155E70220056AF55 /* nopainbutshameTests */ = {
+			isa = PBXGroup;
+			children = (
+				741C7ABE155E70230056AF55 /* nopainbutshameTests.h */,
+				741C7ABF155E70230056AF55 /* nopainbutshameTests.m */,
+				741C7AB9155E70220056AF55 /* Supporting Files */,
+			);
+			path = nopainbutshameTests;
+			sourceTree = "<group>";
+		};
+		741C7AB9155E70220056AF55 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				741C7ABA155E70220056AF55 /* nopainbutshameTests-Info.plist */,
+				741C7ABB155E70220056AF55 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		741C7A8C155E70210056AF55 /* nopainbutshame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 741C7AC3155E70230056AF55 /* Build configuration list for PBXNativeTarget "nopainbutshame" */;
+			buildPhases = (
+				741C7A89155E70210056AF55 /* Sources */,
+				741C7A8A155E70210056AF55 /* Frameworks */,
+				741C7A8B155E70210056AF55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = nopainbutshame;
+			productName = nopainbutshame;
+			productReference = 741C7A8D155E70210056AF55 /* nopainbutshame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		741C7AB0155E70220056AF55 /* nopainbutshameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 741C7AC6155E70230056AF55 /* Build configuration list for PBXNativeTarget "nopainbutshameTests" */;
+			buildPhases = (
+				741C7AAC155E70220056AF55 /* Sources */,
+				741C7AAD155E70220056AF55 /* Frameworks */,
+				741C7AAE155E70220056AF55 /* Resources */,
+				741C7AAF155E70220056AF55 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				741C7AB7155E70220056AF55 /* PBXTargetDependency */,
+			);
+			name = nopainbutshameTests;
+			productName = nopainbutshameTests;
+			productReference = 741C7AB1155E70220056AF55 /* nopainbutshameTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		741C7A84155E70210056AF55 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 741C7A87155E70210056AF55 /* Build configuration list for PBXProject "nopainbutshame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 741C7A82155E70210056AF55;
+			productRefGroup = 741C7A8E155E70210056AF55 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				741C7A8C155E70210056AF55 /* nopainbutshame */,
+				741C7AB0155E70220056AF55 /* nopainbutshameTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		741C7A8B155E70210056AF55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				741C7A9C155E70210056AF55 /* InfoPlist.strings in Resources */,
+				741C7AA5155E70210056AF55 /* MainStoryboard_iPhone.storyboard in Resources */,
+				741C7AA8155E70220056AF55 /* MainStoryboard_iPad.storyboard in Resources */,
+				74E96606155EB83100C0486D /* SpielEnde.png in Resources */,
+				74E96607155EB83100C0486D /* InGameView.png in Resources */,
+				74E96608155EB83100C0486D /* ViewMultiplayerLobby.png in Resources */,
+				74E96609155EB83100C0486D /* ViewSingleplayer.png in Resources */,
+				74E9660A155EB83100C0486D /* ViewEinstellungenProfil.png in Resources */,
+				74E9660B155EB83100C0486D /* ViewEinstellungenMain.png in Resources */,
+				74E9660C155EB83100C0486D /* ViewMain.png in Resources */,
+				74E9660F155EBFE600C0486D /* ViewMultiplayerOpengame.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		741C7AAE155E70220056AF55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				741C7ABD155E70220056AF55 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		741C7AAF155E70220056AF55 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		741C7A89155E70210056AF55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				741C7A9E155E70210056AF55 /* main.m in Sources */,
+				741C7AA2155E70210056AF55 /* AppDelegate.m in Sources */,
+				741C7AAB155E70220056AF55 /* ViewController.m in Sources */,
+				74E96612155EC42800C0486D /* IngameViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		741C7AAC155E70220056AF55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				741C7AC0155E70230056AF55 /* nopainbutshameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		741C7AB7155E70220056AF55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 741C7A8C155E70210056AF55 /* nopainbutshame */;
+			targetProxy = 741C7AB6155E70220056AF55 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		741C7A9A155E70210056AF55 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				741C7A9B155E70210056AF55 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		741C7AA3155E70210056AF55 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				741C7AA4155E70210056AF55 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		741C7AA6155E70220056AF55 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				741C7AA7155E70220056AF55 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		741C7ABB155E70220056AF55 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				741C7ABC155E70220056AF55 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		741C7AC1155E70230056AF55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		741C7AC2155E70230056AF55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		741C7AC4155E70230056AF55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "nopainbutshame/nopainbutshame-Prefix.pch";
+				INFOPLIST_FILE = "nopainbutshame/nopainbutshame-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		741C7AC5155E70230056AF55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "nopainbutshame/nopainbutshame-Prefix.pch";
+				INFOPLIST_FILE = "nopainbutshame/nopainbutshame-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		741C7AC7155E70230056AF55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/nopainbutshame.app/nopainbutshame";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "nopainbutshame/nopainbutshame-Prefix.pch";
+				INFOPLIST_FILE = "nopainbutshameTests/nopainbutshameTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		741C7AC8155E70230056AF55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/nopainbutshame.app/nopainbutshame";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "nopainbutshame/nopainbutshame-Prefix.pch";
+				INFOPLIST_FILE = "nopainbutshameTests/nopainbutshameTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		741C7A87155E70210056AF55 /* Build configuration list for PBXProject "nopainbutshame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				741C7AC1155E70230056AF55 /* Debug */,
+				741C7AC2155E70230056AF55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		741C7AC3155E70230056AF55 /* Build configuration list for PBXNativeTarget "nopainbutshame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				741C7AC4155E70230056AF55 /* Debug */,
+				741C7AC5155E70230056AF55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		741C7AC6155E70230056AF55 /* Build configuration list for PBXNativeTarget "nopainbutshameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				741C7AC7155E70230056AF55 /* Debug */,
+				741C7AC8155E70230056AF55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 741C7A84155E70210056AF55 /* Project object */;
+}
