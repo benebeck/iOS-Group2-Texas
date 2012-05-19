@@ -30,6 +30,7 @@
 		74E9660C155EB83100C0486D /* ViewMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96605155EB83100C0486D /* ViewMain.png */; };
 		74E9660F155EBFE600C0486D /* ViewMultiplayerOpengame.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E9660E155EBFE600C0486D /* ViewMultiplayerOpengame.png */; };
 		74E96612155EC42800C0486D /* IngameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E96611155EC42800C0486D /* IngameViewController.m */; };
+		B738801815679402001C482D /* PlayerBene.m in Sources */ = {isa = PBXBuildFile; fileRef = B738801715679402001C482D /* PlayerBene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		74E9660E155EBFE600C0486D /* ViewMultiplayerOpengame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewMultiplayerOpengame.png; sourceTree = "<group>"; };
 		74E96610155EC42800C0486D /* IngameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngameViewController.h; sourceTree = "<group>"; };
 		74E96611155EC42800C0486D /* IngameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngameViewController.m; sourceTree = "<group>"; };
+		B738801615679402001C482D /* PlayerBene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerBene.h; sourceTree = "<group>"; };
+		B738801715679402001C482D /* PlayerBene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerBene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 				741C7AA6155E70220056AF55 /* MainStoryboard_iPad.storyboard */,
 				741C7AA9155E70220056AF55 /* ViewController.h */,
 				741C7AAA155E70220056AF55 /* ViewController.m */,
+				B738801615679402001C482D /* PlayerBene.h */,
+				B738801715679402001C482D /* PlayerBene.m */,
 				741C7A98155E70210056AF55 /* Supporting Files */,
 			);
 			path = nopainbutshame;
@@ -302,6 +307,7 @@
 				741C7AA2155E70210056AF55 /* AppDelegate.m in Sources */,
 				741C7AAB155E70220056AF55 /* ViewController.m in Sources */,
 				74E96612155EC42800C0486D /* IngameViewController.m in Sources */,
+				B738801815679402001C482D /* PlayerBene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
