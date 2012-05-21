@@ -19,6 +19,6 @@
 //@synthesize avatar
 @synthesize playerState = _playerState;
 
-
+new
 
 @end
