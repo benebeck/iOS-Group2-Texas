@@ -11,9 +11,13 @@
 @interface PlayerBene : NSObject
 
 @property (weak, nonatomic) NSString *playerName;
+@property (nonatomic) int playerId;
 @property (nonatomic) int moneyRest; 
 //@property () avatar
 @property (weak, nonatomic) NSArray *playerState; 
+@property (nonatomic) int playerRound;
+@property (weak, nonatomic) NSArray *openCards;
+@property (weak, nonatomic) NSArray *twoCards;
 
 
 @end

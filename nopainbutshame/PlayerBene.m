@@ -15,10 +15,13 @@
 @implementation PlayerBene
 
 @synthesize playerName = _playerName;
+@synthesize playerId = _playerId;
 @synthesize moneyRest = _moneyRest;
 //@synthesize avatar
 @synthesize playerState = _playerState;
+@synthesize playerRound = _playerRound;
+@synthesize openCards = _openCards;
+@synthesize twoCards = _twoCards;
 
-new
 
 @end
