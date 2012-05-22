@@ -7,6 +7,7 @@
 //
 
 #import "PlayerBene.h"
+#import "TexasHolemGame.h"
 
 @interface PlayerBene ()
 //for private functions
@@ -31,7 +32,7 @@
 }
 
 -(NSArray *)getStates{
-    
+    return 0;
 }
 
 -(void)removeMoney:(int)amount{

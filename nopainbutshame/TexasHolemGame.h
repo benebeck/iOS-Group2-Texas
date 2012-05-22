@@ -10,4 +10,16 @@
 
 @interface TexasHolemGame : NSObject
 
+@property (nonatomic, weak) NSArray *players;
+@property (nonatomic) int activePlayer;
+@property (nonatomic) int maxPlayers;
+@property (nonatomic) int bigBlind;
+@property (nonatomic) int totalMoney;
+@property (nonatomic) int betRoundNr;
+
+-(void)activateNextPlayer;
+-(int)getRoundNr;
+-(void)setRoundNr;
+-(BOOL)isShowDownTime;
+
 @end
