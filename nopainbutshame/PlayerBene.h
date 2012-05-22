@@ -21,8 +21,8 @@
 
 
 -(void)setState;
--(NSArray *)getState;
--(void)removeMoney;
--(void)getMoneyFromPot;
+-(NSArray *)getStates;
+-(void)removeMoney:(int)amount;
+-(void)getMoneyFromPot:(int)amount;
 
 @end

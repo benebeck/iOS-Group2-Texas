@@ -30,15 +30,15 @@
 
 }
 
--(NSArray *)getState{
+-(NSArray *)getStates{
     
 }
 
--(void)removeMoney{
+-(void)removeMoney:(int)amount{
     
 }
 
--(void)getMoneyFromPot{
+-(void)getMoneyFromPot:(int)amount{
     
 }
 
