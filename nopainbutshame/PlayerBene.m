@@ -24,4 +24,14 @@
 @synthesize twoCards = _twoCards;
 
 
+
+
+-(void)setState{
+
+}
+
+
+
+
+
 @end

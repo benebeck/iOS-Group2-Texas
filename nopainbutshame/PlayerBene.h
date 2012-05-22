@@ -20,4 +20,8 @@
 @property (weak, nonatomic) NSArray *twoCards;
 
 
+-(void)setState;
+
+-(void)removeMoney;
+
 @end
