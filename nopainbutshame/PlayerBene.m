@@ -30,8 +30,17 @@
 
 }
 
+-(NSArray *)getState{
+    
+}
 
+-(void)removeMoney{
+    
+}
 
+-(void)getMoneyFromPot{
+    
+}
 
 
 @end
