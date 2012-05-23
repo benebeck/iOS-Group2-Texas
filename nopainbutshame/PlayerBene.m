@@ -10,7 +10,7 @@
 #import "TexasHolemGame.h"
 
 @interface PlayerBene ()
-//for private functions
+@property (nonatomic, strong) TexasHolemGame *game;
 @end
 
 @implementation PlayerBene
@@ -24,7 +24,13 @@
 @synthesize openCards = _openCards;
 @synthesize twoCards = _twoCards;
 
+@synthesize game = _game;
 
+
+-(TexasHolemGame *) game{
+    if (_game == nil) _game = [[TexasHolemGame alloc] init];
+    return _game;
+}
 
 
 -(void)setState{
@@ -36,12 +42,38 @@
 }
 
 -(void)removeMoney:(int)amount{
-    
+    //remove amount from personal money
+    self.moneyRest = (self.moneyRest - amount);
+    //amount into common pot
+    self.game.totalMoney = (self.game.totalMoney + amount);
 }
 
 -(void)getMoneyFromPot:(int)amount{
-    
+    //remove money from common pot
+    self.game.totalMoney = (self.game.totalMoney - amount);
+    //amount into personal money
+    self.moneyRest = (self.moneyRest + amount);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end
