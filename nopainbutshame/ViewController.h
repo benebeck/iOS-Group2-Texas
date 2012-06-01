@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-{ 
-IBOutlet UIScrollView *scrollsingleplayer;
-}
+    -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer2;
+
 @end

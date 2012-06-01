@@ -14,11 +14,46 @@
 
 @implementation ViewController
 
+-(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer2{
+    Boolean animation=false;
+    CGPoint ycenter= CGPointMake(232.5, 215);
+    CGPoint translation = [recognizer2 translationInView:self.view];
+    
+    recognizer2.view.center = CGPointMake(recognizer2.view.center.x + translation.x, MAX(MIN(recognizer2.view.center.y+translation.y,220),100));
+    if (translation.y>100) {
+        animation=true;
+    }
+   // NSLog(@"recognizer.x %f,recognizer.y %f",recognizer2.view.center.x,recognizer2.view.center.y);
+    
+    [recognizer2 setTranslation:CGPointMake(0, 0) inView:self.view];
+    
+    if (recognizer2.state == UIGestureRecognizerStateEnded) {
+        
+        CGPoint velocity = [ recognizer2 velocityInView:self.view];
+        
+        CGFloat magnitude= sqrtf((velocity.x * velocity.x)+(velocity.y* velocity.y));
+        CGFloat slideMult= magnitude /1000;
+        float slidefactor = 0.2 * slideMult;
+      //  NSLog(@"recognizer.x %f,recognizer.y %f",velocity.y,slidefactor);
+
+        if ( magnitude>100 && velocity.y<0) {
+            
+        
+        CGPoint finalpoint = CGPointMake(recognizer2.view.center.x, recognizer2.view.center.y+(velocity.y*slidefactor));
+        
+        [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ recognizer2.view.center=finalpoint;} completion:nil];
+        } else {
+            recognizer2.view.center=ycenter;
+        }
+        
+        
+    }
+}
+
 - (void)viewDidLoad
 {
     
-    [scrollsingleplayer setScrollEnabled:YES];
-    scrollsingleplayer.contentSize = CGSizeMake(320, 1000);
+ 
 
     
     UISwipeGestureRecognizer *recognizer;
