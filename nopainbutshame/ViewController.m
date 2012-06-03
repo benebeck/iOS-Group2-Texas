@@ -75,24 +75,17 @@ CGPoint startpoint;
 
 -(void) animate: (CGPoint) msg{
     
-    
+    NSLog(@"msg%f\n", msg.x);
     [UIImageView beginAnimations:@"Bouncing" context:nil];
     [UIImageView setAnimationDelegate:self];
-    [UIImageView setAnimationDuration:0.2];
+    [UIImageView setAnimationDuration:0.1];
     [UIImageView setAnimationCurve:UIViewAnimationCurveLinear];
-    if (msg.x<50) {
-    
-    myimageview.frame = CGRectMake(0, 
-                                   150, 
-                                   myimageview.frame.size.width+30, 
-                                   myimageview.frame.size.height);   }
-        else{
-            myimageview.frame = CGRectMake(0, 
-                                           150, 
-                                           myimageview.frame.size.width-30, 
-                                           myimageview.frame.size.height);
-        }
-    
+    myimageview.frame = CGRectMake(11, 
+                                   MAX(80,MIN(150,msg.x-81)), 
+                                   //MAX(122,MIN(200,250-msg.x)),   
+                                   MAX(58,MIN(140,290-msg.x)), 
+                                   1.5*MAX(72,MIN(150,305-msg.x)));   
+           
     [UIImageView commitAnimations];
 }
 
@@ -108,7 +101,7 @@ static int hil=1;
             i--;
         }
     CGPoint translation = [recognizer2 translationInView:self.view];
-    CGPoint velocity = [recognizer2 velocityInView:self.view];
+   
     
     
   
@@ -121,37 +114,35 @@ static int hil=1;
    
     
            //        NSLog(@"sda\n"); myimage.frame.origin.x-(int)(amount/2)
-    if(hil==0){
+   
 [self animate:woist];
-        hil=30;
-    }else {
-        hil--;
-    }
+        
+ 
       if (recognizer2.state == UIGestureRecognizerStateEnded) {
-          woist=CGPointMake(point->x, point->y);
-          i++;
+         
           
-     }
-          /*
+     
      CGPoint velocity = [ recognizer2 velocityInView:self.view];
      
-     CGFloat magnitude= sqrtf((velocity.x * velocity.x)+(velocity.y* velocity.y));
+     CGFloat magnitude= sqrtf(1+(velocity.y* velocity.y));
      CGFloat slideMult= magnitude /1000;
      float slidefactor = 0.2 * slideMult;
      
      
-     if ( magnitude>200 && velocity.y<0) {
+     if ( magnitude>200 && woist.x<120 ) {
      
      
      CGPoint finalpoint = CGPointMake(recognizer2.view.center.x, recognizer2.view.center.y+(velocity.y*slidefactor));
      
-     [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ recognizer2.view.center=finalpoint;} completion:nil];
-     } else {
-     recognizer2.view.center=ycenter;
+     [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ myimageview.frame=CGRectMake(myimageview.frame.origin.x, finalpoint.y, myimage.size.width, myimage.size.height);} completion:nil];
+        
+           [self performSegueWithIdentifier:@"onetosecond" sender:nil];
+         woist=CGPointMake(point->x, point->y);
+         i++;
      }
      
      
-     }*/
+     }
 }
 
 -(void)swipeUp:(UISwipeGestureRecognizer *)recognizer{

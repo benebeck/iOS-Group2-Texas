@@ -249,6 +249,9 @@
                             <outletCollection property="gestureRecognizers" destination="grR-fi-BMb" appends="YES" id="Qyg-6d-kGZ"/>
                         </connections>
                     </view>
+                    <connections>
+                        <segue destination="AXd-nC-7ay" kind="modal" identifier="onetosecond" modalTransitionStyle="coverVertical" id="m8K-Ln-66o"/>
+                    </connections>
                 </viewController>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="grR-fi-BMb">
                     <connections>
