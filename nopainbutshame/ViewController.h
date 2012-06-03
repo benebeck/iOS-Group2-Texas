@@ -10,5 +10,6 @@
 
 @interface ViewController : UIViewController
     -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer2;
+-(void) animate:(CGPoint) msg;
 
 @end
