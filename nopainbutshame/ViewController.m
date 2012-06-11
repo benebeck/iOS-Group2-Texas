@@ -15,6 +15,7 @@
 @implementation ViewController
 
 UIImageView *myimageview=nil;
+UIImageView *myimageview2=nil;
 UIImage *myimage;
 CGPoint *point;
 CGPoint woist;
@@ -24,6 +25,7 @@ CGPoint startpoint;
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *betouched = [touches anyObject];
     startpoint = [betouched locationInView:self.view];
+    [self animate:startpoint];
 }
 
 - (void)viewDidLoad
@@ -35,20 +37,12 @@ CGPoint startpoint;
     [myimageview setFrame:CGRectMake(0, 150, 55, 90)];
     [[self view]addSubview:myimageview];
     
-    CGPoint mycenter = myimageview.center;
-    int amount =52;
+    myimageview2=[[UIImageView alloc]initWithImage:myimage];
+    [myimageview2 setFrame:CGRectMake(100, 150, 55, 90)];
+    [[self view]addSubview:myimageview2];
+
     
-    [UIImageView beginAnimations:@"Bouncing" context:nil];
-    [UIImageView setAnimationDelegate:self];
-    [UIImageView setAnimationDuration:0.4];
-    [UIImageView setAnimationCurve:UIViewAnimationCurveLinear];
     
-    myimageview.frame = CGRectMake(3, 
-                                   3, 
-                                   myimageview.frame.size.width+amount, 
-                                   myimageview.frame.size.height+amount);      
-    myimageview.center= mycenter;
-    [UIImageView commitAnimations];	
     
         
     /*
@@ -74,23 +68,31 @@ CGPoint startpoint;
 
 
 -(void) animate: (CGPoint) msg{
+    NSLog(@"cosf=%f\n",sinf(msg.x/36));
+    float hilf;
+    if(sinf(msg.x/36)>0){
+        hilf=0;
+    }
+       else{
+           hilf=sinf(msg.x/36);
+       }
     
-    NSLog(@"msg%f\n", msg.x);
-    [UIImageView beginAnimations:@"Bouncing" context:nil];
-    [UIImageView setAnimationDelegate:self];
-    [UIImageView setAnimationDuration:0.1];
-    [UIImageView setAnimationCurve:UIViewAnimationCurveLinear];
     myimageview.frame = CGRectMake(11, 
-                                   MAX(80,MIN(150,msg.x-81)), 
+                                   MAX(106,300-MAX(150,300-(200*cosf(msg.x/360)))), 
                                    //MAX(122,MIN(200,250-msg.x)),   
                                    MAX(58,MIN(140,290-msg.x)), 
                                    1.5*MAX(72,MIN(150,305-msg.x)));   
-           
-    [UIImageView commitAnimations];
+              
+    myimageview2.frame = CGRectMake(100, 
+                                   MAX(106,MIN(150,300+(200*hilf))), 
+                                   //MAX(122,MIN(200,250-msg.x)),   
+                                   MAX(58,MIN(140,290-msg.x)), 
+                                   1.5*MAX(72,MIN(150,305-msg.x)));  
+  
 }
 
 static int i=1;
-static int hil=1;
+
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer2{
    
     
@@ -105,7 +107,7 @@ static int hil=1;
     
     
   
-    NSLog(@"recognizer.x %f,recognizer.y %f",woist.x,woist.y);
+   // NSLog(@"recognizer.x %f,recognizer.y %f",woist.x,woist.y);
      //MAX(MIN(startpoint.y+translation.y,220),150)
     woist=CGPointMake(startpoint.x+translation.x,point->y);
      
