@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10997A1515874D8E00895DBE /* PackOfCards.m in Sources */ = {isa = PBXBuildFile; fileRef = 10997A1415874D8E00895DBE /* PackOfCards.m */; };
 		741C3E9E1579181C0085C97E /* 1_Singleplayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 741C3E9D1579181C0085C97E /* 1_Singleplayer.png */; };
 		741C7A92155E70210056AF55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A91155E70210056AF55 /* UIKit.framework */; };
 		741C7A94155E70210056AF55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A93155E70210056AF55 /* Foundation.framework */; };
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10997A1315874D8E00895DBE /* PackOfCards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackOfCards.h; sourceTree = "<group>"; };
+		10997A1415874D8E00895DBE /* PackOfCards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackOfCards.m; sourceTree = "<group>"; };
 		741C3E9D1579181C0085C97E /* 1_Singleplayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_Singleplayer.png; sourceTree = "<group>"; };
 		741C7A8D155E70210056AF55 /* nopainbutshame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nopainbutshame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		741C7A91155E70210056AF55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };

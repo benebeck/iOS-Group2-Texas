@@ -15,6 +15,7 @@
 @implementation ViewController
 
 UIImageView *myimageview=nil;
+UIImageView *myimageview2=nil;
 UIImage *myimage;
 CGPoint *point;
 CGPoint woist;
@@ -24,6 +25,7 @@ CGPoint startpoint;
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *betouched = [touches anyObject];
     startpoint = [betouched locationInView:self.view];
+    [self animate:startpoint];
 }
 
 - (void)viewDidLoad
@@ -35,20 +37,12 @@ CGPoint startpoint;
     [myimageview setFrame:CGRectMake(0, 150, 55, 90)];
     [[self view]addSubview:myimageview];
     
-    CGPoint mycenter = myimageview.center;
-    int amount =52;
+    myimageview2=[[UIImageView alloc]initWithImage:myimage];
+    [myimageview2 setFrame:CGRectMake(100, 150, 55, 90)];
+    [[self view]addSubview:myimageview2];
+
     
-    [UIImageView beginAnimations:@"Bouncing" context:nil];
-    [UIImageView setAnimationDelegate:self];
-    [UIImageView setAnimationDuration:0.4];
-    [UIImageView setAnimationCurve:UIViewAnimationCurveLinear];
     
-    myimageview.frame = CGRectMake(3, 
-                                   3, 
-                                   myimageview.frame.size.width+amount, 
-                                   myimageview.frame.size.height+amount);      
-    myimageview.center= mycenter;
-    [UIImageView commitAnimations];	
     
         
     /*
@@ -74,30 +68,31 @@ CGPoint startpoint;
 
 
 -(void) animate: (CGPoint) msg{
+    NSLog(@"cosf=%f\n",sinf(msg.x/36));
+    float hilf;
+    if(sinf(msg.x/36)>0){
+        hilf=0;
+    }
+       else{
+           hilf=sinf(msg.x/36);
+       }
     
-    
-    [UIImageView beginAnimations:@"Bouncing" context:nil];
-    [UIImageView setAnimationDelegate:self];
-    [UIImageView setAnimationDuration:0.2];
-    [UIImageView setAnimationCurve:UIViewAnimationCurveLinear];
-    if (msg.x<50) {
-    
-    myimageview.frame = CGRectMake(0, 
-                                   150, 
-                                   myimageview.frame.size.width+30, 
-                                   myimageview.frame.size.height);   }
-        else{
-            myimageview.frame = CGRectMake(0, 
-                                           150, 
-                                           myimageview.frame.size.width-30, 
-                                           myimageview.frame.size.height);
-        }
-    
-    [UIImageView commitAnimations];
+    myimageview.frame = CGRectMake(11, 
+                                   MAX(106,300-MAX(150,300-(200*cosf(msg.x/360)))), 
+                                   //MAX(122,MIN(200,250-msg.x)),   
+                                   MAX(58,MIN(140,290-msg.x)), 
+                                   1.5*MAX(72,MIN(150,305-msg.x)));   
+              
+    myimageview2.frame = CGRectMake(100, 
+                                   MAX(106,MIN(150,300+(200*hilf))), 
+                                   //MAX(122,MIN(200,250-msg.x)),   
+                                   MAX(58,MIN(140,290-msg.x)), 
+                                   1.5*MAX(72,MIN(150,305-msg.x)));  
+  
 }
 
 static int i=1;
-static int hil=1;
+
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer2{
    
     
@@ -108,11 +103,11 @@ static int hil=1;
             i--;
         }
     CGPoint translation = [recognizer2 translationInView:self.view];
-    CGPoint velocity = [recognizer2 velocityInView:self.view];
+   
     
     
   
-    NSLog(@"recognizer.x %f,recognizer.y %f",woist.x,woist.y);
+   // NSLog(@"recognizer.x %f,recognizer.y %f",woist.x,woist.y);
      //MAX(MIN(startpoint.y+translation.y,220),150)
     woist=CGPointMake(startpoint.x+translation.x,point->y);
      
@@ -121,37 +116,35 @@ static int hil=1;
    
     
            //        NSLog(@"sda\n"); myimage.frame.origin.x-(int)(amount/2)
-    if(hil==0){
+   
 [self animate:woist];
-        hil=30;
-    }else {
-        hil--;
-    }
+        
+ 
       if (recognizer2.state == UIGestureRecognizerStateEnded) {
-          woist=CGPointMake(point->x, point->y);
-          i++;
+         
           
-     }
-          /*
+     
      CGPoint velocity = [ recognizer2 velocityInView:self.view];
      
-     CGFloat magnitude= sqrtf((velocity.x * velocity.x)+(velocity.y* velocity.y));
+     CGFloat magnitude= sqrtf(1+(velocity.y* velocity.y));
      CGFloat slideMult= magnitude /1000;
      float slidefactor = 0.2 * slideMult;
      
      
-     if ( magnitude>200 && velocity.y<0) {
+     if ( magnitude>200 && woist.x<120 ) {
      
      
      CGPoint finalpoint = CGPointMake(recognizer2.view.center.x, recognizer2.view.center.y+(velocity.y*slidefactor));
      
-     [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ recognizer2.view.center=finalpoint;} completion:nil];
-     } else {
-     recognizer2.view.center=ycenter;
+     [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ myimageview.frame=CGRectMake(myimageview.frame.origin.x, finalpoint.y, myimage.size.width, myimage.size.height);} completion:nil];
+        
+           [self performSegueWithIdentifier:@"onetosecond" sender:nil];
+         woist=CGPointMake(point->x, point->y);
+         i++;
      }
      
      
-     }*/
+     }
 }
 
 -(void)swipeUp:(UISwipeGestureRecognizer *)recognizer{

@@ -12,7 +12,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-Ze-5QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="AXd-nC-7ay" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yly-Ol-vBM">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ViewSingleplayer.png" id="cSI-Xn-Ffe">
@@ -226,6 +226,11 @@
         <!--View Controller-->
         <scene sceneID="5">
             <objects>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="grR-fi-BMb">
+                    <connections>
+                        <action selector="handlePan:" destination="2" id="AOf-Tm-sPP"/>
+                    </connections>
+                </panGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
@@ -236,11 +241,6 @@
                                 <rect key="frame" x="29" y="242" width="118" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="3ub-P2-x2o">
-                                <rect key="frame" x="-200" y="-200" width="1111" height="1111"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.25302420660000002" green="0.53538977580000002" blue="0.13606019089999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.25302420660917269" green="0.53538977581521741" blue="0.13606019094066377" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -249,12 +249,10 @@
                             <outletCollection property="gestureRecognizers" destination="grR-fi-BMb" appends="YES" id="Qyg-6d-kGZ"/>
                         </connections>
                     </view>
-                </viewController>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="grR-fi-BMb">
                     <connections>
-                        <action selector="handlePan:" destination="2" id="AOf-Tm-sPP"/>
+                        <segue destination="AXd-nC-7ay" kind="modal" identifier="onetosecond" modalTransitionStyle="coverVertical" id="m8K-Ln-66o"/>
                     </connections>
-                </panGestureRecognizer>
+                </viewController>
             </objects>
             <point key="canvasLocation" x="-698" y="228"/>
         </scene>
