@@ -62,6 +62,34 @@ static GCHelper *sharedHelper = nil;
 }
 
 
+- (void)authenticationChanged
+{    
+    if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
+        NSLog(@"Authentication changed: player authenticated.");
+        userAuthenticated = TRUE;           
+    } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
+        NSLog(@"Authentication changed: player not authenticated");
+        userAuthenticated = FALSE;
+    }
+    
+}
+
+
+#pragma mark User functions
+
+- (void)authenticationChanged
+{    
+    if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
+        NSLog(@"Authentication changed: player authenticated.");
+        userAuthenticated = TRUE;           
+    } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
+        NSLog(@"Authentication changed: player not authenticated");
+        userAuthenticated = FALSE;
+    }
+    
+}
+
+
 - (void)authenticateLocalUser
 { 
     if (!gameCenterAvailable) return;
@@ -81,19 +109,6 @@ static GCHelper *sharedHelper = nil;
     }
 }
 
-#pragma mark User functions
-
-- (void)authenticationChanged
-{    
-    if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
-        NSLog(@"Authentication changed: player authenticated.");
-        userAuthenticated = TRUE;           
-    } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
-        NSLog(@"Authentication changed: player not authenticated");
-        userAuthenticated = FALSE;
-    }
-    
-}
 
 
 
