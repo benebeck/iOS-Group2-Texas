@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GCHelper.h"
+#import "TexasHolemGame.h"
 
 @implementation AppDelegate
 
@@ -16,7 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
    
-    [[GCHelper sharedInstance] authenticateLocalUser];‚
+    [[GCHelper sharedInstance] authenticateLocalUser];
     return YES;
 }
 							

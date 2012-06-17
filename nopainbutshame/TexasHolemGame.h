@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCHelper.h"
 
-@interface TexasHolemGame : NSObject
+@interface TexasHolemGame : NSObject<GCHelperDelegate>
 
 @property (nonatomic, weak) NSArray *players;
 @property (nonatomic) int activePlayer;

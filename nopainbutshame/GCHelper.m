@@ -74,21 +74,7 @@ static GCHelper *sharedHelper = nil;
     
 }
 
-
 #pragma mark User functions
-
-- (void)authenticationChanged
-{    
-    if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
-        NSLog(@"Authentication changed: player authenticated.");
-        userAuthenticated = TRUE;           
-    } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
-        NSLog(@"Authentication changed: player not authenticated");
-        userAuthenticated = FALSE;
-    }
-    
-}
-
 
 - (void)authenticateLocalUser
 { 
@@ -110,6 +96,12 @@ static GCHelper *sharedHelper = nil;
 }
 
 
+#pragma mark Match Making Functions
+
+-(void)findMatchWithMinPlayers:(int)minPlayers maxPlayers:(int)maxPlayers viewController:(UIViewController *)viewController{
+    if (!gameCenterAvailable) return;
+    
+}
 
 
 @end

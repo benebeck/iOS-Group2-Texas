@@ -42,7 +42,7 @@
 @property (nonatomic, retain) id <GCHelperDelegate> delegate;
 
 @property (assign, readonly) BOOL gameCenterAvailable;
-//@property UIViewController *asdfs //irgendwie link zum TexasHoldemGame
+@property UIViewController *presentingViewController; //irgendwie link zum TexasHoldemGame
 @property (retain) GKTurnBasedMatch *currentMatch;
 
 + (GCHelper *)sharedInstance; //class method, das hier macht es zum singleton

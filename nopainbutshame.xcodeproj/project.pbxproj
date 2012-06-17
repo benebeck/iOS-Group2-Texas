@@ -33,8 +33,8 @@
 		74E9660F155EBFE600C0486D /* ViewMultiplayerOpengame.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E9660E155EBFE600C0486D /* ViewMultiplayerOpengame.png */; };
 		74E96612155EC42800C0486D /* IngameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E96611155EC42800C0486D /* IngameViewController.m */; };
 		B738801815679402001C482D /* PlayerBene.m in Sources */ = {isa = PBXBuildFile; fileRef = B738801715679402001C482D /* PlayerBene.m */; };
-		B7ACE153158CA81100EA6EF3 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B7ACE152158CA81100EA6EF3 /* GCHelper.m */; };
-		B7ACE15A158CAA4700EA6EF3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7ACE159158CAA4700EA6EF3 /* GameKit.framework */; };
+		B7CC702B158DD48200FB563A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CC702A158DD48100FB563A /* GameKit.framework */; };
+		B7CC702C158DD67B00FB563A /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B7ACE152158CA81100EA6EF3 /* GCHelper.m */; };
 		B7F8B3E5156BDD6300B817AB /* TexasHolemGame.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F8B3E4156BDD6300B817AB /* TexasHolemGame.m */; };
 		B7F8B3E9156BDD7000B817AB /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F8B3E8156BDD7000B817AB /* Player.m */; };
 /* End PBXBuildFile section */
@@ -87,7 +87,7 @@
 		B738801715679402001C482D /* PlayerBene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerBene.m; sourceTree = "<group>"; };
 		B7ACE151158CA81100EA6EF3 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		B7ACE152158CA81100EA6EF3 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
-		B7ACE159158CAA4700EA6EF3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		B7CC702A158DD48100FB563A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B7F8B3E3156BDD6300B817AB /* TexasHolemGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexasHolemGame.h; sourceTree = "<group>"; };
 		B7F8B3E4156BDD6300B817AB /* TexasHolemGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TexasHolemGame.m; sourceTree = "<group>"; };
 		B7F8B3E7156BDD7000B817AB /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7ACE15A158CAA4700EA6EF3 /* GameKit.framework in Frameworks */,
+				B7CC702B158DD48200FB563A /* GameKit.framework in Frameworks */,
 				741C7A92155E70210056AF55 /* UIKit.framework in Frameworks */,
 				741C7A94155E70210056AF55 /* Foundation.framework in Frameworks */,
 				741C7A96155E70210056AF55 /* CoreGraphics.framework in Frameworks */,
@@ -122,7 +122,6 @@
 		741C7A82155E70210056AF55 = {
 			isa = PBXGroup;
 			children = (
-				B7ACE159158CAA4700EA6EF3 /* GameKit.framework */,
 				741C7A97155E70210056AF55 /* nopainbutshame */,
 				741C7AB8155E70220056AF55 /* nopainbutshameTests */,
 				741C7A90155E70210056AF55 /* Frameworks */,
@@ -142,6 +141,7 @@
 		741C7A90155E70210056AF55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7CC702A158DD48100FB563A /* GameKit.framework */,
 				741C7A91155E70210056AF55 /* UIKit.framework */,
 				741C7A93155E70210056AF55 /* Foundation.framework */,
 				741C7A95155E70210056AF55 /* CoreGraphics.framework */,
@@ -332,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7CC702C158DD67B00FB563A /* GCHelper.m in Sources */,
 				741C7A9E155E70210056AF55 /* main.m in Sources */,
 				741C7AA2155E70210056AF55 /* AppDelegate.m in Sources */,
 				741C7AAB155E70220056AF55 /* ViewController.m in Sources */,
