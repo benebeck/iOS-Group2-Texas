@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
+#import "TexasHolemGame.h"
 
 /*
  *delegate protocol to manage communication between GCHelper and the TexasHoldemGame class
@@ -42,7 +43,7 @@
 @property (nonatomic, retain) id <GCHelperDelegate> delegate;
 
 @property (assign, readonly) BOOL gameCenterAvailable;
-@property UIViewController *presentingViewController; //irgendwie link zum TexasHoldemGame
+@property UIViewController *presentingViewController; 
 @property (retain) GKTurnBasedMatch *currentMatch;
 
 + (GCHelper *)sharedInstance; //class method, das hier macht es zum singleton

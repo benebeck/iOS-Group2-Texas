@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GCHelper.h"
 #import "TexasHolemGame.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
