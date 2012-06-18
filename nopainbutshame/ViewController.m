@@ -17,6 +17,7 @@
 
 UIImageView *myimageview=nil;
 UIImageView *myimageview2=nil;
+UIImageView *myimageview3=nil;
 UIImage *myimage;
 CGPoint *point;
 CGPoint woist;
@@ -39,12 +40,16 @@ CGPoint startpoint;
     point= (CGPoint *)malloc(sizeof(const CGPoint));
     myimage =[UIImage imageNamed:@"1_Singleplayer.png"];
     myimageview=[[UIImageView alloc] initWithImage:myimage];
-    [myimageview setFrame:CGRectMake(0, 150, 55, 90)];
+    [myimageview setFrame:CGRectMake(10, 150, 55, 90)];
     [[self view]addSubview:myimageview];
     
     myimageview2=[[UIImageView alloc]initWithImage:myimage];
     [myimageview2 setFrame:CGRectMake(100, 150, 55, 90)];
     [[self view]addSubview:myimageview2];
+    
+    myimageview3=[[UIImageView alloc]initWithImage:myimage];
+    [myimageview3 setFrame:CGRectMake(200, 150, 55, 90)];
+    [[self view]addSubview:myimageview3];
 
     
     
@@ -73,17 +78,38 @@ CGPoint startpoint;
 
 
 -(void) animate: (CGPoint) msg{
-    NSLog(@"cosf=%f\n",sinf(msg.x/36));
+   
     float hilf;
+    float hilfcos;
+    float hilfcos2;
     if(sinf(msg.x/36)>0){
         hilf=0;
     }
        else{
            hilf=sinf(msg.x/36);
        }
+    if(cosf(msg.x/360)<0.94)
+    {
+        hilfcos=0;
+    }
+    else {
+        hilfcos=cosf(msg.x/360);
+        hilfcos=(hilfcos*100)-88;
+    }
     
-    myimageview.frame = CGRectMake(11, 
-                                   MAX(106,300-MAX(150,300-(200*cosf(msg.x/360)))), 
+    if(cosf(msg.x/360)>0.83)
+    {
+        hilfcos2=0;
+    }
+    else {
+        hilfcos2=cosf(msg.x/45);
+       
+    }
+    
+ 
+     NSLog(@"asd:%f\n",200*hilf);
+    myimageview.frame = CGRectMake(10, 
+                                   MAX(110,MIN(150,200-(10*hilfcos))), 
                                    //MAX(122,MIN(200,250-msg.x)),   
                                    MAX(58,MIN(140,290-msg.x)), 
                                    1.5*MAX(72,MIN(150,305-msg.x)));   
@@ -91,8 +117,13 @@ CGPoint startpoint;
     myimageview2.frame = CGRectMake(100, 
                                    MAX(106,MIN(150,300+(200*hilf))), 
                                    //MAX(122,MIN(200,250-msg.x)),   
-                                   MAX(58,MIN(140,290-msg.x)), 
+                                   MAX(58,MIN(140,-2*(200*hilf))), 
                                    1.5*MAX(72,MIN(150,305-msg.x)));  
+    myimageview3.frame = CGRectMake(200, 
+                                   MAX(110,MIN(150,140-(100*hilfcos2))), 
+                                   //MAX(122,MIN(200,250-msg.x)),   
+                                   MAX(58,MIN(140,msg.x-100)), 
+                                   1.5*MAX(72,MIN(126,1.3*(msg.x-140))));   
   
 }
 
@@ -146,6 +177,26 @@ static int i=1;
      [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ myimageview.frame=CGRectMake(myimageview.frame.origin.x, finalpoint.y, myimage.size.width, myimage.size.height);} completion:nil];
         
            [self performSegueWithIdentifier:@"onetosecond" sender:nil];
+         woist=CGPointMake(point->x, point->y);
+         i++;
+     }else     if ( magnitude>200 && woist.x<220 && woist.x>120 ) {
+         
+         
+         CGPoint finalpoint = CGPointMake(recognizer2.view.center.x, recognizer2.view.center.y+(velocity.y*slidefactor));
+         
+         [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ myimageview2.frame=CGRectMake(myimageview2.frame.origin.x, finalpoint.y, myimage.size.width, myimage.size.height);} completion:nil];
+         
+         [self performSegueWithIdentifier:@"onetosecond" sender:nil];
+         woist=CGPointMake(point->x, point->y);
+         i++;
+     }else     if ( magnitude>200 && woist.x>220 ) {
+         
+         
+         CGPoint finalpoint = CGPointMake(recognizer2.view.center.x, recognizer2.view.center.y+(velocity.y*slidefactor));
+         
+         [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ myimageview3.frame=CGRectMake(myimageview3.frame.origin.x, finalpoint.y, myimage.size.width, myimage.size.height);} completion:nil];
+         
+         [self performSegueWithIdentifier:@"onetosecond" sender:nil];
          woist=CGPointMake(point->x, point->y);
          i++;
      }
