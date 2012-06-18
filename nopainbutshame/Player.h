@@ -10,6 +10,4 @@
 
 @interface Player : NSObject
 
-
-
 @end
