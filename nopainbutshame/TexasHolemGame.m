@@ -18,6 +18,21 @@
 @synthesize betRoundNr = _betRoundNr;
 
 
+#pragma mark Initialization
+
+/*
+ *singleton TexasHoldemGame 
+ */
+
+static TexasHolemGame *sharedInstance = nil;
++(TexasHolemGame *) sharedInstance {
+    if (!sharedInstance){
+        sharedInstance = [[TexasHolemGame alloc] init];
+    }
+    return sharedInstance;
+}
+
+
 -(void)activateNextPlayer{
     
 }

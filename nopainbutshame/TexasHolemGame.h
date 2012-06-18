@@ -18,6 +18,8 @@
 @property (nonatomic) int totalMoney;
 @property (nonatomic) int betRoundNr;
 
++(TexasHolemGame *)sharedInstance;
+
 -(void)activateNextPlayer;
 -(int)getRoundNr;
 -(void)setRoundNr;

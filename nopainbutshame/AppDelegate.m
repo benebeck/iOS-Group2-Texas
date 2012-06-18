@@ -17,7 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-   
+    //start up the central game control
+    [TexasHolemGame sharedInstance];
+    
     [[GCHelper sharedInstance] authenticateLocalUser];
     return YES;
 }
