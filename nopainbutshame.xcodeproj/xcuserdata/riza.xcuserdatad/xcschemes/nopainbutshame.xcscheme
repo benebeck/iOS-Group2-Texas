@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "743D7844155A8B3600BC66C7"
+               BlueprintIdentifier = "741C7A8C155E70210056AF55"
                BuildableName = "nopainbutshame.app"
                BlueprintName = "nopainbutshame"
                ReferencedContainer = "container:nopainbutshame.xcodeproj">
@@ -22,8 +22,8 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
@@ -31,7 +31,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "743D7868155A8B3700BC66C7"
+               BlueprintIdentifier = "741C7AB0155E70220056AF55"
                BuildableName = "nopainbutshameTests.octest"
                BlueprintName = "nopainbutshameTests"
                ReferencedContainer = "container:nopainbutshame.xcodeproj">
@@ -41,7 +41,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "743D7844155A8B3600BC66C7"
+            BlueprintIdentifier = "741C7A8C155E70210056AF55"
             BuildableName = "nopainbutshame.app"
             BlueprintName = "nopainbutshame"
             ReferencedContainer = "container:nopainbutshame.xcodeproj">
@@ -49,17 +49,18 @@
       </MacroExpansion>
    </TestAction>
    <LaunchAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
+      ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "743D7844155A8B3600BC66C7"
+            BlueprintIdentifier = "741C7A8C155E70210056AF55"
             BuildableName = "nopainbutshame.app"
             BlueprintName = "nopainbutshame"
             ReferencedContainer = "container:nopainbutshame.xcodeproj">
@@ -77,7 +78,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "743D7844155A8B3600BC66C7"
+            BlueprintIdentifier = "741C7A8C155E70210056AF55"
             BuildableName = "nopainbutshame.app"
             BlueprintName = "nopainbutshame"
             ReferencedContainer = "container:nopainbutshame.xcodeproj">
