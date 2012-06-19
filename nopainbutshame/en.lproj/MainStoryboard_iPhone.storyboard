@@ -65,11 +65,34 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G6G-yF-PpT">
+                                <rect key="frame" x="150" y="123" width="72" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonToTriggerCircle:" destination="3o3-SD-lDY" eventType="touchUpInside" id="aYr-mS-eAt"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" id="hCp-DA-kuQ" customClass="drawCircle">
+                                <rect key="frame" x="211" y="67" width="240" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="myView" destination="hCp-DA-kuQ" id="n3h-QM-cnk"/>
+                    </connections>
                 </viewController>
                 <swipeGestureRecognizer direction="left" id="0MO-jE-102">
                     <connections>
@@ -357,13 +380,32 @@
         <image name="ViewMultiplayerOpengame.png" width="322" height="482"/>
         <image name="ViewSingleplayer.png" width="322" height="482"/>
     </resources>
+    <classes>
+        <class className="IngameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IngameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonToTriggerCircle:"/>
+                <relationship kind="outlet" name="myView" candidateClass="drawCircle"/>
+                <relationship kind="outlet" name="spielereins" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="presentGCTurnViewController:"/>
+            </relationships>
+        </class>
+        <class className="drawCircle" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/drawCircle.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tnK-1D-AKL"/>
         <segue reference="OiG-h6-G1P"/>
     </inferredMetricsTieBreakers>
 </document>

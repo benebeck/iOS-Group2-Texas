@@ -23,6 +23,7 @@
 		741C7AB5155E70220056AF55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A93155E70210056AF55 /* Foundation.framework */; };
 		741C7ABD155E70220056AF55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 741C7ABB155E70220056AF55 /* InfoPlist.strings */; };
 		741C7AC0155E70230056AF55 /* nopainbutshameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C7ABF155E70230056AF55 /* nopainbutshameTests.m */; };
+		74CC6E84158FEC1000E76E59 /* drawCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CC6E83158FEC1000E76E59 /* drawCircle.m */; };
 		74E96606155EB83100C0486D /* SpielEnde.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E965FF155EB83100C0486D /* SpielEnde.png */; };
 		74E96607155EB83100C0486D /* InGameView.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96600155EB83100C0486D /* InGameView.png */; };
 		74E96608155EB83100C0486D /* ViewMultiplayerLobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96601155EB83100C0486D /* ViewMultiplayerLobby.png */; };
@@ -73,6 +74,8 @@
 		741C7ABC155E70220056AF55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		741C7ABE155E70230056AF55 /* nopainbutshameTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nopainbutshameTests.h; sourceTree = "<group>"; };
 		741C7ABF155E70230056AF55 /* nopainbutshameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nopainbutshameTests.m; sourceTree = "<group>"; };
+		74CC6E82158FEC1000E76E59 /* drawCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawCircle.h; sourceTree = "<group>"; };
+		74CC6E83158FEC1000E76E59 /* drawCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawCircle.m; sourceTree = "<group>"; };
 		74E965FF155EB83100C0486D /* SpielEnde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpielEnde.png; sourceTree = "<group>"; };
 		74E96600155EB83100C0486D /* InGameView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InGameView.png; sourceTree = "<group>"; };
 		74E96601155EB83100C0486D /* ViewMultiplayerLobby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewMultiplayerLobby.png; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				B7F8B3E4156BDD6300B817AB /* TexasHolemGame.m */,
 				B7F8B3E7156BDD7000B817AB /* Player.h */,
 				B7F8B3E8156BDD7000B817AB /* Player.m */,
+				74CC6E82158FEC1000E76E59 /* drawCircle.h */,
+				74CC6E83158FEC1000E76E59 /* drawCircle.m */,
 				741C7A98155E70210056AF55 /* Supporting Files */,
 			);
 			path = nopainbutshame;
@@ -341,6 +346,7 @@
 				B7F8B3E5156BDD6300B817AB /* TexasHolemGame.m in Sources */,
 				B7F8B3E9156BDD7000B817AB /* Player.m in Sources */,
 				10997A1515874D8E00895DBE /* PackOfCards.m in Sources */,
+				74CC6E84158FEC1000E76E59 /* drawCircle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

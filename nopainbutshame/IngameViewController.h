@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TexasHolemGame.h"
+#import "drawCircle.h"
 @interface IngameViewController : UIViewController
 {
-    
+    IBOutlet UILabel *spielereins;
+ 
+    TexasHolemGame *texas;
+
+ IBOutlet drawCircle *myView;
+  
+   
+  
+
 }
- -(void) animate:(CGFloat) msg;
+-(IBAction)buttonToTriggerCircle:(id)sender;
+
 @end
