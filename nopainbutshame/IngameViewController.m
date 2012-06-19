@@ -14,20 +14,29 @@
 
 @implementation IngameViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
+  
+
+
+    texas =[[TexasHolemGame alloc]init];    
+   CGRect frame;
+    frame.origin.x = 50;
+    frame.origin.y = 50;
+    frame.size.width = 50;
+    frame.size.height = 50;
+    spielereins=[[UILabel alloc] initWithFrame:frame];
+    [self.view addSubview:spielereins];
+    [spielereins setBackgroundColor:[UIColor clearColor]];
+    spielereins.font = [UIFont fontWithName:@"Arial" size:50];
+
+    [spielereins setTextColor:[UIColor greenColor]];
+    spielereins.text=@"pups";
+
     
     
-    
+    NSArray *Spieler;
+    Spieler= [texas players];
     UISwipeGestureRecognizer *recognizer;
     
     recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
@@ -39,19 +48,33 @@
     [[self view] addGestureRecognizer:recognizer];
     [super viewDidLoad];
     
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+
+
+-(IBAction)buttonToTriggerCircle:(id)sender{
+    
+    [myView setCanDraw:YES];
+    [myView setNeedsDisplay];
+}
+
 -(void)swipeRight:(UISwipeGestureRecognizer *)recognizer{
-    [self performSegueWithIdentifier:@"ingameright" sender:nil];
+     
 }
 
 -(void)swipeLeft:(UISwipeGestureRecognizer *)recognizer{
     [self performSegueWithIdentifier:@"backtostart" sender:nil];
 }
+
+
 - (void)viewDidUnload
 {
+ 
+ 
     [super viewDidUnload];
+    [myView setCanDraw:NO];
     // Release any retained subviews of the main view.
 }
 
