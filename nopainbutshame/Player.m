@@ -19,9 +19,10 @@
 @synthesize openCards = _openCards;
 @synthesize twoCards = _twoCards;
 
+@synthesize delegate = _delegate;
 
 -(void)setState{
-
+    
 }
 
 
@@ -36,8 +37,6 @@
 -(void)getMoneyFromPot:(int)amount{
     
 }
-
-
 
 
 

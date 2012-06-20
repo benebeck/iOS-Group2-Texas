@@ -34,6 +34,7 @@
 		74E9660F155EBFE600C0486D /* ViewMultiplayerOpengame.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E9660E155EBFE600C0486D /* ViewMultiplayerOpengame.png */; };
 		74E96612155EC42800C0486D /* IngameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E96611155EC42800C0486D /* IngameViewController.m */; };
 		B738801815679402001C482D /* PlayerBene.m in Sources */ = {isa = PBXBuildFile; fileRef = B738801715679402001C482D /* PlayerBene.m */; };
+		B73DFF001592587E009E92BD /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73DFEFF1592587E009E92BD /* GameController.m */; };
 		B7CC702B158DD48200FB563A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CC702A158DD48100FB563A /* GameKit.framework */; };
 		B7CC702C158DD67B00FB563A /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B7ACE152158CA81100EA6EF3 /* GCHelper.m */; };
 		B7F8B3E5156BDD6300B817AB /* TexasHolemGame.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F8B3E4156BDD6300B817AB /* TexasHolemGame.m */; };
@@ -88,6 +89,8 @@
 		74E96611155EC42800C0486D /* IngameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngameViewController.m; sourceTree = "<group>"; };
 		B738801615679402001C482D /* PlayerBene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerBene.h; sourceTree = "<group>"; };
 		B738801715679402001C482D /* PlayerBene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerBene.m; sourceTree = "<group>"; };
+		B73DFEFE1592587E009E92BD /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		B73DFEFF1592587E009E92BD /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		B7ACE151158CA81100EA6EF3 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		B7ACE152158CA81100EA6EF3 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
 		B7CC702A158DD48100FB563A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -175,6 +178,8 @@
 				B7F8B3E4156BDD6300B817AB /* TexasHolemGame.m */,
 				B7F8B3E7156BDD7000B817AB /* Player.h */,
 				B7F8B3E8156BDD7000B817AB /* Player.m */,
+				B73DFEFE1592587E009E92BD /* GameController.h */,
+				B73DFEFF1592587E009E92BD /* GameController.m */,
 				74CC6E82158FEC1000E76E59 /* drawCircle.h */,
 				74CC6E83158FEC1000E76E59 /* drawCircle.m */,
 				741C7A98155E70210056AF55 /* Supporting Files */,
@@ -347,6 +352,7 @@
 				B7F8B3E9156BDD7000B817AB /* Player.m in Sources */,
 				10997A1515874D8E00895DBE /* PackOfCards.m in Sources */,
 				74CC6E84158FEC1000E76E59 /* drawCircle.m in Sources */,
+				B73DFF001592587E009E92BD /* GameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

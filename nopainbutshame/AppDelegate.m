@@ -8,19 +8,32 @@
 
 #import "AppDelegate.h"
 #import "GCHelper.h"
-#import "TexasHolemGame.h"
+#import "GameController.h"
 #import "ViewController.h"
 
-@implementation AppDelegate
+@implementation AppDelegate{
+    NSMutableArray *possiblegameStates;
+
+}
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //start up the central game control
-    [TexasHolemGame sharedInstance];
+    //list of possible game states
+    possiblegameStates = [NSMutableArray arrayWithObjects:@"INACTIVE",@"ACTIVE",@"DEALER",@"SMALL_BLIND",@"BIG_BLIND",@"CALL",@"FOLD", nil];
     
+    
+    
+    //start up the central game control
+    GameController *gameController = [GameController sharedInstance];
+    [gameController raisePlayers];
+    gameController.gameStates = possiblegameStates;
+    
+    //start GameCenter
     [[GCHelper sharedInstance] authenticateLocalUser];
+    
+    
     return YES;
 }
 							
