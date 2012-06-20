@@ -45,7 +45,7 @@ static TexasHolemGame *sharedInstance = nil;
     return sharedInstance;
 }
 
-//Setup sharedInstance when game starts. Dummy setup method
+//Setup sharedInstance when game starts. Dummy setup method until we have the GC running or other user-specific data
 -(void) singletonSetup{
     //# of players, replace with player
     NSMutableArray *players = [NSMutableArray arrayWithCapacity:10]; 
