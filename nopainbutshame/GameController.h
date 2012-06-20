@@ -1,19 +1,21 @@
 //
-//  TexasHolemGame.h
+//  GameController.h
 //  nopainbutshame
 //
-//  Created by Benedikt Beckmann on 22.05.12.
+//  Created by Benedikt Beckmann on 20.06.12.
 //  Copyright (c) 2012 BB. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "GCHelper.h"
 #import "Player.h"
-#import "PackOfCards.h"
+//#import "PackOfCards.h"
 
-@interface TexasHolemGame : NSObject
+@interface GameController : NSObject<PlayerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *playerList;
+@property (nonatomic, strong) NSMutableArray *gameStates;
 @property (nonatomic) int activePlayer;
 @property (nonatomic) int maxPlayers;
 @property (nonatomic) int bigBlind;
@@ -22,8 +24,9 @@
 @property (nonatomic, strong) Player *player;
 
 
-+(TexasHolemGame *)sharedInstance;
++(GameController *)sharedInstance;
 
+-(void)raisePlayers;
 -(void)activateNextPlayer;
 -(int)getRoundNr;
 -(void)setRoundNr;
