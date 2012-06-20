@@ -18,25 +18,81 @@
 {
   
 
-
     texas =[[TexasHolemGame alloc]init];    
-   CGRect frame;
-    frame.origin.x = 50;
-    frame.origin.y = 50;
-    frame.size.width = 50;
-    frame.size.height = 50;
-    spielereins=[[UILabel alloc] initWithFrame:frame];
+
+    spielereins=[[UILabel alloc] initWithFrame:CGRectMake(33, 38, 140, 30)];
     [self.view addSubview:spielereins];
     [spielereins setBackgroundColor:[UIColor clearColor]];
-    spielereins.font = [UIFont fontWithName:@"Arial" size:50];
-
+    spielereins.font = [UIFont fontWithName:@"Arial" size:28];
     [spielereins setTextColor:[UIColor greenColor]];
-    spielereins.text=@"pups";
+    spielereins.text=@"Eraaaaaaay";
 
+    spielerzwei=[[UILabel alloc] initWithFrame:CGRectMake(128, 3, 140, 30)];
+    [self.view addSubview:spielerzwei];
+    [spielerzwei setBackgroundColor:[UIColor clearColor]];
+    spielerzwei.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielerzwei setTextColor:[UIColor greenColor]];
+    spielerzwei.text=@"Eraaaaaaay";
+    
+    spielerdrei=[[UILabel alloc] initWithFrame:CGRectMake(193, 38, 140, 30)];
+    [self.view addSubview:spielerdrei];
+    [spielerdrei setBackgroundColor:[UIColor clearColor]];
+    spielerdrei.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielerdrei setTextColor:[UIColor greenColor]];
+    spielerdrei.text=@"Eraaaaaaay";
+    
+    spielervier=[[UILabel alloc] initWithFrame:CGRectMake(298, 3, 140, 30)];
+    [self.view addSubview:spielervier];
+    [spielervier setBackgroundColor:[UIColor clearColor]];
+    spielervier.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielervier setTextColor:[UIColor greenColor]];
+    spielervier.text=@"Eraaaaaaay";
+    
+    spielerfunf=[[UILabel alloc] initWithFrame:CGRectMake(348, 38, 140, 30)];
+    [self.view addSubview:spielerfunf];
+    [spielerfunf setBackgroundColor:[UIColor clearColor]];
+    spielerfunf.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielerfunf setTextColor:[UIColor greenColor]];
+    spielerfunf.text=@"Eraaaaaaay";
     
     
-    NSArray *Spieler;
-    Spieler= [texas players];
+    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(33, 38, 140, 30)];
+    [self.view addSubview:spielereinsstat];
+    [spielereinsstat setBackgroundColor:[UIColor clearColor]];
+    spielereinsstat.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielereinsstat setTextColor:[UIColor greenColor]];
+    spielereinsstat.text=[NSString stringWithFormat:@"%d", currentScore];
+    
+    spielerzweistat=[[UILabel alloc] initWithFrame:CGRectMake(128, 3, 140, 30)];
+    [self.view addSubview:spielerzweistat];
+    [spielerzweistat setBackgroundColor:[UIColor clearColor]];
+    spielerzweistat.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielerzweistat setTextColor:[UIColor greenColor]];
+    spielerzweistat.text=@"Eraaaaaaay";
+    
+    spielerdreistat=[[UILabel alloc] initWithFrame:CGRectMake(193, 38, 140, 30)];
+    [self.view addSubview:spielerdreistat];
+    [spielerdreistat setBackgroundColor:[UIColor clearColor]];
+    spielerdreistat.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielerdreistat setTextColor:[UIColor greenColor]];
+    spielerdreistat.text=@"Eraaaaaaay";
+    
+    spielervierstat=[[UILabel alloc] initWithFrame:CGRectMake(298, 3, 140, 30)];
+    [self.view addSubview:spielervierstat];
+    [spielervierstat setBackgroundColor:[UIColor clearColor]];
+    spielervierstat.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielervierstat setTextColor:[UIColor greenColor]];
+    spielervierstat.text=@"Eraaaaaaay";
+    
+    spielerfunfstat=[[UILabel alloc] initWithFrame:CGRectMake(348, 38, 140, 30)];
+    [self.view addSubview:spielerfunfstat];
+    [spielerfunfstat setBackgroundColor:[UIColor clearColor]];
+    spielerfunfstat.font = [UIFont fontWithName:@"Arial" size:28];
+    [spielerfunfstat setTextColor:[UIColor greenColor]];
+    spielerfunfstat.text=@"Eraaaaaaay";
+    
+    
+    
     UISwipeGestureRecognizer *recognizer;
     
     recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
@@ -56,8 +112,11 @@
 
 -(IBAction)buttonToTriggerCircle:(id)sender{
     
+    i++;
     [myView setCanDraw:YES];
     [myView setNeedsDisplay];
+    [myView setActiveplayer:texas.activePlayer];
+   
 }
 
 -(void)swipeRight:(UISwipeGestureRecognizer *)recognizer{
@@ -72,15 +131,20 @@
 - (void)viewDidUnload
 {
  
- 
+
     [super viewDidUnload];
     [myView setCanDraw:NO];
+
     // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    } else {
+        return YES;
+    }
 }
 
 @end
