@@ -14,11 +14,41 @@
 
 @implementation IngameViewController
 
+NSString *playerid;
+CGPoint startpoint;
+
+
 - (void)viewDidLoad
 {
-   
     
-
+    CGRect newFrame = CGRectMake(0, 0, 320, 480); // Frame of the view to be animated
+    UIView * viewToBeAnimated = [[UIView alloc] initWithFrame:newFrame];
+    viewToBeAnimated.backgroundColor = [UIColor clearColor];
+    
+    // Gesture recognizer for single finger pan (drag) of this view
+    UIPanGestureRecognizer *singleFingerPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    singleFingerPanGestureRecognizer.maximumNumberOfTouches = 1;
+    [viewToBeAnimated addGestureRecognizer: singleFingerPanGestureRecognizer];
+    
+    [self.view addSubview:viewToBeAnimated]; 
+   
+    point= (CGPoint *)malloc(sizeof(const CGPoint));
+    player=[[Player alloc] init];
+    myView=[[drawCircle alloc] init];
+    playerid=[player playerId];
+    
+    chip50image =[UIImage imageNamed:@"pokerchip50.png"];
+    mychip50=[[UIImageView alloc] initWithImage:chip50image];
+    [mychip50 setFrame:CGRectMake(0, 90, 110, 110)];
+    [[self view]addSubview:mychip50];
+    
+    chip100image =[UIImage imageNamed:@"pokerchip100.png"];
+    mychip100=[[UIImageView alloc] initWithImage:chip100image];
+    [mychip100 setFrame:CGRectMake(70, 190, 110, 110)];
+    [[self view]addSubview:mychip100];
+    
+    
+    
     spielereins=[[UILabel alloc] initWithFrame:CGRectMake(33, 38, 140, 30)];
     [self.view addSubview:spielereins];
     [spielereins setBackgroundColor:[UIColor clearColor]];
@@ -89,18 +119,12 @@
     spielerfunfstat.font = [UIFont fontWithName:@"Arial" size:28];
     [spielerfunfstat setTextColor:[UIColor whiteColor]];
     spielerfunfstat.text=[NSString stringWithFormat:@"%d", i];
+   
+    
+    [myView setCanDraw:YES];
+    [myView setActiveplayer:i];
+    [myView setNeedsDisplay];
 
-    
-    
-    UISwipeGestureRecognizer *recognizer;
-    
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    [[self view] addGestureRecognizer:recognizer];
-    
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-    [[self view] addGestureRecognizer:recognizer];
     [super viewDidLoad];
     
     
@@ -108,23 +132,80 @@
 }
 
 
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *betouched = [touches anyObject];
+    startpoint = [betouched locationInView:self.view];
+    NSLog(@"ichbinimstart");
+    [myView setCanDraw:YES];
+    [myView setActiveplayer:i];
+    [myView setNeedsDisplay];
+    if (startpoint.x<180) {
+        if (startpoint.y>60 && startpoint.y<160 && startpoint.x<110) {
+            i=1;
+        } else {
+            if (startpoint.y>189 && startpoint.y<320 && startpoint.x>69) i=2;
+            else {
+                i=0;
+            }
+        }
+    } 
+}
 
+
+
+
+int iba=1;
+
+-(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer{
+    
+    
+    
+   
+    CGPoint locationInView = [recognizer locationInView:self.view];
+    if(i==1)mychip50.center = locationInView;
+    if(i==2)mychip100.center = locationInView;
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+        
+        
+        CGPoint velocity = [ recognizer velocityInView:self.view];
+        CGFloat magnitude= sqrtf(1+(velocity.y* velocity.y));
+        CGFloat slideMult= magnitude /1000;
+        float slidefactor = 0.2 * slideMult;
+        
+        
+        if ( magnitude>800 ) {
+            CGPoint finalpoint = CGPointMake(recognizer.view.center.x, recognizer.view.center.y+(velocity.y*slidefactor));
+            if(i==1){
+            [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip50.frame=CGRectMake(mychip50.frame.origin.x, finalpoint.y, mychip50.frame.size.width, mychip50.frame.size.height);} completion:nil];
+            }
+            if(i==2){
+                [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip100.frame=CGRectMake(mychip100.frame.origin.x, finalpoint.y, mychip100.frame.size.width, mychip100.frame.size.height);} completion:nil];
+            }
+          //  [self performSegueWithIdentifier:@"onetosecond" sender:nil];
+            iba++;
+        }   
+            else {
+            if(i==1)mychip50.center=CGPointMake(55, 145);
+            if(i==2)mychip100.center=CGPointMake(125, 245);
+                
+            }
+    }
+}
+
+
+
+/*
 -(IBAction)buttonToTriggerCircle:(id)sender{
     NSLog(@"lololololo");
-    i++;
+    
     [myView setCanDraw:YES];
-   
-    [myView setActiveplayer:texas.activePlayer];
+    [myView setActiveplayer:i];
     [myView setNeedsDisplay];
 }
 
--(void)swipeRight:(UISwipeGestureRecognizer *)recognizer{
-     
-}
-
--(void)swipeLeft:(UISwipeGestureRecognizer *)recognizer{
-    [self performSegueWithIdentifier:@"backtostart" sender:nil];
-}
+*/
 
 
 - (void)viewDidUnload

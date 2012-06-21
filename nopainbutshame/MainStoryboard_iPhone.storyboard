@@ -12,7 +12,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-Ze-5QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="AXd-nC-7ay" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yly-Ol-vBM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ViewSingleplayer.png" id="cSI-Xn-Ffe">
@@ -61,7 +61,7 @@
                         <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="InGameView.png" id="8pA-C1-ncU">
+                            <imageView contentMode="scaleToFill" image="InGameView.png" id="8pA-C1-ncU">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -78,7 +78,6 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonToTriggerCircle:" destination="O3e-KY-Zn4" eventType="touchUpInside" id="Gzu-ik-CYn"/>
-                                    <action selector="buttonToTriggerCircle:" destination="3o3-SD-lDY" eventType="touchUpInside" id="aYr-mS-eAt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -86,20 +85,7 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <outlet property="view" destination="Az5-An-Qvf" id="s6x-kV-hZl"/>
-                    </connections>
                 </viewController>
-                <swipeGestureRecognizer direction="left" id="0MO-jE-102">
-                    <connections>
-                        <segue destination="2" kind="modal" identifier="backtostart" id="CQN-se-mIp"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="Iia-UK-oNk">
-                    <connections>
-                        <segue destination="FjZ-qc-dAE" kind="modal" identifier="ingameright" id="3dx-lO-0gu"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-829" y="-929"/>
         </scene>
@@ -109,7 +95,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysY-aO-QHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="FjZ-qc-dAE" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QE0-bH-dSb">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="SpielEnde.png" id="Srq-Am-eG9">
@@ -253,7 +239,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="1_Singleplayer.png" id="17l-NQ-3jc" userLabel="myimage">
@@ -381,7 +367,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IngameViewController.h"/>
             <relationships>
                 <relationship kind="action" name="buttonToTriggerCircle:"/>
-                <relationship kind="outlet" name="myView" candidateClass="drawCircle"/>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="outlet" name="spielerdrei" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="spielerdreistat" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="spielereins" candidateClass="UILabel"/>
@@ -401,12 +387,6 @@
                 <relationship kind="action" name="presentGCTurnViewController:"/>
             </relationships>
         </class>
-        <class className="drawCircle" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/drawCircle.h"/>
-            <relationships>
-                <relationship kind="outlet" name="lol" candidateClass="UILabel"/>
-            </relationships>
-        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -414,6 +394,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="tnK-1D-AKL"/>
         <segue reference="OiG-h6-G1P"/>
     </inferredMetricsTieBreakers>
 </document>
