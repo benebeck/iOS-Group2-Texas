@@ -77,6 +77,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="buttonToTriggerCircle:" destination="O3e-KY-Zn4" eventType="touchUpInside" id="Gzu-ik-CYn"/>
                                     <action selector="buttonToTriggerCircle:" destination="3o3-SD-lDY" eventType="touchUpInside" id="aYr-mS-eAt"/>
                                 </connections>
                             </button>
@@ -85,6 +86,9 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="view" destination="Az5-An-Qvf" id="s6x-kV-hZl"/>
+                    </connections>
                 </viewController>
                 <swipeGestureRecognizer direction="left" id="0MO-jE-102">
                     <connections>
@@ -372,6 +376,38 @@
         <image name="ViewMultiplayerOpengame.png" width="322" height="482"/>
         <image name="ViewSingleplayer.png" width="322" height="482"/>
     </resources>
+    <classes>
+        <class className="IngameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IngameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonToTriggerCircle:"/>
+                <relationship kind="outlet" name="myView" candidateClass="drawCircle"/>
+                <relationship kind="outlet" name="spielerdrei" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerdreistat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielereins" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielereinsstat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerfunf" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerfunfstat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielervier" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielervierstat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerzwei" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerzweistat" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="presentGCTurnViewController:"/>
+            </relationships>
+        </class>
+        <class className="drawCircle" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/drawCircle.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lol" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

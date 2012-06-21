@@ -16,9 +16,8 @@
 
 - (void)viewDidLoad
 {
-   [myView setNeedsDisplay];
-
-    texas =[[TexasHolemGame alloc]init];    
+   
+    
 
     spielereins=[[UILabel alloc] initWithFrame:CGRectMake(33, 38, 140, 30)];
     [self.view addSubview:spielereins];
@@ -56,41 +55,41 @@
     spielerfunf.text=@"Eraaaaaaay";
     
     
-    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(33, 38, 140, 30)];
+    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(33, 100, 140, 30)];
     [self.view addSubview:spielereinsstat];
     [spielereinsstat setBackgroundColor:[UIColor clearColor]];
     spielereinsstat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielereinsstat setTextColor:[UIColor greenColor]];
-    spielereinsstat.text=[NSString stringWithFormat:@"%d", i];
+    [spielereinsstat setTextColor:[UIColor whiteColor]];
+    spielereinsstat.text=[NSString stringWithFormat:@"Spieler1:%d", i];
     
-    spielerzweistat=[[UILabel alloc] initWithFrame:CGRectMake(128, 3, 140, 30)];
+    spielerzweistat=[[UILabel alloc] initWithFrame:CGRectMake(33, 140, 140, 30)];
     [self.view addSubview:spielerzweistat];
     [spielerzweistat setBackgroundColor:[UIColor clearColor]];
     spielerzweistat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerzweistat setTextColor:[UIColor greenColor]];
-    spielerzweistat.text=@"Eraaaaaaay";
+    [spielerzweistat setTextColor:[UIColor whiteColor]];
+    spielerzweistat.text=[NSString stringWithFormat:@"Spieler2%d", i];
     
-    spielerdreistat=[[UILabel alloc] initWithFrame:CGRectMake(193, 38, 140, 30)];
+    spielerdreistat=[[UILabel alloc] initWithFrame:CGRectMake(33, 180, 140, 30)];
     [self.view addSubview:spielerdreistat];
     [spielerdreistat setBackgroundColor:[UIColor clearColor]];
     spielerdreistat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerdreistat setTextColor:[UIColor greenColor]];
-    spielerdreistat.text=@"Eraaaaaaay";
+    [spielerdreistat setTextColor:[UIColor whiteColor]];
+    spielerdreistat.text=[NSString stringWithFormat:@"%d", i];
     
-    spielervierstat=[[UILabel alloc] initWithFrame:CGRectMake(298, 3, 140, 30)];
+    spielervierstat=[[UILabel alloc] initWithFrame:CGRectMake(33, 220, 140, 30)];
     [self.view addSubview:spielervierstat];
     [spielervierstat setBackgroundColor:[UIColor clearColor]];
     spielervierstat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielervierstat setTextColor:[UIColor greenColor]];
-    spielervierstat.text=@"Eraaaaaaay";
+    [spielervierstat setTextColor:[UIColor whiteColor]];
+    spielervierstat.text=[NSString stringWithFormat:@"%d", i];
     
-    spielerfunfstat=[[UILabel alloc] initWithFrame:CGRectMake(348, 38, 140, 30)];
+    spielerfunfstat=[[UILabel alloc] initWithFrame:CGRectMake(33, 260, 140, 30)];
     [self.view addSubview:spielerfunfstat];
     [spielerfunfstat setBackgroundColor:[UIColor clearColor]];
     spielerfunfstat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerfunfstat setTextColor:[UIColor greenColor]];
-    spielerfunfstat.text=@"Eraaaaaaay";
-    
+    [spielerfunfstat setTextColor:[UIColor whiteColor]];
+    spielerfunfstat.text=[NSString stringWithFormat:@"%d", i];
+
     
     
     UISwipeGestureRecognizer *recognizer;
@@ -116,7 +115,7 @@
     [myView setCanDraw:YES];
    
     [myView setActiveplayer:texas.activePlayer];
-   
+    [myView setNeedsDisplay];
 }
 
 -(void)swipeRight:(UISwipeGestureRecognizer *)recognizer{

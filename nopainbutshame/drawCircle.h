@@ -15,4 +15,5 @@
 
 @property (nonatomic,assign) BOOL canDraw;
 @property int activeplayer;
+
 @end
