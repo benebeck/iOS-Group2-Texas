@@ -34,6 +34,8 @@
     PackOfCards     *packofcards;
 
  IBOutlet drawCircle *myView;
+    
+    int i;
   
    
   

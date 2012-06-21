@@ -13,10 +13,12 @@
 @synthesize activeplayer;
 
 - (void)drawRect:(CGRect)rect {
+    
+        NSLog(@"asdsada");
     if (canDraw == YES) {
         
         
-        NSLog(@"asdsada");
+    
         // The color is by this line CGContextSetRGBFillColor( context , red , green , blue , alpha);
         CGContextRef contextRef = UIGraphicsGetCurrentContext();
         // Draw a circle (filled)

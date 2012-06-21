@@ -10,7 +10,7 @@
 
 @interface drawCircle : UIView
 {
-  
+    IBOutlet UILabel *lol;
 }
 
 @property (nonatomic,assign) BOOL canDraw;

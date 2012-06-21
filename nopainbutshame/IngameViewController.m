@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad
 {
-  
+   [myView setNeedsDisplay];
 
     texas =[[TexasHolemGame alloc]init];    
 
@@ -61,7 +61,7 @@
     [spielereinsstat setBackgroundColor:[UIColor clearColor]];
     spielereinsstat.font = [UIFont fontWithName:@"Arial" size:28];
     [spielereinsstat setTextColor:[UIColor greenColor]];
-    spielereinsstat.text=[NSString stringWithFormat:@"%d", currentScore];
+    spielereinsstat.text=[NSString stringWithFormat:@"%d", i];
     
     spielerzweistat=[[UILabel alloc] initWithFrame:CGRectMake(128, 3, 140, 30)];
     [self.view addSubview:spielerzweistat];
@@ -111,10 +111,10 @@
 
 
 -(IBAction)buttonToTriggerCircle:(id)sender{
-    
+    NSLog(@"lololololo");
     i++;
     [myView setCanDraw:YES];
-    [myView setNeedsDisplay];
+   
     [myView setActiveplayer:texas.activePlayer];
    
 }
