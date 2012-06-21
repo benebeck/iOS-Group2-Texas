@@ -90,41 +90,19 @@ CGPoint startpoint;
     [spielereinsstat setBackgroundColor:[UIColor clearColor]];
     spielereinsstat.font = [UIFont fontWithName:@"Arial" size:28];
     [spielereinsstat setTextColor:[UIColor whiteColor]];
-    spielereinsstat.text=[NSString stringWithFormat:@"Spieler1:%d", i];
+    spielereinsstat.text=[NSString stringWithFormat:@"Totalmoney:%i", texas.totalMoney];
     
-    spielerzweistat=[[UILabel alloc] initWithFrame:CGRectMake(33, 140, 140, 30)];
-    [self.view addSubview:spielerzweistat];
-    [spielerzweistat setBackgroundColor:[UIColor clearColor]];
-    spielerzweistat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerzweistat setTextColor:[UIColor whiteColor]];
-    spielerzweistat.text=[NSString stringWithFormat:@"Spieler2%d", i];
-    
-    spielerdreistat=[[UILabel alloc] initWithFrame:CGRectMake(33, 180, 140, 30)];
-    [self.view addSubview:spielerdreistat];
-    [spielerdreistat setBackgroundColor:[UIColor clearColor]];
-    spielerdreistat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerdreistat setTextColor:[UIColor whiteColor]];
-    spielerdreistat.text=[NSString stringWithFormat:@"%d", i];
-    
-    spielervierstat=[[UILabel alloc] initWithFrame:CGRectMake(33, 220, 140, 30)];
-    [self.view addSubview:spielervierstat];
-    [spielervierstat setBackgroundColor:[UIColor clearColor]];
-    spielervierstat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielervierstat setTextColor:[UIColor whiteColor]];
-    spielervierstat.text=[NSString stringWithFormat:@"%d", i];
-    
-    spielerfunfstat=[[UILabel alloc] initWithFrame:CGRectMake(33, 260, 140, 30)];
-    [self.view addSubview:spielerfunfstat];
-    [spielerfunfstat setBackgroundColor:[UIColor clearColor]];
-    spielerfunfstat.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerfunfstat setTextColor:[UIColor whiteColor]];
-    spielerfunfstat.text=[NSString stringWithFormat:@"%d", i];
-   
-    
-    [myView setCanDraw:YES];
-    [myView setActiveplayer:i];
-    [myView setNeedsDisplay];
 
+    backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];
+    backofcardsleft=[[UIImageView alloc] initWithImage:backofcardsleft1];
+    [backofcardsleft setFrame:CGRectMake(200, 170, 120, 176)];
+    [[self view]addSubview:backofcardsleft];
+
+    backofcardsright1 =[UIImage imageNamed:@"backofcards.png"];
+    backofcardsright=[[UIImageView alloc] initWithImage:backofcardsright1];
+    [backofcardsright setFrame:CGRectMake(320, 170, 120, 176)];
+    [[self view]addSubview:backofcardsright];
+    
     [super viewDidLoad];
     
     
@@ -139,7 +117,7 @@ CGPoint startpoint;
     [myView setCanDraw:YES];
     [myView setActiveplayer:i];
     [myView setNeedsDisplay];
-    if (startpoint.x<180) {
+    if (startpoint.x<170) {
         if (startpoint.y>60 && startpoint.y<160 && startpoint.x<110) {
             i=1;
         } else {
@@ -155,20 +133,55 @@ CGPoint startpoint;
 
 
 int iba=1;
-
+int flipcardleft=1;
+int flipcardback=0;
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer{
-    
     
     
    
     CGPoint locationInView = [recognizer locationInView:self.view];
+    NSLog(@"lol:,%i",locationInView.x);
+    
     if(i==1)mychip50.center = locationInView;
     if(i==2)mychip100.center = locationInView;
     
+    if (startpoint.x>380&&locationInView.x>380) {
+        backofcardsleft.image=[UIImage imageNamed:@"backofcards"];
+        backofcardsright.image=[UIImage imageNamed:@"backofcards"];
+        NSLog(@"zweig1,%i",flipcardleft);
+        flipcardleft=1;
+    }
+    
+    if ((startpoint.x<381 && startpoint.x>280)|| (locationInView.x<381 && locationInView.x>280 && flipcardleft==1)) {
+        backofcardsleft.image=[UIImage imageNamed:@"backofcardslinks"];
+        backofcardsright.image=[UIImage imageNamed:@"backofcardsrechts"];
+        flipcardleft++;
+        NSLog(@"zweig1,%i",flipcardleft);
+    }
+                    
+    if (locationInView.x>260 && locationInView.x<281 && (flipcardleft==2||flipcardback==1) ) {
+                        backofcardsleft.image=[UIImage imageNamed:@"backofcardslinks2"];
+                        backofcardsright.image=[UIImage imageNamed:@"backofcards2"];
+                        flipcardleft++;
+        backofcardsleft.alpha=1;
+        backofcardsright.alpha=1;
+        flipcardback=0;
+                            }
+    
+    if ( locationInView.x<261 && flipcardleft==3 ) {
+        backofcardsleft.alpha=0;
+        backofcardsright.alpha=0;
+        flipcardleft=1;
+        flipcardback=1;
+        NSLog(@"zweig3,%i",flipcardleft);
+    }
+    
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        
-        
-        
+         backofcardsleft.image=[UIImage imageNamed:@"backofcards"];
+         backofcardsright.image=[UIImage imageNamed:@"backofcards"];
+        backofcardsleft.alpha=1;
+        backofcardsright.alpha=1;
+        flipcardleft=1;
         CGPoint velocity = [ recognizer velocityInView:self.view];
         CGFloat magnitude= sqrtf(1+(velocity.y* velocity.y));
         CGFloat slideMult= magnitude /1000;

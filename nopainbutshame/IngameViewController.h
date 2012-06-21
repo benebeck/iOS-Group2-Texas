@@ -28,8 +28,17 @@
     UIImageView *mychip50;
     UIImageView *mychip502;
     UIImageView *mychip100;
+    UIImageView *backofcardsleft;
+    UIImageView *backofcardsright;
+    
     UIImage     *chip50image;
     UIImage     *chip100image;
+    UIImage     *backofcardsleft1;
+    UIImage     *backofcardsleft2;
+    UIImage     *backofcardsleft3;
+    UIImage     *backofcardsright1;
+    UIImage     *backofcardsright2;
+    UIImage     *backofcardsright3;
     
     int spielereinsgeld;
     int spielerzweigeld;
