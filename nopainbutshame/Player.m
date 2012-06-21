@@ -38,7 +38,9 @@
     
 }
 
-
+-(void)chooseBet:(int)amount{
+    
+}
 
 
 @end

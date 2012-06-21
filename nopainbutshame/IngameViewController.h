@@ -10,6 +10,7 @@
 #import "TexasHolemGame.h"
 #import "drawCircle.h"
 #import "PackOfCards.h"
+#import "Player.h"
 @interface IngameViewController : UIViewController
 {
     IBOutlet UILabel *spielereins;
@@ -32,6 +33,7 @@
     
     TexasHolemGame *texas;
     PackOfCards     *packofcards;
+    Player          *player;
 
  IBOutlet drawCircle *myView;
     

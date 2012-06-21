@@ -35,6 +35,7 @@
 -(NSArray *)getStates;
 -(void)removeMoney:(int)amount;
 -(void)getMoneyFromPot:(int)amount;
+-(void)chooseBet:(int)amount;
 
 
 @end
