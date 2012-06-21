@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface drawCircle : UIView{}
+@interface drawCircle : UIView
+{
+  
+}
+
 @property (nonatomic,assign) BOOL canDraw;
+@property int activeplayer;
 @end
