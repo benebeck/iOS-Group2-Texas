@@ -19,6 +19,7 @@
     IBOutlet UILabel *spielervier;
     IBOutlet UILabel *spielerfunf;
 
+    IBOutlet UILabel *Pot;
     IBOutlet UILabel *spielereinsstat;
     IBOutlet UILabel *spielerzweistat;
     IBOutlet UILabel *spielerdreistat;
@@ -39,6 +40,10 @@
     UIImage     *backofcardsright1;
     UIImage     *backofcardsright2;
     UIImage     *backofcardsright3;
+    
+    NSArray     *opencard;
+    NSString    *opencard1;
+    NSString    *opencard2;
     
     int spielereinsgeld;
     int spielerzweigeld;

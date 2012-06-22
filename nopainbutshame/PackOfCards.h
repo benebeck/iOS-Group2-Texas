@@ -20,7 +20,7 @@
 
 
 //@property (nonatomic,strong) IBOutlet UIImageView *showHandCardImage; 
-
+- (int) givemeinfo:(int) i forWho: (int)j;
 - (void)initializePackOfCards;
 - (void)initializeInfoAboutPackOfCards;
 - (int)distributeCard:(int) openCardOrPlayer;

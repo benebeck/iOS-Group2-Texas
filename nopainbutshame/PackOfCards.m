@@ -75,6 +75,10 @@
     recordInfoAboutPackOfCards[distributedCardPos][1] = openCardOrPlayer;
 }
 
+- (int)givemeinfo:(int) i forWho:(int) j{
+    recordInfoAboutPackOfCards[i][j];
+}
+
 
 /***
  - (void)showOwnTwoCardsOfHand:(int) playerNumber{ //playerNumber muss be (Position_of_Player_in_Array + 1) because 1 in recordInfoAboutPackOfCards is for open_card

@@ -21,6 +21,10 @@ CGPoint startpoint;
 - (void)viewDidLoad
 {
     
+    opencard=[[NSArray alloc] initWithArray:player.twoCards];     
+    opencard1=[[NSString alloc]initWithFormat:@"%i",[opencard objectAtIndex:0]];
+    opencard2=[[NSString alloc]initWithFormat:@"%i",[opencard objectAtIndex:1]];
+    
     CGRect newFrame = CGRectMake(0, 0, 320, 480); // Frame of the view to be animated
     UIView * viewToBeAnimated = [[UIView alloc] initWithFrame:newFrame];
     viewToBeAnimated.backgroundColor = [UIColor clearColor];
@@ -36,6 +40,7 @@ CGPoint startpoint;
     player=[[Player alloc] init];
     myView=[[drawCircle alloc] init];
     playerid=[player playerId];
+    
     
     chip50image =[UIImage imageNamed:@"pokerchip50.png"];
     mychip50=[[UIImageView alloc] initWithImage:chip50image];
@@ -95,12 +100,12 @@ CGPoint startpoint;
 
     backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsleft=[[UIImageView alloc] initWithImage:backofcardsleft1];
-    [backofcardsleft setFrame:CGRectMake(200, 170, 120, 176)];
+    [backofcardsleft setFrame:CGRectMake(210, 170, 120, 176)];
     [[self view]addSubview:backofcardsleft];
 
     backofcardsright1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsright=[[UIImageView alloc] initWithImage:backofcardsright1];
-    [backofcardsright setFrame:CGRectMake(320, 170, 120, 176)];
+    [backofcardsright setFrame:CGRectMake(340, 170, 120, 176)];
     [[self view]addSubview:backofcardsright];
     
     [super viewDidLoad];
@@ -114,9 +119,9 @@ CGPoint startpoint;
     UITouch *betouched = [touches anyObject];
     startpoint = [betouched locationInView:self.view];
     NSLog(@"ichbinimstart");
-    [myView setCanDraw:YES];
-    [myView setActiveplayer:i];
-    [myView setNeedsDisplay];
+ //   [myView setCanDraw:YES];
+ //   [myView setActiveplayer:i];
+ //   [myView setNeedsDisplay];
     if (startpoint.x<170) {
         if (startpoint.y>60 && startpoint.y<160 && startpoint.x<110) {
             i=1;
@@ -135,6 +140,8 @@ CGPoint startpoint;
 int iba=1;
 int flipcardleft=1;
 int flipcardback=0;
+int canwin=0;
+
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer{
     
     
@@ -152,35 +159,54 @@ int flipcardback=0;
         flipcardleft=1;
     }
     
-    if ((startpoint.x<381 && startpoint.x>280)|| (locationInView.x<381 && locationInView.x>280 && flipcardleft==1)) {
+    if (locationInView.x<381 && locationInView.x>280 && flipcardleft==1) {
         backofcardsleft.image=[UIImage imageNamed:@"backofcardslinks"];
         backofcardsright.image=[UIImage imageNamed:@"backofcardsrechts"];
-        flipcardleft++;
-        NSLog(@"zweig1,%i",flipcardleft);
+        flipcardleft=2;
+        NSLog(@"zweig2,%i",flipcardleft);
     }
                     
     if (locationInView.x>260 && locationInView.x<281 && (flipcardleft==2||flipcardback==1) ) {
                         backofcardsleft.image=[UIImage imageNamed:@"backofcardslinks2"];
                         backofcardsright.image=[UIImage imageNamed:@"backofcards2"];
-                        flipcardleft++;
-        backofcardsleft.alpha=1;
-        backofcardsright.alpha=1;
+                        flipcardleft=3;
+      
+        
+        NSLog(@"zweig3,%i",flipcardleft);
         flipcardback=0;
                             }
     
     if ( locationInView.x<261 && flipcardleft==3 ) {
-        backofcardsleft.alpha=0;
-        backofcardsright.alpha=0;
+       
+        
         flipcardleft=1;
         flipcardback=1;
-        NSLog(@"zweig3,%i",flipcardleft);
+        NSLog(@"zweig4,%i",flipcardleft);
+        int playerIDint=[playerid intValue];
+        int opencardindex=0;
+        for (int anfang=0; anfang<52; anfang++) {
+               if([packofcards givemeinfo:anfang forWho:1]==playerIDint)
+               {
+                   if(opencardindex==0){
+                       backofcardsright.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i",anfang]];
+                       opencardindex++;
+                                        }
+                    if(opencardindex==1){
+                        backofcardsleft.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i",anfang]];
+                                        }
+
+               }
+                
+        }
+        
+        backofcardsleft.image=[UIImage imageNamed:opencard1];
+        backofcardsright.image=[UIImage imageNamed:opencard2];
     }
+  
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
          backofcardsleft.image=[UIImage imageNamed:@"backofcards"];
          backofcardsright.image=[UIImage imageNamed:@"backofcards"];
-        backofcardsleft.alpha=1;
-        backofcardsright.alpha=1;
         flipcardleft=1;
         CGPoint velocity = [ recognizer velocityInView:self.view];
         CGFloat magnitude= sqrtf(1+(velocity.y* velocity.y));
@@ -188,13 +214,19 @@ int flipcardback=0;
         float slidefactor = 0.2 * slideMult;
         
         
-        if ( magnitude>800 ) {
+        if ( magnitude>1000 ) {
             CGPoint finalpoint = CGPointMake(recognizer.view.center.x, recognizer.view.center.y+(velocity.y*slidefactor));
             if(i==1){
             [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip50.frame=CGRectMake(mychip50.frame.origin.x, finalpoint.y, mychip50.frame.size.width, mychip50.frame.size.height);} completion:nil];
+                [player chooseBet:50];
+                canwin+=50;
+                Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
             }
             if(i==2){
                 [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip100.frame=CGRectMake(mychip100.frame.origin.x, finalpoint.y, mychip100.frame.size.width, mychip100.frame.size.height);} completion:nil];
+                [player chooseBet:100];
+                canwin+=100;
+                Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
             }
           //  [self performSegueWithIdentifier:@"onetosecond" sender:nil];
             iba++;
@@ -209,24 +241,16 @@ int flipcardback=0;
 
 
 
-/*
--(IBAction)buttonToTriggerCircle:(id)sender{
-    NSLog(@"lololololo");
-    
-    [myView setCanDraw:YES];
-    [myView setActiveplayer:i];
-    [myView setNeedsDisplay];
-}
 
-*/
 
 
 - (void)viewDidUnload
 {
  
 
+//    Pot = nil;
     [super viewDidUnload];
-    [myView setCanDraw:NO];
+  //  [myView setCanDraw:NO];
 
     // Release any retained subviews of the main view.
 }
