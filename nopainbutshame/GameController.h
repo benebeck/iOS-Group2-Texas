@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) NSMutableArray *playerList;
 @property (nonatomic, strong) NSMutableArray *gameStates;
-@property (nonatomic) int activePlayer;
+@property (nonatomic, strong) NSString  *activePlayer;
 @property (nonatomic) int maxPlayers;
 @property (nonatomic) int bigBlind;
 @property (nonatomic) int totalMoney;

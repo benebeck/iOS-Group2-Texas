@@ -81,9 +81,30 @@ static GameController *sharedInstance = nil;
 
 
 #pragma mark Game methods
-
--(void)activateNextPlayer{
-    
+    //hier muss der current player aus GC mitverwurstelt werden
+    -(void)activateNextPlayer{
+        //first player to start
+        if (!self.activePlayer) {
+            self.activePlayer = [[self.playerList objectAtIndex:0] playerId];
+            //ACTIVATE PLAYERS !!!!!!!!!....
+            
+            //jump back to first player
+        }else if ([[self.playerList lastObject] playerId]  == self.activePlayer) {
+            self.activePlayer = [[self.playerList objectAtIndex:0] playerId];
+            
+            //next player    
+        }else {
+            NSLog(@"old active player: %@", self.activePlayer);
+            Player *player;
+            for (player in self.playerList)
+                if (self.activePlayer == [player playerId]) {
+                    NSInteger index = [self.playerList indexOfObjectIdenticalTo:player];
+                    index++;
+                    self.activePlayer = [[self.playerList objectAtIndex:index] playerId];
+                    break;
+                }
+        }
+        NSLog(@"New Player: %@", self.activePlayer);
 }
 
 -(int)getRoundNr{
