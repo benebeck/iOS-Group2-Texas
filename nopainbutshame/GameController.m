@@ -126,7 +126,7 @@ static GameController *sharedInstance = nil;
 
 #pragma mark PlayerDelegate
 
--(void)changePlayerState:(NSString *)state forPlayer:(NSObject *)player{
+-(void)changePlayerState:(NSString *)state forPlayer:(Player *)player{
     Player *pl = player;
     NSLog(@"Changed State of %@", [pl playerId]);
     NSLog(@"to %@", state);
