@@ -30,6 +30,10 @@
     [gameController raisePlayers];
     gameController.gameStates = possiblegameStates;
     
+    
+    //start the card deck
+    PackOfCards *packOfCards = [PackOfCards sharedInstance];
+    
     //start GameCenter
     [[GCHelper sharedInstance] authenticateLocalUser];
     

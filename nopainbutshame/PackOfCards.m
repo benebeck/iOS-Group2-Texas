@@ -22,6 +22,7 @@ static PackOfCards *sharedInstance = nil;
         if (!sharedInstance){
             sharedInstance = [[PackOfCards alloc] init];
             [sharedInstance initializePackOfCards];
+            NSLog(@"Card deck is up...");
         }
 
         
