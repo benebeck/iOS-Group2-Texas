@@ -18,10 +18,11 @@
     
 }
 
++(PackOfCards *)sharedInstance;
 
 //@property (nonatomic,strong) IBOutlet UIImageView *showHandCardImage; 
 - (int) givemeinfo:(int) i forWho: (int)j;
-- (void)initializePackOfCards;
+//- (void)initializePackOfCards;
 - (void)initializeInfoAboutPackOfCards;
 - (int)distributeCard:(int) openCardOrPlayer;
 - (void)changeStatusOfCard:(int) distributedCardPos forWho: (int) openCardOrPlayer;
