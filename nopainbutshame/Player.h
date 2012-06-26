@@ -25,7 +25,8 @@
 @property (nonatomic, strong) NSString *playerId;
 @property (nonatomic) int moneyRest; 
 //@property () avatar
-@property (weak, nonatomic) NSString *playerState; 
+@property (weak, nonatomic) NSString *playerState;
+@property (nonatomic, weak) NSString * betState;
 @property (nonatomic) int playerRound;
 @property (weak, nonatomic) NSArray *openCards;
 @property (weak, nonatomic) NSArray *twoCards;

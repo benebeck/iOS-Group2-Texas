@@ -15,6 +15,7 @@
 @synthesize moneyRest = _moneyRest;
 //@synthesize avatar
 @synthesize playerState = _playerState;
+@synthesize betState = _betState;
 @synthesize playerRound = _playerRound;
 @synthesize openCards = _openCards;
 @synthesize twoCards = _twoCards;
