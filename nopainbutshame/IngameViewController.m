@@ -39,7 +39,7 @@ opencard1 = @"1";
    
     point= (CGPoint *)malloc(sizeof(const CGPoint));
     player=[[Player alloc] init];
-    myView=[[drawCircle alloc] init];
+    
     playerid=[player playerId];
     
     

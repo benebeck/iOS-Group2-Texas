@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TexasHolemGame.h"
-#import "drawCircle.h"
+
 #import "PackOfCards.h"
 #import "Player.h"
 @interface IngameViewController : UIViewController
@@ -54,7 +54,7 @@
     TexasHolemGame *texas;
     PackOfCards     *packofcards;
     Player          *player;
-    drawCircle     *myView;
+  
 
     int i;
     CGPoint *point;

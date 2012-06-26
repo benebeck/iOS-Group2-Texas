@@ -81,7 +81,6 @@
 		74BDD78E1593C3A200944FC8 /* backofcardsrechts2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BDD78A1593C3A200944FC8 /* backofcardsrechts2.png */; };
 		74BDD78F1593C3A200944FC8 /* backofcardslinks2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BDD78B1593C3A200944FC8 /* backofcardslinks2.png */; };
 		74BDD7901593C3A200944FC8 /* backofcardslinks.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BDD78C1593C3A200944FC8 /* backofcardslinks.png */; };
-		74CC6E84158FEC1000E76E59 /* drawCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CC6E83158FEC1000E76E59 /* drawCircle.m */; };
 		74E96606155EB83100C0486D /* SpielEnde.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E965FF155EB83100C0486D /* SpielEnde.png */; };
 		74E96607155EB83100C0486D /* InGameView.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96600155EB83100C0486D /* InGameView.png */; };
 		74E96608155EB83100C0486D /* ViewMultiplayerLobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E96601155EB83100C0486D /* ViewMultiplayerLobby.png */; };
@@ -192,8 +191,6 @@
 		74BDD78A1593C3A200944FC8 /* backofcardsrechts2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backofcardsrechts2.png; sourceTree = "<group>"; };
 		74BDD78B1593C3A200944FC8 /* backofcardslinks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backofcardslinks2.png; sourceTree = "<group>"; };
 		74BDD78C1593C3A200944FC8 /* backofcardslinks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backofcardslinks.png; sourceTree = "<group>"; };
-		74CC6E82158FEC1000E76E59 /* drawCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawCircle.h; sourceTree = "<group>"; };
-		74CC6E83158FEC1000E76E59 /* drawCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawCircle.m; sourceTree = "<group>"; };
 		74E965FF155EB83100C0486D /* SpielEnde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpielEnde.png; sourceTree = "<group>"; };
 		74E96600155EB83100C0486D /* InGameView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InGameView.png; sourceTree = "<group>"; };
 		74E96601155EB83100C0486D /* ViewMultiplayerLobby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewMultiplayerLobby.png; sourceTree = "<group>"; };
@@ -298,8 +295,6 @@
 				B7F8B3E8156BDD7000B817AB /* Player.m */,
 				B73DFEFE1592587E009E92BD /* GameController.h */,
 				B73DFEFF1592587E009E92BD /* GameController.m */,
-				74CC6E82158FEC1000E76E59 /* drawCircle.h */,
-				74CC6E83158FEC1000E76E59 /* drawCircle.m */,
 				741C7A98155E70210056AF55 /* Supporting Files */,
 			);
 			path = nopainbutshame;
@@ -603,7 +598,6 @@
 				B7F8B3E5156BDD6300B817AB /* TexasHolemGame.m in Sources */,
 				B7F8B3E9156BDD7000B817AB /* Player.m in Sources */,
 				10997A1515874D8E00895DBE /* PackOfCards.m in Sources */,
-				74CC6E84158FEC1000E76E59 /* drawCircle.m in Sources */,
 				B73DFF001592587E009E92BD /* GameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
