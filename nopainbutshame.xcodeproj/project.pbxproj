@@ -91,7 +91,6 @@
 		74E9660F155EBFE600C0486D /* ViewMultiplayerOpengame.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E9660E155EBFE600C0486D /* ViewMultiplayerOpengame.png */; };
 		74E96612155EC42800C0486D /* IngameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E96611155EC42800C0486D /* IngameViewController.m */; };
 		74EAB26615930FBA0014CD4E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74EAB26515930FBA0014CD4E /* MainStoryboard_iPhone.storyboard */; };
-		B738801815679402001C482D /* PlayerBene.m in Sources */ = {isa = PBXBuildFile; fileRef = B738801715679402001C482D /* PlayerBene.m */; };
 		B73DFF001592587E009E92BD /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73DFEFF1592587E009E92BD /* GameController.m */; };
 		B7CC702B158DD48200FB563A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CC702A158DD48100FB563A /* GameKit.framework */; };
 		B7CC702C158DD67B00FB563A /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B7ACE152158CA81100EA6EF3 /* GCHelper.m */; };
@@ -202,8 +201,6 @@
 		74E96610155EC42800C0486D /* IngameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngameViewController.h; sourceTree = "<group>"; };
 		74E96611155EC42800C0486D /* IngameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngameViewController.m; sourceTree = "<group>"; };
 		74EAB26515930FBA0014CD4E /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		B738801615679402001C482D /* PlayerBene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerBene.h; sourceTree = "<group>"; };
-		B738801715679402001C482D /* PlayerBene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerBene.m; sourceTree = "<group>"; };
 		B73DFEFE1592587E009E92BD /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		B73DFEFF1592587E009E92BD /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		B7ACE151158CA81100EA6EF3 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
@@ -287,8 +284,6 @@
 				741C7AA6155E70220056AF55 /* MainStoryboard_iPad.storyboard */,
 				741C7AA9155E70220056AF55 /* ViewController.h */,
 				741C7AAA155E70220056AF55 /* ViewController.m */,
-				B738801615679402001C482D /* PlayerBene.h */,
-				B738801715679402001C482D /* PlayerBene.m */,
 				B7F8B3E3156BDD6300B817AB /* TexasHolemGame.h */,
 				B7F8B3E4156BDD6300B817AB /* TexasHolemGame.m */,
 				B7F8B3E7156BDD7000B817AB /* Player.h */,
@@ -594,7 +589,6 @@
 				741C7AA2155E70210056AF55 /* AppDelegate.m in Sources */,
 				741C7AAB155E70220056AF55 /* ViewController.m in Sources */,
 				74E96612155EC42800C0486D /* IngameViewController.m in Sources */,
-				B738801815679402001C482D /* PlayerBene.m in Sources */,
 				B7F8B3E5156BDD6300B817AB /* TexasHolemGame.m in Sources */,
 				B7F8B3E9156BDD7000B817AB /* Player.m in Sources */,
 				10997A1515874D8E00895DBE /* PackOfCards.m in Sources */,
