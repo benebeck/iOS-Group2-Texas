@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TexasHolemGame.h"
+#import "GameController.h"
 
 #import "PackOfCards.h"
 #import "Player.h"
@@ -51,7 +51,7 @@
     int spielerviergeld;
     int spielerfunfgeld;
     
-    TexasHolemGame *texas;
+    GameController *texas;
     PackOfCards     *packofcards;
     Player          *player;
   

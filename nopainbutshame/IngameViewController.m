@@ -26,7 +26,7 @@ CGPoint startpoint;
     //opencard2=[[NSString alloc]initWithFormat:@"%i",[opencard objectAtIndex:1]];
 opencard1 = @"1";
     opencard2 = @"3";
-    CGRect newFrame = CGRectMake(0, 0, 320, 480); // Frame of the view to be animated
+    CGRect newFrame = CGRectMake(0, 0, 480, 480); // Frame of the view to be animated
     UIView * viewToBeAnimated = [[UIView alloc] initWithFrame:newFrame];
     viewToBeAnimated.backgroundColor = [UIColor clearColor];
     
@@ -235,6 +235,7 @@ int canwin=0;
             else {
             if(i==1)mychip50.center=CGPointMake(55, 145);
             if(i==2)mychip100.center=CGPointMake(125, 245);
+            i=0;
                 
             }
     }
