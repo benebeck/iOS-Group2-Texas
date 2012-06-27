@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Player.h"
 
+@class PackOfCards;
+
+@protocol PackOfCardsDelegate <NSObject>
+
+-(void)twoCardsForPlayer:(Player *) player;
+
+@end
 
 
 @interface PackOfCards : NSObject
@@ -17,6 +25,8 @@
     
     
 }
+
+@property (nonatomic, weak) id <PackOfCardsDelegate> delegate;
 
 +(PackOfCards *)sharedInstance;
 
@@ -29,3 +39,4 @@
 //- (void)showOwnTwoCardsOfHand;  
 -(NSArray *)showdownComparison:(NSDictionary *) cardsOfPlayer_1 compareWith: (NSDictionary *) cardsOfPlayer_2;
 @end
+

@@ -1,18 +1,22 @@
 //
 //  Player.h
-//  nopainbutshame
+//  TH
 //
-//  Created by Benedikt Beckmann on 22.05.12.
+//  Created by Benedikt Beckmann on 20.06.12.
 //  Copyright (c) 2012 BB. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @class Player;
 
 @protocol PlayerDelegate <NSObject>
 
--(void)changePlayerState:(NSString *)state forPlayer:(NSObject *)player;
+-(void)changePlayerState:(NSString *)state forPlayer:(Player *)player;
+-(void)changeBetState:(NSString *)state forPlayer:(Player *) player;
+-(void)substractFromPlayerAccount:(int)money forPlayer: (Player *)player;
+-(void)addToPlayerAccount:(int)money forPlayer: (Player *)player;
+
 
 @end
 
@@ -26,17 +30,12 @@
 @property (nonatomic) int moneyRest; 
 //@property () avatar
 @property (weak, nonatomic) NSString *playerState;
-@property (nonatomic, weak) NSString * betState;
+@property (nonatomic, weak) NSString *betState;
 @property (nonatomic) int playerRound;
-@property (weak, nonatomic) NSArray *openCards;
-@property (weak, nonatomic) NSArray *twoCards;
+//@property (weak, nonatomic) NSArray *openCards;
+//@property (weak, nonatomic) NSArray *twoCards;
 
 
--(void)setState;
--(NSArray *)getStates;
--(void)removeMoney:(int)amount;
--(void)getMoneyFromPot:(int)amount;
--(void)chooseBet:(int)amount;
 
 
 @end

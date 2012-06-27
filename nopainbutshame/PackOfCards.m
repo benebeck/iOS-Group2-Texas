@@ -7,7 +7,6 @@
 //
 
 #import "PackOfCards.h"
-
 //for private functions
 @interface PackOfCards ()
 //init of cardDeck should be possible during init of sharedInstance only
@@ -17,16 +16,18 @@
 
 @implementation PackOfCards
 
-static PackOfCards *sharedInstance = nil;
-    +(PackOfCards *) sharedInstance {
-        if (!sharedInstance){
-            sharedInstance = [[PackOfCards alloc] init];
-            [sharedInstance initializePackOfCards];
-            NSLog(@"Card deck is up...");
-        }
+@synthesize delegate = _delegate;
 
-        
-        return sharedInstance;
+static PackOfCards *sharedInstance = nil;
++(PackOfCards *) sharedInstance {
+    if (!sharedInstance){
+        sharedInstance = [[PackOfCards alloc] init];
+        [sharedInstance initializePackOfCards];
+        NSLog(@"Card deck is up...");
+    }
+    
+    
+    return sharedInstance;
 }
 
 - (void)initializePackOfCards{

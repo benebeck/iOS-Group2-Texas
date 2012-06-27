@@ -1,8 +1,8 @@
 //
 //  Player.m
-//  nopainbutshame
+//  TH
 //
-//  Created by Benedikt Beckmann on 22.05.12.
+//  Created by Benedikt Beckmann on 20.06.12.
 //  Copyright (c) 2012 BB. All rights reserved.
 //
 
@@ -17,31 +17,12 @@
 @synthesize playerState = _playerState;
 @synthesize betState = _betState;
 @synthesize playerRound = _playerRound;
-@synthesize openCards = _openCards;
-@synthesize twoCards = _twoCards;
+//@synthesize openCards = _openCards;
+//@synthesize twoCards = _twoCards;
 
 @synthesize delegate = _delegate;
 
--(void)setState{
-    
-}
 
-
--(NSArray *)getStates{
-    return 0;
-}
-
--(void)removeMoney:(int)amount{
-    
-}
-
--(void)getMoneyFromPot:(int)amount{
-    
-}
-
--(void)chooseBet:(int)amount{
-    
-}
 
 
 @end
