@@ -96,7 +96,7 @@ opencard1 = @"1";
     [spielereinsstat setBackgroundColor:[UIColor clearColor]];
     spielereinsstat.font = [UIFont fontWithName:@"Arial" size:28];
     [spielereinsstat setTextColor:[UIColor whiteColor]];
-    spielereinsstat.text=[NSString stringWithFormat:@"Totalmoney:%i", texas.totalMoney];
+    spielereinsstat.text=[NSString stringWithFormat:@"Totalmoney:%i", [GameController sharedInstance].totalMoney];
     
 
     backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];

@@ -10,7 +10,7 @@
 #import "GCHelper.h"
 #import "GameController.h"
 #import "ViewController.h"
-
+#import "PackOfCards.h"
 @implementation AppDelegate{
     NSMutableArray *possiblegameStates;
 
