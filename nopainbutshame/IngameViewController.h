@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GameController.h"
-
+#import <QuartzCore/QuartzCore.h>
 #import "PackOfCards.h"
 #import "Player.h"
 @interface IngameViewController : UIViewController
@@ -32,6 +32,12 @@
     UIImageView *backofcardsleft;
     UIImageView *backofcardsright;
     
+    UIView      *player1status;
+    UIView      *player2status;
+    UIView      *player3status;
+    UIView      *player4status;
+    UIView      *player5status;
+    
     UIImage     *chip50image;
     UIImage     *chip100image;
     UIImage     *backofcardsleft1;
@@ -51,9 +57,9 @@
     int spielerviergeld;
     int spielerfunfgeld;
     
-    GameController *texas;
+
     PackOfCards     *packofcards;
-    Player          *player;
+  
   
 
     int i;

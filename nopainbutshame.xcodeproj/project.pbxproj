@@ -22,6 +22,7 @@
 		741C7AB5155E70220056AF55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A93155E70210056AF55 /* Foundation.framework */; };
 		741C7ABD155E70220056AF55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 741C7ABB155E70220056AF55 /* InfoPlist.strings */; };
 		741C7AC0155E70230056AF55 /* nopainbutshameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C7ABF155E70230056AF55 /* nopainbutshameTests.m */; };
+		74A567D8159C5DB8004224A0 /* botViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A567D7159C5DB8004224A0 /* botViewController.m */; };
 		74B4FE4715927AC900462BD0 /* backofcards.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B4FE1215927AC900462BD0 /* backofcards.png */; };
 		74BDD6F015935AF600944FC8 /* pokerchip100.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BDD6EE15935AF600944FC8 /* pokerchip100.png */; };
 		74BDD6F61593665F00944FC8 /* pokerchip50.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BDD6F51593665F00944FC8 /* pokerchip50.png */; };
@@ -130,6 +131,8 @@
 		741C7ABC155E70220056AF55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		741C7ABE155E70230056AF55 /* nopainbutshameTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nopainbutshameTests.h; sourceTree = "<group>"; };
 		741C7ABF155E70230056AF55 /* nopainbutshameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nopainbutshameTests.m; sourceTree = "<group>"; };
+		74A567D6159C5DB8004224A0 /* botViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = botViewController.h; sourceTree = "<group>"; };
+		74A567D7159C5DB8004224A0 /* botViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = botViewController.m; sourceTree = "<group>"; };
 		74B4FE1215927AC900462BD0 /* backofcards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backofcards.png; sourceTree = "<group>"; };
 		74BDD6EE15935AF600944FC8 /* pokerchip100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pokerchip100.png; sourceTree = "<group>"; };
 		74BDD6F51593665F00944FC8 /* pokerchip50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pokerchip50.png; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 				B7F8B3E8156BDD7000B817AB /* Player.m */,
 				B73DFEFE1592587E009E92BD /* GameController.h */,
 				B73DFEFF1592587E009E92BD /* GameController.m */,
+				74A567D6159C5DB8004224A0 /* botViewController.h */,
+				74A567D7159C5DB8004224A0 /* botViewController.m */,
 				741C7A98155E70210056AF55 /* Supporting Files */,
 			);
 			path = nopainbutshame;
@@ -587,6 +592,7 @@
 				B7F8B3E9156BDD7000B817AB /* Player.m in Sources */,
 				10997A1515874D8E00895DBE /* PackOfCards.m in Sources */,
 				B73DFF001592587E009E92BD /* GameController.m in Sources */,
+				74A567D8159C5DB8004224A0 /* botViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
