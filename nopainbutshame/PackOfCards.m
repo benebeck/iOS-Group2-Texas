@@ -8,8 +8,27 @@
 
 #import "PackOfCards.h"
 
+//for private functions
+@interface PackOfCards ()
+//init of cardDeck should be possible during init of sharedInstance only
+-(void)initializePackOfCards;
+@end
+
 
 @implementation PackOfCards
+
+static PackOfCards *sharedInstance = nil;
+    +(PackOfCards *) sharedInstance {
+        if (!sharedInstance){
+            sharedInstance = [[PackOfCards alloc] init];
+            [sharedInstance initializePackOfCards];
+            NSLog(@"Card deck is up...");
+        }
+
+        
+        return sharedInstance;
+}
+
 - (void)initializePackOfCards{
     for(int i = 1; i < 53; i++){
         for(int j = 0; j < 2; j++){
@@ -73,6 +92,10 @@
 - (void)changeStatusOfCard:(int) distributedCardPos forWho:(int) openCardOrPlayer{
     recordInfoAboutPackOfCards[distributedCardPos][0] = 2;
     recordInfoAboutPackOfCards[distributedCardPos][1] = openCardOrPlayer;
+}
+
+- (int)givemeinfo:(int) i forWho:(int) j{
+    recordInfoAboutPackOfCards[i][j];
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "GCHelper.h"
 
 @interface ViewController ()
 
@@ -21,6 +22,10 @@ CGPoint *point;
 CGPoint woist;
 NSTimer *timer;
 CGPoint startpoint;
+
+-(IBAction)presentGCTurnViewController:(id)sender{
+    [[GCHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:5 viewController:self];
+}
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *betouched = [touches anyObject];
@@ -91,6 +96,8 @@ CGPoint startpoint;
   
 }
 
+
+
 static int i=1;
 
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer2{
@@ -157,6 +164,10 @@ static int i=1;
 -(void)swipeLeft:(UISwipeGestureRecognizer *)recognizer{
     [self performSegueWithIdentifier:@"onetofour" sender:nil];
 }
+
+
+
+
 
 - (void)viewDidUnload
 {

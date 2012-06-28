@@ -12,4 +12,6 @@
     -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer2;
 -(void) animate:(CGPoint) msg;
 
+- (IBAction)presentGCTurnViewController:(id)sender;
+
 @end

@@ -7,14 +7,37 @@
 //
 
 #import "AppDelegate.h"
+#import "GCHelper.h"
+#import "GameController.h"
+#import "ViewController.h"
+#import "PackOfCards.h"
+@implementation AppDelegate{
+    NSMutableArray *possiblegameStates;
 
-@implementation AppDelegate
+}
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    //list of possible game states
+    possiblegameStates = [NSMutableArray arrayWithObjects:@"INACTIVE",@"ACTIVE",@"DEALER",@"SMALL_BLIND",@"BIG_BLIND",@"CALL",@"FOLD", nil];
+    
+    
+    
+    //start up the central game control
+    GameController *gameController = [GameController sharedInstance];
+    [gameController raisePlayers];
+    gameController.gameStates = possiblegameStates;
+    
+    
+    //start the card deck
+    PackOfCards *packOfCards = [PackOfCards sharedInstance];
+    
+    //start GameCenter
+    [[GCHelper sharedInstance] authenticateLocalUser];
+    
+    
     return YES;
 }
 							
