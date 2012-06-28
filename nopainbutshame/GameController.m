@@ -25,6 +25,7 @@
 @synthesize betRoundNr = _betRoundNr;
 @synthesize player = _player;
 @synthesize pot;
+@synthesize wetthohe;
 
 #pragma mark Initialization
 
@@ -103,6 +104,18 @@ static GameController *sharedInstance = nil;
 
 
     -(void)activateNextPlayer{
+    
+           
+            Player *player;
+            for (player in self.playerList)
+                if (self.activePlayer == [player playerId]) {
+                    
+                    NSInteger index = [self.playerList indexOfObjectIdenticalTo:player];
+                    if ([[self.playerList objectAtIndex:index] playerState]==@"RAISE") {
+                  [sharedInstance changePlayerState:@"CALL" forPlayer:[sharedInstance.playerList objectAtIndex:index]];
+                        self.wetthohe+=50;
+                    }
+                }
 
         //first player to start
         if (!self.activePlayer) {
@@ -110,12 +123,13 @@ static GameController *sharedInstance = nil;
             //ACTIVATE PLAYERS !!!!!!!!!....
             if ([[self.playerList objectAtIndex:0] playerState]==@"CALL") {
                 [[self.playerList objectAtIndex:0] setMoneyRest:[[self.playerList objectAtIndex:0] moneyRest]-50];
-                if(self.pot<=0 || self.pot>100000)
+                if(self.wetthohe<=0 || self.wetthohe>100000)
                 {
                     [self setPot:50];
+                    [self setWetthohe:0];
                 }
                 else {
-                    [self setPot:pot+50];
+                    [self setPot:pot+wetthohe];
                 }
                 [[self.playerList objectAtIndex:0] setPlayerState:@"INACTIVE"];
                 
@@ -127,9 +141,10 @@ static GameController *sharedInstance = nil;
                 if(self.pot<=0 || self.pot>100000)
                 {
                     [self setPot:50];
+                    [self setWetthohe:0];
                 }
                 else {
-                    [self setPot:pot+50];
+                    [self setPot:pot+wetthohe];
                 }
                 [[self.playerList lastObject] setPlayerState:@"INACTIVE"];
                 NSLog(@"dfdfdf%i",_totalMoney);
@@ -150,9 +165,10 @@ static GameController *sharedInstance = nil;
                         if(self.pot<=0 || self.pot>100000)
                         {
                             [self setPot:50];
+                            [self setWetthohe:0];
                         }
                         else {
-                            [self setPot:pot+50];
+                            [self setPot:pot+wetthohe];
                         }
                         [[self.playerList objectAtIndex:index] setPlayerState:@"INACTIVE"];
                         

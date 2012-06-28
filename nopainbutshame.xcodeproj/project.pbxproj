@@ -23,6 +23,7 @@
 		741C7ABD155E70220056AF55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 741C7ABB155E70220056AF55 /* InfoPlist.strings */; };
 		741C7AC0155E70230056AF55 /* nopainbutshameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 741C7ABF155E70230056AF55 /* nopainbutshameTests.m */; };
 		74A567D8159C5DB8004224A0 /* botViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A567D7159C5DB8004224A0 /* botViewController.m */; };
+		74AC8B04159D0B6E00C81119 /* slidetofold.png in Resources */ = {isa = PBXBuildFile; fileRef = 74AC8B03159D0B6E00C81119 /* slidetofold.png */; };
 		74B4FE4715927AC900462BD0 /* backofcards.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B4FE1215927AC900462BD0 /* backofcards.png */; };
 		74BDD6F015935AF600944FC8 /* pokerchip100.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BDD6EE15935AF600944FC8 /* pokerchip100.png */; };
 		74BDD6F61593665F00944FC8 /* pokerchip50.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BDD6F51593665F00944FC8 /* pokerchip50.png */; };
@@ -133,6 +134,7 @@
 		741C7ABF155E70230056AF55 /* nopainbutshameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nopainbutshameTests.m; sourceTree = "<group>"; };
 		74A567D6159C5DB8004224A0 /* botViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = botViewController.h; sourceTree = "<group>"; };
 		74A567D7159C5DB8004224A0 /* botViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = botViewController.m; sourceTree = "<group>"; };
+		74AC8B03159D0B6E00C81119 /* slidetofold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slidetofold.png; path = ../../../Desktop/slidetofold.png; sourceTree = "<group>"; };
 		74B4FE1215927AC900462BD0 /* backofcards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backofcards.png; sourceTree = "<group>"; };
 		74BDD6EE15935AF600944FC8 /* pokerchip100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pokerchip100.png; sourceTree = "<group>"; };
 		74BDD6F51593665F00944FC8 /* pokerchip50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pokerchip50.png; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		741C7A98155E70210056AF55 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				74AC8B03159D0B6E00C81119 /* slidetofold.png */,
 				74BDD7171593A79D00944FC8 /* backofcards */,
 				74B4FE1015927AA000462BD0 /* SetofCards */,
 				741C3E9D1579181C0085C97E /* 1_Singleplayer.png */,
@@ -550,6 +553,7 @@
 				74BDD78E1593C3A200944FC8 /* backofcardsrechts2.png in Resources */,
 				74BDD78F1593C3A200944FC8 /* backofcardslinks2.png in Resources */,
 				74BDD7901593C3A200944FC8 /* backofcardslinks.png in Resources */,
+				74AC8B04159D0B6E00C81119 /* slidetofold.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

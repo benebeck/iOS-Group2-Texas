@@ -23,6 +23,7 @@
 @property (nonatomic) int betRoundNr;
 @property (nonatomic, strong) Player *player;
 @property             int pot;
+@property             int wetthohe;
 
 
 +(GameController *)sharedInstance;

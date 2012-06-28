@@ -42,13 +42,23 @@
 
 -(void)callverdammt{
  int hallo=[[GameController sharedInstance] pot] ;
+
+     if ([GameController sharedInstance].activePlayer==@"Player2") {
+        [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:1]];
+    }
     if ([GameController sharedInstance].activePlayer==@"Player3") {
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:2]];
     }
-    player2stat.text=[NSString stringWithFormat:@"player3:%@",[[[GameController sharedInstance].playerList objectAtIndex:2] playerState]];
-    
-    
-    player2stat.text=[NSString stringWithFormat:@"player3:%@",[[[GameController sharedInstance].playerList objectAtIndex:2] playerState]];
+    if ([GameController sharedInstance].activePlayer==@"Player4") {
+        [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:3]];
+    }
+    if ([GameController sharedInstance].activePlayer==@"Player5") {
+        [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:4]];
+    }
+        player2stat.text=[NSString stringWithFormat:@"player2:%@",[[[GameController sharedInstance].playerList objectAtIndex:1] playerState]];
+        player3stat.text=[NSString stringWithFormat:@"player3:%@",[[[GameController sharedInstance].playerList objectAtIndex:2] playerState]];
+        player4stat.text=[NSString stringWithFormat:@"player4:%@",[[[GameController sharedInstance].playerList objectAtIndex:3] playerState]];
+        player5stat.text=[NSString stringWithFormat:@"player5:%@",[[[GameController sharedInstance].playerList objectAtIndex:4] playerState]];
     
     totalmone.text=[NSString stringWithFormat:@"%i",hallo];
  

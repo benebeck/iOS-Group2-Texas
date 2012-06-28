@@ -31,6 +31,7 @@
     UIImageView *mychip100;
     UIImageView *backofcardsleft;
     UIImageView *backofcardsright;
+    UIImageView *slidetofold;
     
     UIView      *player1status;
     UIView      *player2status;
@@ -38,6 +39,7 @@
     UIView      *player4status;
     UIView      *player5status;
     
+    UIImage     *tempimage;
     UIImage     *chip50image;
     UIImage     *chip100image;
     UIImage     *backofcardsleft1;

@@ -52,7 +52,10 @@ opencard2 = @"3";
     [mychip100 setFrame:CGRectMake(70, 190, 110, 110)];
     [[self view]addSubview:mychip100];
     
-    
+    tempimage =[UIImage imageNamed:@"slidetofold.png"];
+    slidetofold=[[UIImageView alloc] initWithImage:tempimage];
+    [slidetofold setFrame:CGRectMake(330, 100, 150, 50)];
+    [self.view addSubview:slidetofold];
     
     spielereins=[[UILabel alloc] initWithFrame:CGRectMake(33, 38, 140, 30)];
     [self.view addSubview:spielereins];
@@ -134,18 +137,41 @@ opencard2 = @"3";
     player5status.backgroundColor=[UIColor yellowColor];
     player5status.layer.cornerRadius=10;
     [self.view addSubview:player5status];
-    
-    [super viewDidLoad];
-    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
+
     
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void) statusupdate{
+    if ([GameController sharedInstance].activePlayer==@"Player1") {
+        player1status.backgroundColor=[UIColor greenColor];
+    }else {
+        player1status.backgroundColor=[UIColor yellowColor];
+    }
+    if ([GameController sharedInstance].activePlayer==@"Player2") {
+        player2status.backgroundColor=[UIColor greenColor];
+    }else {
+        player2status.backgroundColor=[UIColor yellowColor];
+    }
+    if ([GameController sharedInstance].activePlayer==@"Player3") {
+        player3status.backgroundColor=[UIColor greenColor];
+    }else {
+        player3status.backgroundColor=[UIColor yellowColor];
+    }
+    if ([GameController sharedInstance].activePlayer==@"Player4") {
+        player4status.backgroundColor=[UIColor greenColor];
+    }else {
+        player4status.backgroundColor=[UIColor yellowColor];
+    }
+    if ([GameController sharedInstance].activePlayer==@"Player5") {
+        player5status.backgroundColor=[UIColor greenColor];
+    }else {
+        player5status.backgroundColor=[UIColor yellowColor];
+    }
 
+}
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    if ([[[GameController sharedInstance].playerList objectAtIndex:0] playerState] ==@"ACTIVE") {
-        player3status.backgroundColor=[UIColor blackColor];
-    } 
    //this is a comment
     UITouch *betouched = [touches anyObject];
     startpoint = [betouched locationInView:self.view];
@@ -172,7 +198,7 @@ opencard2 = @"3";
     if ( [GameController sharedInstance].activePlayer!=@"Player1" ) {
      
 
-      [self performSegueWithIdentifier:@"tobot" sender:nil];
+ //     [self performSegueWithIdentifier:@"tobot" sender:nil];
     }
 
 }
@@ -264,14 +290,14 @@ int canwin=0;
             [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip50.frame=CGRectMake(mychip50.frame.origin.x, finalpoint.y, mychip50.frame.size.width, mychip50.frame.size.height);} completion:nil];
             //    [ chooseBet:50];
                 
-            
-                Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
+             [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+         
             }
             if(i==2){
                 [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip100.frame=CGRectMake(mychip100.frame.origin.x, finalpoint.y, mychip100.frame.size.width, mychip100.frame.size.height);} completion:nil];
           //      [player chooseBet:100];
                 
-                       [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+                       [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
                 //   Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
             }
           //  [self performSegueWithIdentifier:@"onetosecond" sender:nil];
