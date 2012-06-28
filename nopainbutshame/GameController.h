@@ -22,6 +22,7 @@
 @property (nonatomic) int totalMoney;
 @property (nonatomic) int betRoundNr;
 @property (nonatomic, strong) Player *player;
+@property             int pot;
 
 
 +(GameController *)sharedInstance;
@@ -31,6 +32,8 @@
 -(int)getRoundNr;
 -(void)setRoundNr;
 -(BOOL)isShowDownTime;
+
+
 
 
 @end

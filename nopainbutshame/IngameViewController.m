@@ -172,7 +172,7 @@ opencard2 = @"3";
     if ( [GameController sharedInstance].activePlayer!=@"Player1" ) {
      
 
-        [self performSegueWithIdentifier:@"tobot" sender:nil];
+      [self performSegueWithIdentifier:@"tobot" sender:nil];
     }
 
 }
@@ -258,20 +258,21 @@ int canwin=0;
         float slidefactor = 0.2 * slideMult;
         
   
-        if ( magnitude>1000 && [[[GameController sharedInstance].playerList objectAtIndex:0] activePlayer]==@"player1" ) {
+        if ( magnitude>1000 &&  [GameController sharedInstance].activePlayer==@"Player1") {
             CGPoint finalpoint = CGPointMake(recognizer.view.center.x, recognizer.view.center.y+(velocity.y*slidefactor));
             if(i==1){
             [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip50.frame=CGRectMake(mychip50.frame.origin.x, finalpoint.y, mychip50.frame.size.width, mychip50.frame.size.height);} completion:nil];
             //    [ chooseBet:50];
                 
-                canwin+=50;
+            
                 Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
             }
             if(i==2){
                 [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip100.frame=CGRectMake(mychip100.frame.origin.x, finalpoint.y, mychip100.frame.size.width, mychip100.frame.size.height);} completion:nil];
           //      [player chooseBet:100];
-                canwin+=100;
-                Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
+                
+                       [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+                //   Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
             }
           //  [self performSegueWithIdentifier:@"onetosecond" sender:nil];
             iba++;

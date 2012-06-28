@@ -41,16 +41,20 @@
 }
 
 -(void)callverdammt{
-    
+ int hallo=[[GameController sharedInstance] pot] ;
     if ([GameController sharedInstance].activePlayer==@"Player3") {
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:2]];
     }
     player2stat.text=[NSString stringWithFormat:@"player3:%@",[[[GameController sharedInstance].playerList objectAtIndex:2] playerState]];
     
     
-   /* if ( [GameController sharedInstance].activePlayer==@"Player1" ) {
+    player2stat.text=[NSString stringWithFormat:@"player3:%@",[[[GameController sharedInstance].playerList objectAtIndex:2] playerState]];
+    
+    totalmone.text=[NSString stringWithFormat:@"%i",hallo];
+ 
+    if ( [GameController sharedInstance].activePlayer==@"Player1" ) {
         [self performSegueWithIdentifier:@"toplayer" sender:nil];
-    }*/
+    }
 
 }
 
