@@ -32,6 +32,11 @@
     UIImageView *backofcardsleft;
     UIImageView *backofcardsright;
     UIImageView *slidetofold;
+    UIImageView *opencard1imageview;
+    UIImageView *opencard2imageview;
+    UIImageView *opencard3imageview;
+    UIImageView *opencard4imageview;
+    UIImageView *opencard5imageview;
     
     UIView      *player1status;
     UIView      *player2status;
@@ -48,6 +53,11 @@
     UIImage     *backofcardsright1;
     UIImage     *backofcardsright2;
     UIImage     *backofcardsright3;
+    UIImage     *opencard1image;
+    UIImage     *opencard2image;
+    UIImage     *opencard3image;
+    UIImage     *opencard4image;
+    UIImage     *opencard5image;
     
     NSArray     *opencard;
     NSString    *opencard1;

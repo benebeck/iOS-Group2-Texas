@@ -137,6 +137,32 @@ opencard2 = @"3";
     player5status.backgroundColor=[UIColor yellowColor];
     player5status.layer.cornerRadius=10;
     [self.view addSubview:player5status];
+    
+    opencard1image =[UIImage imageNamed:@"10.png"];
+    opencard1imageview=[[UIImageView alloc] initWithImage:opencard1image];
+    [opencard1imageview setFrame:CGRectMake(250, 80, 40, 60)];
+    [[self view]addSubview:opencard1imageview];
+    
+    opencard2image =[UIImage imageNamed:@"11.png"];
+    opencard2imageview=[[UIImageView alloc] initWithImage:opencard2image];
+    [opencard2imageview setFrame:CGRectMake(295, 80, 40, 60)];
+    [[self view]addSubview:opencard2imageview];
+    
+    opencard3image =[UIImage imageNamed:@"12.png"];
+    opencard3imageview=[[UIImageView alloc] initWithImage:opencard3image];
+    [opencard3imageview setFrame:CGRectMake(340, 80, 40, 60)];
+    [[self view]addSubview:opencard3imageview];
+    
+    opencard4image =[UIImage imageNamed:@"13.png"];
+    opencard4imageview=[[UIImageView alloc] initWithImage:opencard4image];
+    [opencard4imageview setFrame:CGRectMake(385, 80, 40, 60)];
+    [[self view]addSubview:opencard4imageview];
+    
+    opencard5image =[UIImage imageNamed:@"14.png"];
+    opencard5imageview=[[UIImageView alloc] initWithImage:opencard5image];
+    [opencard5imageview setFrame:CGRectMake(430, 80, 40, 60)];
+    [[self view]addSubview:opencard5imageview];
+    
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
 
     
