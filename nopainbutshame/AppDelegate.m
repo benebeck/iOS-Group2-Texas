@@ -10,7 +10,7 @@
 #import "GCHelper.h"
 #import "GameController.h"
 #import "ViewController.h"
-
+#import "PackOfCards.h"
 @implementation AppDelegate{
     NSMutableArray *possiblegameStates;
 
@@ -21,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //list of possible game states
-    possiblegameStates = [NSMutableArray arrayWithObjects:@"INACTIVE",@"ACTIVE",@"DEALER",@"SMALL_BLIND",@"BIG_BLIND",@"CALL",@"FOLD", nil];
+    possiblegameStates = [NSMutableArray arrayWithObjects:@"RAISE",@"INACTIVE",@"ACTIVE",@"DEALER",@"SMALL_BLIND",@"BIG_BLIND",@"CALL",@"FOLD", nil];
     
     
     

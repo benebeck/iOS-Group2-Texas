@@ -25,7 +25,8 @@
 @synthesize totalMoney = _totalMoney;
 @synthesize betRoundNr = _betRoundNr;
 @synthesize player = _player;
-
+@synthesize pot;
+@synthesize wetthohe;
 
 #pragma mark Initialization
 
@@ -57,29 +58,41 @@ static GameController *sharedInstance = nil;
 -(void)raisePlayers{
     
     //dummy list
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(activateNextPlayer) userInfo:nil repeats:YES];
+ 
     NSMutableArray *list = [NSMutableArray arrayWithCapacity:5];
     
     //foreach-Schleife : hier müssten die mitspieler rein
     Player *player1 = [[Player alloc] init];
+    player1.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
     player1.playerId = @"Player1";
     [list addObject:player1];
     Player *player2 = [[Player alloc] init];
     player2.playerId = @"Player2";
+    player2.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
     [list addObject:player2];
     Player *player3 = [[Player alloc] init];
     player3.playerId = @"Player3";
+    player3.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
     [list addObject:player3];
     Player *player4 = [[Player alloc] init];
     player4.playerId = @"Player4";
+    player4.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
     [list addObject:player4];
     Player *player5 = [[Player alloc] init];
     player5.playerId = @"Player5";
+    player5.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
     [list addObject:player5];
     
     
     self.playerList = list;
     
     for (id element in self.playerList) {
+   
+     player1.playerState=@"ACTIVE";
+        NSLog(@"aaaaaaaaaa%@",player1.playerState);
+      
+       
         [self changePlayerState:@"INACTIVE" forPlayer:element];
         [self addToPlayerAccount:1000 forPlayer:element];
     }

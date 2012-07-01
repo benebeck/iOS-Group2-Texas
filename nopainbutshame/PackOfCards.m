@@ -169,32 +169,233 @@ static PackOfCards *sharedInstance = nil;
 }
 
 //for the function showdownComparison we need still a function "bestFiveCardsCombination" which for each player creates the best five cards combination from seven cards (two cards in hand and five open cards), and sort five cards in an array according to each type of combination
-/***
- -(int)sortIntArray:(int[]) cardsArray{
- int sizeArray = sizeof(cardsArray)/sizeof(*cardsArray);
- int hold[2];
- for (int pass=1;pass<=sizeArray-1;pass++){ 
- for (int i=0;i<=sizeArray-(pass+1);i++) { 
- if (cardsArray[i][0] < cardsArray[i+1][0]) {
- for (int j=0; j<2; j++){
- hold[j]=cardsArray[i][j];
- cardsArray[i][j]=cardsArray[i+1][j];
- cardsArray[i+1][j]=hold[j];
- }
+
+
+-(NSArray *) convertIntArrayToNSArray: (int [][2]) intArray{ //convert array int[][] to NSArray with Object NSNumber
+    NSArray *arr = [NSArray array];
+    
+    int sizeArray = 7;
+    for (int i = 0; i<7; i++){
+        NSArray *subarr = [NSArray array];;
+        for (int j = 0; j<2; j++){
+            //subarr = [subarr arrayByAddingObject:[[NSString alloc] initWithFormat:@"%i", intArray[i][j]]];
+            
+            subarr = [subarr arrayByAddingObject:[NSNumber numberWithInt:intArray[i][j]]];
+        }
+        arr = [arr arrayByAddingObject:subarr];
+    }
+    return arr;
+    
+}
+
+
+
+-(NSArray *)sortIntArray:(int [][2]) cardsArray{ // for every player at the showdown time seven cards will be stored
+                                           // in cardsArray with their values and farbes
+    int sizeArray = 7;                     // then we sort them according to their value
+    
+    int hold[2];
+    for (int pass=1;pass<=sizeArray-1;pass++) { 
+        for (int i=0;i<=sizeArray-(pass+1);i++) { 
+            if (cardsArray[i][1] < cardsArray[i+1][1]) { //compare the values of cards: larger value comes forword
+                for (int j=0; j<2; j++){
+                    hold[j]=cardsArray[i][j];
+                    cardsArray[i][j]=cardsArray[i+1][j];
+                    cardsArray[i+1][j]=hold[j];
+                }
+            }
+        }
+    }
+    
+    //    return sizeArray;
+    NSArray * cardsNSArray= [self convertIntArrayToNSArray:cardsArray];
+    return cardsNSArray;
+}
+
+
  
- 
- 
- }
- }
- }
- 
- 
- }
- 
- -(NSDictionary *)hatRoyalFlush: (int[]) sevenCards{
- 
- }
- 
+-(NSDictionary *)hasRoyalFlush: (int[][2]) sevenSortedCards{
+    NSArray * sevenCards= [self sortIntArray:sevenSortedCards];
+    
+    NSDictionary *res = [NSDictionary alloc];
+    NSArray * array_13 = [NSArray array];
+    
+    NSArray * array_12 = [NSArray array];
+
+    NSArray * array_11 = [NSArray array];
+
+    NSArray * array_10 = [NSArray array];
+
+    NSArray * array_1 = [NSArray array];
+    
+    NSMutableDictionary *record = [NSMutableDictionary dictionaryWithCapacity:5];
+    
+    NSNumber * suit;
+    for (int i = 0; i<7; i++) {
+        int value = [[sevenCards objectAtIndex:i] objectAtIndex:0];
+        switch (value) {
+            case 13:
+                [record setObject:[array_13 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"13"]; //array_13 record the position(s) of cards with value 13, because cards with value 13 may occurs more than one time with different suits 
+                break;
+            case 12:
+                [record setObject:[array_12 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"12"];
+                break;
+            case 11:
+                [record setObject:[array_11 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"11"];
+                break;
+            case 10:
+                [record setObject:[array_10 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"10"];
+                break;
+            case 1:
+                [record setObject:[array_1 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"1"];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    if ([record count]==5) { // there are A, K ,Q, J, 10 in seven cards, then we check their suits
+        for (NSString * cardValueKey in record) {
+            NSArray * posArray= [record objectForKey:cardValueKey];
+            if ([posArray count]==1) { 
+                suit = [[sevenCards objectAtIndex:[posArray objectAtIndex:0]] objectAtIndex:0]; //for one card an array with length 2 will be used, first element is suit, second is value
+                break;
+            }
+        }
+
+        for  (NSString * cardValueKey in record) {
+            int flag = 0; //note if card(s) has only different suit (that will be not royal flush)
+
+            NSArray * posArray= [record objectForKey:cardValueKey];
+            for (int m = 0; m<[posArray count]; m++) {
+                if ([[sevenCards objectAtIndex:[posArray objectAtIndex:m]] objectAtIndex:0]== suit) {
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 0) {
+                res = [res initWithObjectsAndKeys:[NSNumber numberWithInt: 0], @"False", nil];
+                return res;
+            }
+            
+        }
+        NSArray * cardsRoyalFlush = [NSArray arrayWithObjects:[NSNumber numberWithInt:13],[NSNumber numberWithInt:12],[NSNumber numberWithInt:11],[NSNumber numberWithInt:10],[NSNumber numberWithInt:1], nil];
+        res = [res initWithObjectsAndKeys:cardsRoyalFlush,@"Royal Flush", nil];
+        return res;
+    }
+    else { // in these seven cards it lacks card(s) to form A, K ,Q, J, 10
+        res = [res initWithObjectsAndKeys:[NSNumber numberWithInt: 0], @"False", nil];
+        return res;
+    }
+    
+}
+
+-(NSDictionary *)hasStraightFlushOrStraight: (int[][2]) sevenSortedCards{
+    NSArray * sevenCards= [self sortIntArray:sevenSortedCards];
+    NSDictionary *res = [NSDictionary alloc];
+    NSArray * cardsStraightFlush = [NSArray array];
+    NSArray * cardsStraight = [NSArray array];
+    
+    for (int i = 0; i < 7; i++) {
+    //<#statements#>
+    }
+}
+
+-(NSDictionary *)hatFourOfAKind: (int[][2]) sevenSortedCards{
+    NSArray * sevenCards= [self sortIntArray:sevenSortedCards];
+    NSDictionary *res = [NSDictionary alloc];
+    NSArray * cardsFourOfAKind = [NSArray array];
+    for (int i = 0; i < 4; i++) {
+        if (([[sevenCards objectAtIndex:i] objectAtIndex:1]==[[sevenCards objectAtIndex:(i+1)] objectAtIndex:1]) &&  ([[sevenCards objectAtIndex:i] objectAtIndex:1]==[[sevenCards objectAtIndex:(i+2)] objectAtIndex:1]) && ([[sevenCards objectAtIndex:i] objectAtIndex:1]==[[sevenCards objectAtIndex:(i+3)] objectAtIndex:1])){
+            if (i!=0) {
+                NSArray * cardsFourOfAKind = [NSArray arrayWithObjects:[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1], [[sevenCards objectAtIndex:0] objectAtIndex:1],nil];
+            }
+            else {
+                NSArray * cardsFourOfAKind = [NSArray arrayWithObjects:[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1], [[sevenCards objectAtIndex:(i+4)] objectAtIndex:1],nil];
+            }
+            
+            res = [res initWithObjectsAndKeys: cardsFourOfAKind, @"Four of a Kind", nil];
+            return res;
+        }
+    }
+    res = [res initWithObjectsAndKeys:[NSNumber numberWithInt: 0], @"False", nil];
+    return res;
+
+}
+
+-(NSDictionary *)hatBoatOrThreeOfAKind: (int[][2]) sevenSortedCards{
+    NSArray * sevenCards= [self sortIntArray:sevenSortedCards];
+    NSDictionary *res = [NSDictionary alloc];
+    NSArray * cardsBoat = [NSArray array];
+    NSArray * cardsThreeOfAKind = [NSArray array];
+    for (int i = 0; i < 5; i++) {
+        if (([[sevenCards objectAtIndex:i] objectAtIndex:1]==[[sevenCards objectAtIndex:(i+1)] objectAtIndex:1]) &&  ([[sevenCards objectAtIndex:i] objectAtIndex:1]==[[sevenCards objectAtIndex:(i+2)] objectAtIndex:1])){
+            
+            if (i > 1) {
+                for (int j = 0; j < (i - 1); j++) {
+                    if ([[sevenCards objectAtIndex:j] objectAtIndex:1]==[[sevenCards objectAtIndex:(j+1)] objectAtIndex:1]){
+                        NSArray * cardsBoat = [NSArray arrayWithObjects:[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:j] objectAtIndex:1], [[sevenCards objectAtIndex:(j+1)] objectAtIndex:1],nil];
+                        res = [res initWithObjectsAndKeys: cardsBoat, @"Boat", nil];
+                        return res;
+                    }
+                }
+                
+            }
+            else {
+                for (int j = (i+3); j < 7; j++) {
+                    if ([[sevenCards objectAtIndex:j] objectAtIndex:1]==[[sevenCards objectAtIndex:(j+1)] objectAtIndex:1]){
+                        NSArray * cardsBoat = [NSArray arrayWithObjects:[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:j] objectAtIndex:1], [[sevenCards objectAtIndex:(j+1)] objectAtIndex:1],nil];
+                        res = [res initWithObjectsAndKeys: cardsBoat, @"Boat", nil];
+                        return res;
+
+                    }
+                }
+            }
+            if (i == 0) { // without a pair it must be three of a kind, find here two cards with largest values except three same value cards
+                NSArray * cardsThreeOfAKind = [NSArray arrayWithObjects:[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:(i+3)] objectAtIndex:1], [[sevenCards objectAtIndex:(i+4)] objectAtIndex:1],nil];
+                res = [res initWithObjectsAndKeys: cardsThreeOfAKind, @"Three of a Kind", nil];
+                return res;
+            }
+            else if (i == 1) {
+                NSArray * cardsThreeOfAKind = [NSArray arrayWithObjects:[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:0] objectAtIndex:1], [[sevenCards objectAtIndex:4] objectAtIndex:1],nil];
+                res = [res initWithObjectsAndKeys: cardsThreeOfAKind, @"Three of a Kind", nil];
+                return res;
+            }
+            else {
+                NSArray * cardsThreeOfAKind = [NSArray arrayWithObjects:[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:i] objectAtIndex:1],[[sevenCards objectAtIndex:0] objectAtIndex:1], [[sevenCards objectAtIndex:1] objectAtIndex:1],nil];
+                res = [res initWithObjectsAndKeys: cardsThreeOfAKind, @"Three of a Kind", nil];
+                return res;
+            }
+        }
+    }
+    res = [res initWithObjectsAndKeys:[NSNumber numberWithInt: 0], @"False", nil];
+    return res;
+}
+
+-(NSDictionary *)hatFlush: (int[][2]) sevenSortedCards{
+    
+}
+
+-(NSDictionary *)hatStraight: (int[][2]) sevenSortedCards{
+    
+}
+
+
+-(NSDictionary *)hatTwoPairs: (int[][2]) sevenSortedCards{
+    
+}
+
+-(NSDictionary *)hatPair: (int[][2]) sevenSortedCards{
+    
+}
+
+//-(NSDictionary *)hatHightCards: (int[][2]) sevenSortedCards{
+    
+//}
+
+
+
+ /*** 
  -(NSDictionary *)bestFiveCardsCombination:(){
  
  
@@ -206,7 +407,7 @@ static PackOfCards *sharedInstance = nil;
 -(NSArray *)showdownComparison:(NSDictionary *) cardsOfPlayer_1 compareWith: (NSDictionary *) cardsOfPlayer_2{
     // dictionary cardsOfPlayer_1 indicate the best five final cards of the player_1 at the showdown time, e.g. {"Boat House": [3,3,3,7,5]}
     NSArray * winners = [NSArray array];
-    NSArray * ranking = [NSArray arrayWithObjects: @"Royal Flush",@"Straight Flush", @"Four of a Kind", @"Boat House", @"Flush", @"Straight", @"Three of a Kind", @"Two Pairs", @"Pair", @"Hight Card", nil];
+    NSArray * ranking = [NSArray arrayWithObjects: @"Royal Flush",@"Straight Flush", @"Four of a Kind", @"Boat", @"Flush", @"Straight", @"Three of a Kind", @"Two Pairs", @"Pair", @"Hight Card", nil];
     
     NSString * resultPlayer_1 = [self getKeyFromDictionary:cardsOfPlayer_1];
     NSString * resultPlayer_2 = [self getKeyFromDictionary:cardsOfPlayer_2];

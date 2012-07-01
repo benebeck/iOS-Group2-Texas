@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TexasHolemGame.h"
-
+#import "GameController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "PackOfCards.h"
 #import "Player.h"
 @interface IngameViewController : UIViewController
@@ -31,7 +31,20 @@
     UIImageView *mychip100;
     UIImageView *backofcardsleft;
     UIImageView *backofcardsright;
+    UIImageView *slidetofold;
+    UIImageView *opencard1imageview;
+    UIImageView *opencard2imageview;
+    UIImageView *opencard3imageview;
+    UIImageView *opencard4imageview;
+    UIImageView *opencard5imageview;
     
+    UIView      *player1status;
+    UIView      *player2status;
+    UIView      *player3status;
+    UIView      *player4status;
+    UIView      *player5status;
+    
+    UIImage     *tempimage;
     UIImage     *chip50image;
     UIImage     *chip100image;
     UIImage     *backofcardsleft1;
@@ -40,6 +53,11 @@
     UIImage     *backofcardsright1;
     UIImage     *backofcardsright2;
     UIImage     *backofcardsright3;
+    UIImage     *opencard1image;
+    UIImage     *opencard2image;
+    UIImage     *opencard3image;
+    UIImage     *opencard4image;
+    UIImage     *opencard5image;
     
     NSArray     *opencard;
     NSString    *opencard1;
@@ -51,9 +69,9 @@
     int spielerviergeld;
     int spielerfunfgeld;
     
-    TexasHolemGame *texas;
+
     PackOfCards     *packofcards;
-    Player          *player;
+  
   
 
     int i;
