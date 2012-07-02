@@ -47,7 +47,14 @@ static GameController *sharedInstance = nil;
         sharedInstance.betRoundNr = 1;
         NSLog(@"GameControl is up...");
     }
+    //hardcoded dummy values
+    
+    sharedInstance.maxPlayers = 5;
+    sharedInstance.totalMoney = 1000;
+    NSLog(@"GameControl is up...");
+    
     return sharedInstance;
+        
     
 }
 
@@ -94,7 +101,7 @@ static GameController *sharedInstance = nil;
       
        
         [self changePlayerState:@"INACTIVE" forPlayer:element];
-        [self addToPlayerAccount:1000 forPlayer:element];
+        NSLog(@"Player: %@", [element playerId]);
     }
     //Start the game
     [self startNewRound];
@@ -103,34 +110,88 @@ static GameController *sharedInstance = nil;
 
 
 #pragma mark Game methods
+    //hier muss der current player aus GC mitverwurstelt werden
 
-//hier muss der current player aus GC mitverwurstelt werden
--(void)activateNextPlayer{
-    NSLog(@"old active player: %@", self.activePlayer.playerId);
+
+
+
+    -(void)activateNextPlayer{
     
-    //first player to start
-    if (!self.activePlayer) {
-        self.activePlayer = [self.playerList objectAtIndex:0];
-        [self changePlayerState:@"ACTIVE" forPlayer:[self.playerList objectAtIndex:0]];
-        
-        //jump back to first player
-    }else if ([self.playerList lastObject] == self.activePlayer) {
-        self.activePlayer = [self.playerList objectAtIndex:0];
-        [self changePlayerState:@"ACTIVE" forPlayer:[self.playerList objectAtIndex:0]];
-        
-        //next player    
-    }else {
-        Player *player;
-        for (player in self.playerList)
-            if (self.activePlayer == player) {
-                NSInteger index = [self.playerList indexOfObjectIdenticalTo:player];
-                index++;
-                self.activePlayer = [self.playerList objectAtIndex:index];
-                [self changePlayerState:@"ACTIVE" forPlayer:self.activePlayer];
-                break;
+           
+            Player *player;
+            for (player in self.playerList)
+                if (self.activePlayer == [player playerId]) {
+                    
+                    NSInteger index = [self.playerList indexOfObjectIdenticalTo:player];
+                    if ([[self.playerList objectAtIndex:index] playerState]==@"RAISE") {
+                  [sharedInstance changePlayerState:@"CALL" forPlayer:[sharedInstance.playerList objectAtIndex:index]];
+                        self.wetthohe+=50;
+                    }
+                }
+
+        //first player to start
+        if (!self.activePlayer) {
+            self.activePlayer = [[self.playerList objectAtIndex:0] playerId];
+            //ACTIVATE PLAYERS !!!!!!!!!....
+            if ([[self.playerList objectAtIndex:0] playerState]==@"CALL") {
+                [[self.playerList objectAtIndex:0] setMoneyRest:[[self.playerList objectAtIndex:0] moneyRest]-50];
+                if(self.wetthohe<=0 || self.wetthohe>100000)
+                {
+                    [self setPot:50];
+                    [self setWetthohe:0];
+                }
+                else {
+                    [self setPot:pot+wetthohe];
+                }
+                [[self.playerList objectAtIndex:0] setPlayerState:@"INACTIVE"];
+                
+            }   
+            //jump back to first player
+        }else if ([[self.playerList lastObject] playerId]  == self.activePlayer) {
+            if ([[self.playerList lastObject] playerState]==@"CALL") {
+        [[self.playerList lastObject] setMoneyRest:[[self.playerList lastObject] moneyRest]-50];
+                if(self.pot<=0 || self.pot>100000)
+                {
+                    [self setPot:50];
+                    [self setWetthohe:0];
+                }
+                else {
+                    [self setPot:pot+wetthohe];
+                }
+                [[self.playerList lastObject] setPlayerState:@"INACTIVE"];
+                NSLog(@"dfdfdf%i",_totalMoney);
+                
             }
-    }
-    NSLog(@"New Player: %@", self.activePlayer.playerId);
+            self.activePlayer = [[self.playerList objectAtIndex:0] playerId];
+            
+            //next player    
+        }else {
+            NSLog(@"old active player: %@", self.activePlayer);
+            Player *player;
+            for (player in self.playerList)
+                if (self.activePlayer == [player playerId]) {
+                    
+                    NSInteger index = [self.playerList indexOfObjectIdenticalTo:player];
+                    if ([[self.playerList objectAtIndex:index] playerState]==@"CALL") {
+                        [[self.playerList objectAtIndex:index] setMoneyRest:[[self.playerList objectAtIndex:index] moneyRest]-50];
+                        if(self.pot<=0 || self.pot>100000)
+                        {
+                            [self setPot:50];
+                            [self setWetthohe:0];
+                        }
+                        else {
+                            [self setPot:pot+wetthohe];
+                        }
+                        [[self.playerList objectAtIndex:index] setPlayerState:@"INACTIVE"];
+                        
+                    }
+
+                    index++;
+                    self.activePlayer = [[self.playerList objectAtIndex:index] playerId];
+                    break;
+                }
+        }
+        NSLog(@"New Player: %@", self.activePlayer);
 }
 
 -(int)getRoundNr{
@@ -235,39 +296,10 @@ static GameController *sharedInstance = nil;
         pl.playerState = @"INACTIVE";
     }
     
-    //set current player to new state
-    pl = player;
-    pl.playerState = state;
-    NSLog(@"Changed state of player %@", pl.playerId);
-    NSLog(@"to %@", pl.playerState);
+    player.playerState=state;
     
-}
-
-
--(void)changeBetState:(NSString *)state forPlayer:(Player *)player{
-    Player *pl = player;
-    pl.betState = state;
-    NSLog(@"Changed state of player %@", pl.playerId);
-    NSLog(@"to %@", pl.betState);
-}
-
--(void)substractFromPlayerAccount:(int)money forPlayer:(Player *)player{
-    Player *pl = player;
-    pl.moneyRest = pl.moneyRest - money;
-}
-
--(void)addToPlayerAccount:(int)money forPlayer:(Player *)player{
-    Player *pl = player;
-    pl.moneyRest = pl.moneyRest + money;
-}
-
-
-#pragma mark PackOfCardsDelegate
-
--(void)twoCardsForPlayer:(Player *)player{
-    Player *pl = player;
-    PackOfCards *cards = [PackOfCards sharedInstance];
-    [cards distributeCard:1]; 
+   
+    NSLog(@"to %@", state);
     
     /*  @Xi, sollten wier hier nicht den Player einsetzen anstelle des int?
      
