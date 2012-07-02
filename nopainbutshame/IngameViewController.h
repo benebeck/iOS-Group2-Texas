@@ -11,6 +11,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PackOfCards.h"
 #import "Player.h"
+#import "GCHelper.h"
+//lösche es gleich wieder GCHELPER.H
+//nur zum pushcen
 @interface IngameViewController : UIViewController
 {
     IBOutlet UILabel *spielereins;
