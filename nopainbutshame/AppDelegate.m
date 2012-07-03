@@ -32,7 +32,7 @@
     
     
     //start the card deck
-    PackOfCards *packOfCards = [PackOfCards sharedInstance];
+    [PackOfCards sharedInstance];
     
     //start GameCenter
     [[GCHelper sharedInstance] authenticateLocalUser];

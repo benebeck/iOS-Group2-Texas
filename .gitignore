@@ -1,6 +1,8 @@
+#xcode noise
+############
+nopainbutshame.xcodeproj/project.xcworkspace
+nopainbutshame.xcodeproj/xcuserdata
 
-nopainbutshame.xcodeproj/project.xcworkspace/xcuserdata/riza.xcuserdatad/UserInterfaceState.xcuserstate
-
-nopainbutshame.xcodeproj/xcuserdata/riza.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
-
+#osx noise
+##########
 .DS_Store
