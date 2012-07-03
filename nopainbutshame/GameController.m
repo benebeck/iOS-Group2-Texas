@@ -120,7 +120,7 @@ static GameController *sharedInstance = nil;
            
             Player *player;
             for (player in self.playerList)
-                if (self.activePlayer == [player playerId]) {
+                if (self.activePlayer == player) {
                     
                     NSInteger index = [self.playerList indexOfObjectIdenticalTo:player];
                     if ([[self.playerList objectAtIndex:index] playerState]==@"RAISE") {
@@ -131,7 +131,7 @@ static GameController *sharedInstance = nil;
 
         //first player to start
         if (!self.activePlayer) {
-            self.activePlayer = [[self.playerList objectAtIndex:0] playerId];
+            self.activePlayer = [self.playerList objectAtIndex:0];
             //ACTIVATE PLAYERS !!!!!!!!!....
             if ([[self.playerList objectAtIndex:0] playerState]==@"CALL") {
                 [[self.playerList objectAtIndex:0] setMoneyRest:[[self.playerList objectAtIndex:0] moneyRest]-50];
@@ -147,7 +147,7 @@ static GameController *sharedInstance = nil;
                 
             }   
             //jump back to first player
-        }else if ([[self.playerList lastObject] playerId]  == self.activePlayer) {
+        }else if ([self.playerList lastObject] == self.activePlayer) {
             if ([[self.playerList lastObject] playerState]==@"CALL") {
         [[self.playerList lastObject] setMoneyRest:[[self.playerList lastObject] moneyRest]-50];
                 if(self.pot<=0 || self.pot>100000)
@@ -162,14 +162,14 @@ static GameController *sharedInstance = nil;
                 NSLog(@"dfdfdf%i",_totalMoney);
                 
             }
-            self.activePlayer = [[self.playerList objectAtIndex:0] playerId];
+            self.activePlayer = [self.playerList objectAtIndex:0];
             
             //next player    
         }else {
             NSLog(@"old active player: %@", self.activePlayer);
             Player *player;
             for (player in self.playerList)
-                if (self.activePlayer == [player playerId]) {
+                if (self.activePlayer == player) {
                     
                     NSInteger index = [self.playerList indexOfObjectIdenticalTo:player];
                     if ([[self.playerList objectAtIndex:index] playerState]==@"CALL") {
@@ -187,7 +187,7 @@ static GameController *sharedInstance = nil;
                     }
 
                     index++;
-                    self.activePlayer = [[self.playerList objectAtIndex:index] playerId];
+                    self.activePlayer = [self.playerList objectAtIndex:index];
                     break;
                 }
         }
@@ -286,7 +286,7 @@ static GameController *sharedInstance = nil;
 
 
 
-#pragma mark PlayerDelegate
+#pragma mark PlayerDelegate protocol implementation
 
 -(void)changePlayerState:(NSString *)state forPlayer:(Player *)player{
     Player *pl;
@@ -316,6 +316,29 @@ static GameController *sharedInstance = nil;
     
 }
 
+-(void)changeBetState:(NSString *)state forPlayer:(Player *)player{
+    Player *pl = player;
+    pl.betState = state;
+    NSLog(@"Changed state of player %@", pl.playerId);
+    NSLog(@"to %@", pl.betState);
+}
+
+-(void)substractFromPlayerAccount:(int)money forPlayer:(Player *)player{
+    Player *pl = player;
+    pl.moneyRest = pl.moneyRest - money;
+}
+
+-(void)addToPlayerAccount:(int)money forPlayer:(Player *)player{
+    Player *pl = player;
+    pl.moneyRest = pl.moneyRest + money;
+}
+
+
+#pragma mark PackOfCardDelegate protocol implementation
+
+-(void)twoCardsForPlayer:(Player *) player{
+    
+}
 
 
 @end
