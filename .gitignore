@@ -1,6 +1,8 @@
-
-nopainbutshame.xcodeproj/project.xcworkspace/xcuserdata/*
-
+#xcode noise
+############
+nopainbutshame.xcodeproj/project.xcworkspace
 nopainbutshame.xcodeproj/xcuserdata
 
+#osx noise
+##########
 .DS_Store
