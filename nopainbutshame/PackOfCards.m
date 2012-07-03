@@ -91,7 +91,7 @@ static PackOfCards *sharedInstance = nil;
 }
 
 - (int)givemeinfo:(int) i forWho:(int) j{
-    recordInfoAboutPackOfCards[i][j];
+    return recordInfoAboutPackOfCards[i][j];
 }
 
 
@@ -170,7 +170,7 @@ static PackOfCards *sharedInstance = nil;
     NSArray *arr = [NSArray array];
     
     int sizeArray = 7;
-    for (int i = 0; i<7; i++){
+    for (int i = 0; i<sizeArray; i++){
         NSArray *subarr = [NSArray array];;
         for (int j = 0; j<2; j++){
             //subarr = [subarr arrayByAddingObject:[[NSString alloc] initWithFormat:@"%i", intArray[i][j]]];
