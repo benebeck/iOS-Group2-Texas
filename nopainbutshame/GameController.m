@@ -166,7 +166,7 @@ static GameController *sharedInstance = nil;
             
             //next player    
         }else {
-            NSLog(@"old active player: %@", self.activePlayer);
+            NSLog(@"old active player: %@", self.activePlayer.playerId);
             Player *player;
             for (player in self.playerList)
                 if (self.activePlayer == player) {
@@ -191,7 +191,7 @@ static GameController *sharedInstance = nil;
                     break;
                 }
         }
-        NSLog(@"New Player: %@", self.activePlayer);
+        NSLog(@"New Player: %@", self.activePlayer.playerId);
 }
 
 -(int)getRoundNr{
