@@ -210,17 +210,40 @@ static PackOfCards *sharedInstance = nil;
 
 
  
--(NSDictionary *)hasRoyalFlush:(NSArray *) sevenSortedCards{
+-(BOOL)hasAceInArray:(NSArray *)sevenSortedCards{
+    if ([[[sevenSortedCards objectAtIndex:6] objectAtIndex:1] isEqualToNumber:[NSNumber numberWithInt:1]]) {
+        return TRUE;
+    }
+    else {
+        return FALSE;
+    }
+}
+
+-(NSArray *)convertAceTo14inSevenSortedArray: (int[][2]) sevenCards{
+    for (int i=0; i<7; i++) {
+        if (sevenCards[i][1]==1) {
+            sevenCards[i][1]=14;
+        }
+    }
+    
+    NSArray * aceTo14SortedArray = [self sortIntArray:sevenCards];
+    
+    return aceTo14SortedArray;
+}
+
+
+-(NSDictionary *)hasRoyalFlush:(NSArray *) sevenSortedCards{   //return Royal Flush or Straight A, K, Q, J, 10 with different suit or nothing if there isn't such cases.
     NSDictionary *res = [NSDictionary alloc];
-    NSArray * array_13 = [NSArray array];
     
-    NSArray * array_12 = [NSArray array];
+    NSMutableArray * array_14 = [NSMutableArray array];
     
-    NSArray * array_11 = [NSArray array];
+    NSMutableArray * array_13 = [NSMutableArray array];
     
-    NSArray * array_10 = [NSArray array];
+    NSMutableArray * array_12 = [NSMutableArray array];
     
-    NSArray * array_1 = [NSArray array];
+    NSMutableArray * array_11 = [NSMutableArray array];
+    
+    NSMutableArray * array_10 = [NSMutableArray array];
     
     NSMutableDictionary *record = [NSMutableDictionary dictionaryWithCapacity:5];
     
@@ -228,21 +251,29 @@ static PackOfCards *sharedInstance = nil;
     for (int i = 0; i<7; i++) {
         int value = [[[sevenSortedCards objectAtIndex:i] objectAtIndex:1] intValue];
         switch (value) {
+            case 14:
+                [array_14 addObject:[NSNumber numberWithInt:i]];
+                [record setObject:array_14 forKey:@"14"];
+                break;   
+                
             case 13:
-                [record setObject:[array_13 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"13"]; //array_13 record the position(s) of cards with value 13, because cards with value 13 may occurs more than one time with different suits 
+                [array_13 addObject:[NSNumber numberWithInt:i]];
+                [record setObject:array_13 forKey:@"13"]; //array_13 record the position(s) of cards with value 13, because cards with value 13 may occurs more than one time with different suits 
                 break;
+                
             case 12:
-                [record setObject:[array_12 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"12"];
+                [array_12 addObject:[NSNumber numberWithInt:i]];
+                [record setObject:array_12 forKey:@"12"];
                 break;
             case 11:
-                [record setObject:[array_11 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"11"];
+                [array_11 addObject:[NSNumber numberWithInt:i]];
+                [record setObject:array_11 forKey:@"11"];
                 break;
             case 10:
-                [record setObject:[array_10 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"10"];
+                [array_10 addObject:[NSNumber numberWithInt:i]];
+                [record setObject:array_10 forKey:@"10"];
                 break;
-            case 1:
-                [record setObject:[array_1 arrayByAddingObject:[NSNumber numberWithInt:i]] forKey:@"1"];
-                break;
+                
                 
             default:
                 break;
@@ -256,7 +287,7 @@ static PackOfCards *sharedInstance = nil;
                 break;
             }
         }
-        
+        int recordSuit = 0;
         for  (NSString * cardValueKey in record) {
             int flag = 0; //note if card(s) has only different suit (that will be not royal flush)
             
@@ -267,15 +298,26 @@ static PackOfCards *sharedInstance = nil;
                     break;
                 }
             }
-            if (flag == 0) {
-                res = [res initWithObjectsAndKeys:[NSNumber numberWithInt: 0], @"False", nil];
-                return res;
+            if (flag == 1) {  
+                recordSuit = 1;
+            }
+            else {  //Flush has different suit
+                recordSuit = 0;
+                break;
             }
             
         }
-        NSArray * cardsRoyalFlush = [NSArray arrayWithObjects:[NSNumber numberWithInt:13],[NSNumber numberWithInt:12],[NSNumber numberWithInt:11],[NSNumber numberWithInt:10],[NSNumber numberWithInt:1], nil];
-        res = [res initWithObjectsAndKeys:cardsRoyalFlush,@"Royal Flush", nil];
-        return res;
+        if (recordSuit==1) {
+            NSArray * cardsRoyalFlush = [NSArray arrayWithObjects:[NSNumber numberWithInt:14],[NSNumber numberWithInt:13],[NSNumber numberWithInt:12],[NSNumber numberWithInt:11],[NSNumber numberWithInt:10], nil];
+            res = [res initWithObjectsAndKeys:cardsRoyalFlush,@"Royal Flush", nil];
+            return res;
+        }
+        else {
+            NSArray * cardsRoyalFlush = [NSArray arrayWithObjects:[NSNumber numberWithInt:14],[NSNumber numberWithInt:13],[NSNumber numberWithInt:12],[NSNumber numberWithInt:11],[NSNumber numberWithInt:10], nil];
+            res = [res initWithObjectsAndKeys:cardsRoyalFlush, @"Straight", nil];
+            return res;
+        }
+        
     }
     else { // in these seven cards it lacks card(s) to form A, K ,Q, J, 10
         res = [res initWithObjectsAndKeys:[NSNumber numberWithInt: 0], @"False", nil];
@@ -549,7 +591,7 @@ static PackOfCards *sharedInstance = nil;
                 }
             }
         }
-       
+        
     }
     if (count == 1) {
         int threeOtherCards = 0;
@@ -569,7 +611,7 @@ static PackOfCards *sharedInstance = nil;
         res = [res initWithObjectsAndKeys:[NSNumber numberWithInt:0], @"False", nil];
         return res;
     }
-
+    
 }
 
 
@@ -584,72 +626,89 @@ static PackOfCards *sharedInstance = nil;
     }
     res = [res initWithObjectsAndKeys:cardsHighCard, @"Hight Card", nil];
     return res;
-
+    
 }
 
 
 
 
- -(NSDictionary *)bestFiveCardsCombination:(int[][2]) sevenCards{
-     NSArray * sevenSortedCards = [self sortIntArray:sevenCards];
-     NSDictionary * res = [self hasRoyalFlush:sevenSortedCards];
-     NSDictionary * priorResSecond ;
-     if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Royal Flush"]) {
-         return res;
-     }
-     else {
-         res = [self hasStraightFlushOrStraight:sevenSortedCards];
-         if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Straight Flush"]) {
-             return res;
-         }
-         else { // with key "Straight" or "False" 
-             NSDictionary * priorRes = [self hasFourOfAKind:sevenSortedCards];
-             if ([[[priorRes allKeys] objectAtIndex:0] isEqualToString:@"Four of a Kind"]) {
-                 return priorRes;
-             }
-             else {
-                 priorRes = [self hasBoatOrThreeOfAKind:sevenSortedCards];
-                 if ([[[priorRes allKeys] objectAtIndex:0] isEqualToString:@"Boat"]) {
-                     return priorRes;
-                 }
-                 else {
-                     priorResSecond = [self hasFlush:sevenSortedCards];
-                     if ([[[priorResSecond allKeys] objectAtIndex:0] isEqualToString:@"Flush"]) {
-                         return priorResSecond;
-                     }
-                     else {
-                         if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Straight"]) {
-                             return res;
-                         }
-                         else {
-                             if ([[[priorRes allKeys] objectAtIndex:0] isEqualToString:@"Three of a Kind"]){
-                                 return priorRes;
-                             }
-                             else {
-                                 res = [self hasTwoPairsOrPair:sevenSortedCards];
-                                 if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Two Pairs"]) {
-                                     return res;
-                                 }
-                                 else if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Pair"]) {
-                                     return res;
-                                 }
-                                 else {
-                                     res = [self hasHighCard:sevenSortedCards];
-                                     return res;
-                                 }
-                             }
-                         }
-                     }
-                     
-                 }
-               
-             }
-         }
-
-     }
-     
- 
- }
+-(NSDictionary *)bestFiveCardsCombination:(int[][2]) sevenCards{
+    NSArray * sevenSortedCards = [self sortIntArray:sevenCards];
+    
+    NSArray * aceTo14SevenSortedArray = [NSArray array];  //convert ace value in Array to 14
+    if ([self hasAceInArray:sevenSortedCards]) {
+        aceTo14SevenSortedArray = [self convertAceTo14inSevenSortedArray:sevenCards];
+    }
+    else {
+        aceTo14SevenSortedArray = sevenSortedCards;
+    }
+    
+    NSDictionary * res = [self hasRoyalFlush:aceTo14SevenSortedArray];
+    
+    
+    if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Royal Flush"]) {
+        return res;
+    }
+    else { //Straight with AKQJ10 or False
+        NSDictionary * priorRes = [self hasStraightFlushOrStraight:sevenSortedCards]; // we only need Ace with Value 1
+        if ([[[priorRes allKeys] objectAtIndex:0] isEqualToString:@"Straight Flush"]) {
+            return priorRes;
+        }
+        else { // with key "Straight" or "False" 
+            NSDictionary * priorResSecond = [self hasFourOfAKind:aceTo14SevenSortedArray];
+            if ([[[priorResSecond allKeys] objectAtIndex:0] isEqualToString:@"Four of a Kind"]) {
+                return priorResSecond;
+            }
+            else {
+                priorResSecond = [self hasBoatOrThreeOfAKind:aceTo14SevenSortedArray];
+                if ([[[priorResSecond allKeys] objectAtIndex:0] isEqualToString:@"Boat"]) {
+                    return priorResSecond;
+                }
+                else { //priorResSecond has key "Three of a Kind" or False
+                    NSDictionary * priorResThird = [self hasFlush:aceTo14SevenSortedArray];
+                    if ([[[priorResThird allKeys] objectAtIndex:0] isEqualToString:@"Flush"]) {
+                        return priorResThird;
+                    }
+                    else {
+                        if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Straight"]) { //straight A,K,Q,J,10 hat priority to other straights
+                            return res;
+                        }
+                        else { //hasRoyalFlush returns a dictionary with key "False"
+                            if ([[[priorRes allKeys] objectAtIndex:0] isEqualToString:@"Straight"]) {
+                                return priorRes;
+                            }
+                            else {
+                                if ([[[priorResSecond allKeys] objectAtIndex:0] isEqualToString:@"Three of a Kind"]){
+                                    return priorResSecond;
+                                }
+                                else {
+                                    res = [self hasTwoPairsOrPair:aceTo14SevenSortedArray];
+                                    if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Two Pairs"]) {
+                                        return res;
+                                    }
+                                    else if ([[[res allKeys] objectAtIndex:0] isEqualToString:@"Pair"]) {
+                                        return res;
+                                    }
+                                    else {
+                                        res = [self hasHighCard:aceTo14SevenSortedArray];
+                                        return res;
+                                    }
+                                }
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+        }
+        
+    }
+    
+    
+}
 
 
 
