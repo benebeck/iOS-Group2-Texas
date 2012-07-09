@@ -7,6 +7,22 @@
 //
 
 #import "PackOfCards.h"
+/**
+ * Create an array aPackOfCards[52][2] to store a pack of cards (52 cards) about their suit and value with
+ * hardcode. With an array recordInfoAboutPackOfCards[52][2] we can store the information about the card at 
+ * the respective position in array "aPackOfCards", such as if the card is already distributed or to whom is
+ * the card distributed. Then we have function to distribute a card from this pack of cards on an abitrary 
+ * position in the array aPackOfCards, and if the card is opened, the status of this card will be updated. 
+ * For showdown functions name "has***: (NSArray *) sevenSortedCards" will check if seven cards (two on hand 
+ * and five open cards) has some certain five cards combinations like "Royal Flush" or "Straight". According 
+ * to the priority of ten different combinations best five cards from seven cards will be identified. The 
+ * result of each two players will be compared, the winner of them will be continuously compared with the 
+ * rest of players. The final winner(s) (it is possible, that more than one player in a round are final 
+ * winners) will be thereby determined.
+ */
+ 
+
+
 //for private functions
 @interface PackOfCards ()
 //init of cardDeck should be possible during init of sharedInstance only
@@ -30,6 +46,10 @@ static PackOfCards *sharedInstance = nil;
     return sharedInstance;
 }
 
+/**
+ * Initialization of pack of cards, each card will be represented by its value and suit in an array 
+ * {suit, value}.
+ */
 - (void)initializePackOfCards{
     int suit;
     int cardValue;
@@ -55,6 +75,11 @@ static PackOfCards *sharedInstance = nil;
     
 }
 
+/**
+ * Initialization of the Information about each card, and the positions in array recordInfoAboutPackOfCards correspond to the 
+ * positions of each card in array aPackOfCards. 
+ */
+
 - (void)initializeInfoAboutPackOfCards{
     for(int i = 1; i < 53; i++){
         for(int j = 0; j < 2; j++){
@@ -65,14 +90,23 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
-
+/**
+ * Create a random number between 0 and 51 which corresponds to position in aPackOfCards and recordInfoAboutPackOfCards. 
+ * It is a preparing for function distributeCard.
+ * @return Random number between 0 and 51
+ */
 - (int)getRandomNumber{
-	int value = (arc4random() % 52) + 1;
+	int value = arc4random() % 52;
     return value;
 }
 
 
-
+/**
+ * Fetch a card position randomPos in array aPackOfCards according to a random number. If this card has not been used, it will be
+ * distributed and the information about this card will be updated by function changeStatusOfCard.  
+ * @param openCardOrPlayer Denoting that the card now will be distributed for opend card or a certain player  
+ * @return Position of the distributed card in array aPackOfCards
+ */
 - (int)distributeCard:(int) openCardOrPlayer{
     int randomPos = [self getRandomNumber];
     //if the card on this position is still not opened...
@@ -86,11 +120,20 @@ static PackOfCards *sharedInstance = nil;
     return randomPos;
 }
 
+
+/**
+ * Change status of the card which is distributed. 
+ * @param distributedCardPos forWho:openCardOrPlayer Position of card in array and to whom the card will be distributed
+ */
 - (void)changeStatusOfCard:(int) distributedCardPos forWho:(int) openCardOrPlayer{
     recordInfoAboutPackOfCards[distributedCardPos][0] = 2;
     recordInfoAboutPackOfCards[distributedCardPos][1] = openCardOrPlayer;
 }
 
+
+/**
+ * Get the information about the card
+ */
 - (int)givemeinfo:(int) i forWho:(int) j{
     return recordInfoAboutPackOfCards[i][j];
 }
@@ -114,19 +157,13 @@ static PackOfCards *sharedInstance = nil;
  }
  ***/
 
-/*** Result Ranking:
- 1. Royal Flush
- 2. Straight Flush
- 3. Four of a Kind
- 4. Boat House
- 5. Flush
- 6. Straight
- 7. Three of a Kind
- 8. Two Pairs
- 9. Pair
- 10. High Card
- ***/
 
+/**
+ * Get the one and only one key from the result of function allKeys for NSDictionary. It is a convenience for function 
+ * showdownComparison later. 
+ * @param dict Abitraty NSDictionary
+ * @return key in NSString
+ */
 -(NSString *)getKeyFromDictionary:(NSDictionary *) dict{
     NSString * key = @"";
     NSArray * keysArray = [dict allKeys];
@@ -139,6 +176,12 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
+/**
+ * Compare two arrays with same length which both have elements of NSNumber. It will be used in function showdownComparison to check 
+ * the winner if both player have same combination at showdown, then we should compare the value of their best five cards.
+ * @param a compareWith:b Two arrays to be compared
+ * @return int Denoting first or second array is larger
+ */
 -(int)compareTwoArrays: (NSArray *) a compareWith:(NSArray *) b{   
     //return value: -1 means "first array smaller than second"; 1 is "first larger than second"; 0 means "same arrays"
     int flag = 0;
@@ -166,7 +209,11 @@ static PackOfCards *sharedInstance = nil;
 
 //for the function showdownComparison we need still a function "bestFiveCardsCombination" which for each player creates the best five cards combination from seven cards (two cards in hand and five open cards), and sort five cards in an array according to each type of combination
 
-
+/**
+ * Convert the data type of C language int[][] to objective-C data type NSArray. Thereby array can obtain element of object.
+ * @param intArray Array in C data type with element integer
+ * @return Correspondent NSArray 
+ */
 -(NSArray *) convertIntArrayToNSArray: (int [][2]) intArray{ //convert array int[][] to NSArray with Object NSNumber
     NSArray *arr = [NSArray array];
     
@@ -185,7 +232,11 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
-
+/**
+ * Sort an array descending.
+ * @param cardsArray Array should be sorted
+ * @return NSArray after sorting  
+ */
 -(NSArray *)sortIntArray:(int [][2]) cardsArray{ // for every player at the showdown time seven cards will be stored
                                            // in cardsArray with their values and farbes
     int sizeArray = 7;                     // then we sort them according to their value
@@ -209,7 +260,12 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
- 
+/**
+ * Check if there is Ace in array, which should be extraly treated at finding best five cards combination, because Ace can be either
+ * with value 1 or value larger than 13.
+ * @param sevenSorted Cards NSArray which will be checked
+ * @return True or false
+ */ 
 -(BOOL)hasAceInArray:(NSArray *)sevenSortedCards{
     if ([[[sevenSortedCards objectAtIndex:6] objectAtIndex:1] isEqualToNumber:[NSNumber numberWithInt:1]]) {
         return TRUE;
@@ -219,6 +275,13 @@ static PackOfCards *sharedInstance = nil;
     }
 }
 
+
+/**
+ * If Ace should be treated as a card with value larger than 13, then we give the card Ace the value 14, which will be convenient
+ * to compare the value of cards.
+ * @param sevenCards Array which has card Ace
+ * @return Sorted NSArray in which Ace is already converted to value 14
+ */
 -(NSArray *)convertAceTo14inSevenSortedArray: (int[][2]) sevenCards{
     for (int i=0; i<7; i++) {
         if (sevenCards[i][1]==1) {
@@ -232,6 +295,12 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
+
+/**
+ * Check if there is royal flush in seven sorted cards. 
+ * @param sevenSortedCards seven sorted cards in NSArray
+ * @return if there is royal flush then return a NSDictionary with key of NSString "Royal Flush" and with value NSArray of values of five cards; or if AKQJ10 with different suit return NSString "Straight" and with value NSArray of values of five cards; if not, return a NSDictionary with key of NSString "False" and with value NSNumber 0
+ */
 -(NSDictionary *)hasRoyalFlush:(NSArray *) sevenSortedCards{   //return Royal Flush or Straight A, K, Q, J, 10 with different suit or nothing if there isn't such cases.
     NSDictionary *res = [NSDictionary alloc];
     
@@ -327,6 +396,12 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
+
+/**
+ * Check if there is straight flush oder in seven sorted cards. 
+ * @param sevenSortedCards seven sorted cards in NSArray
+ * @return if there is royal flush then return a NSDictionary with key of NSString "Royal Flush" and with value NSArray of values of five cards, if not, return a NSDictionary with key of NSString "False" and with value NSNumber 0
+ */
 -(NSDictionary *)hasStraightFlushOrStraight:(NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
     NSArray * cardsStraightFlush = [NSArray array];
@@ -464,6 +539,9 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
+/**
+ *
+ */
 -(NSDictionary *)hasFourOfAKind:(NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
     NSArray * cardsFourOfAKind = [NSArray array];
@@ -486,6 +564,9 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
+/**
+ *
+ */
 -(NSDictionary *)hasBoatOrThreeOfAKind: (NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
     NSArray * cardsBoat = [NSArray array];
@@ -535,6 +616,10 @@ static PackOfCards *sharedInstance = nil;
     return res;
 }
 
+
+/**
+ *
+ */
 -(NSDictionary *)hasFlush: (NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
     NSMutableArray * cardsFlush = [NSMutableArray array];
@@ -564,6 +649,9 @@ static PackOfCards *sharedInstance = nil;
 }
 
 
+/**
+ *
+ */
 -(NSDictionary *)hasTwoPairsOrPair: (NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
     NSMutableArray * cardsTwoPairs = [NSMutableArray array];
@@ -616,7 +704,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 
-
+/**
+ *
+ */
 -(NSDictionary *)hasHighCard: (NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
     NSMutableArray * cardsHighCard = [NSMutableArray array];
@@ -631,7 +721,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 
-
+/**
+ *
+ */
 -(NSDictionary *)bestFiveCardsCombination:(int[][2]) sevenCards{
     NSArray * sevenSortedCards = [self sortIntArray:sevenCards];
     
@@ -710,9 +802,19 @@ static PackOfCards *sharedInstance = nil;
     
 }
 
-
-
-
+/**
+ * Result Ranking:
+ * 1. Royal Flush
+ * 2. Straight Flush
+ * 3. Four of a Kind
+ * 4. Boat House
+ * 5. Flush
+ * 6. Straight
+ * 7. Three of a Kind
+ * 8. Two Pairs
+ * 9. Pair
+ * 10. High Card
+ */
 -(NSArray *)showdownComparison:(NSDictionary *) cardsOfPlayer_1 compareWith: (NSDictionary *) cardsOfPlayer_2{
     // dictionary cardsOfPlayer_1 indicate the best five final cards of the player_1 at the showdown time, e.g. {"Boat House": [3,3,3,7,5]}
     NSArray * winners = [NSArray array];
