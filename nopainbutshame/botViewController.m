@@ -19,6 +19,14 @@
 @synthesize player3stat;
 @synthesize player5stat;
 
+int entschlossenheit;       //spielerentschlossenheit
+int bluff;                 //if bluff is over 0.7 raise
+int logikbet;             //if logikbet is over 0.7 bet
+                         //if logikbet is under 0.3 fold 
+int anzahloffenekarten;
+int erstekarte;
+int zweitekarte;
+int drittekarte;
 
 
 - (void)viewDidLoad
@@ -44,15 +52,23 @@
  int hallo=[[GameController sharedInstance] pot] ;
 
      if ([GameController sharedInstance].activePlayer==@"Player2") {
+         entschlossenheit=1.3;
+         [self hartgecodedesKI];
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:1]];
     }
     if ([GameController sharedInstance].activePlayer==@"Player3") {
+        entschlossenheit=1.1;
+        [self hartgecodedesKI];
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:2]];
     }
     if ([GameController sharedInstance].activePlayer==@"Player4") {
+        entschlossenheit=0.9;
+        [self hartgecodedesKI];
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:3]];
     }
     if ([GameController sharedInstance].activePlayer==@"Player5") {
+        entschlossenheit=0.7;
+        [self hartgecodedesKI];
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:4]];
     }
         player2stat.text=[NSString stringWithFormat:@"player2:%@",[[[GameController sharedInstance].playerList objectAtIndex:1] playerState]];
@@ -68,7 +84,12 @@
 
 }
 
-
+-(void)hartgecodedesKI{
+    for (int temp1=0; temp1<52; temp1++) {
+        if([[PackOfCards sharedInstance] givemeinfo:temp1 forWho:1]==2)
+            
+    }
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
