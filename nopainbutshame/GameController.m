@@ -25,6 +25,7 @@
 @synthesize totalMoney = _totalMoney;
 @synthesize betRoundNr = _betRoundNr;
 @synthesize player = _player;
+@synthesize dealer = _dealer;
 @synthesize pot;
 @synthesize wetthohe;
 
@@ -276,6 +277,10 @@ static GameController *sharedInstance = nil;
         //bäm
     }if (self.betRoundNr == 3){
         //bäm
+    }if (self.betRoundNr == 42){  //after showdown!!!
+        [self activateNextPlayer];
+        self.dealer = self.activePlayer;
+        
     }
     
     [self activateNextPlayer];
