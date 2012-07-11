@@ -64,7 +64,7 @@ static GameController *sharedInstance = nil;
 
 //method to instantiate the players after GameControl has been started
 -(void)raisePlayers{
-    
+    self.betRoundNr=1;
     //dummy list
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(activateNextPlayer) userInfo:nil repeats:YES];
  
@@ -133,6 +133,7 @@ static GameController *sharedInstance = nil;
         //first player to start
         if (!self.activePlayer) {
             self.activePlayer = [self.playerList objectAtIndex:0];
+            [self startNewRound];
             //ACTIVATE PLAYERS !!!!!!!!!....
             if ([[self.playerList objectAtIndex:0] playerState]==@"CALL") {
                 [[self.playerList objectAtIndex:0] setMoneyRest:[[self.playerList objectAtIndex:0] moneyRest]-50];
@@ -144,7 +145,7 @@ static GameController *sharedInstance = nil;
                 else {
                     [self setPot:pot+wetthohe];
                 }
-                [[self.playerList objectAtIndex:0] setPlayerState:@"INACTIVE"];
+            [[self.playerList objectAtIndex:0] setPlayerState:@"INACTIVE"];
                 
             }   
             //jump back to first player
@@ -215,11 +216,11 @@ static GameController *sharedInstance = nil;
 #pragma mark Game Logic
 
 -(void)startNewRound{
-    if (self.betRoundNr == 1) {
-        //activate first player
-        [self activateNextPlayer];
+
+
         //send him the DELAER status
         [self changeBetState:@"DEALER" forPlayer:[self.playerList objectAtIndex:0]]; //das ist ne ziemlich miese Lösung, einfach den ersten aus der Liste zu nehmen....
+    self.activePlayer=[self.playerList objectAtIndex:0];
         
         
         //send SMALL_BLIND to the next
@@ -230,12 +231,8 @@ static GameController *sharedInstance = nil;
         [self changeBetState:@"BIG_BLIND" forPlayer:[self.playerList objectAtIndex:2]];
         
         [self endOfTurn];
-        
-    }else {
-        NSLog(@"Could not start new round with the first player!");
-    }
     
-    
+
     
 }
 
@@ -247,12 +244,21 @@ static GameController *sharedInstance = nil;
         NSLog(@"We are in round %d", self.betRoundNr);
         //Wir sind in der ersten Wettrunde
         if (oldPlayer.betState == @"DEALER") {
-            //Macht der Dealer eigentlich irgendwas???
-            
-            NSLog(@"This was the DEALER'S turn");
+  /*          [[PackOfCards sharedInstance] distributeCard:@"2"];
+            [[PackOfCards sharedInstance] distributeCard:@"3"];
+            [[PackOfCards sharedInstance] distributeCard:@"4"];
+            [[PackOfCards sharedInstance] distributeCard:@"5"];
+            [[PackOfCards sharedInstance] distributeCard:@"6"];
+            [[PackOfCards sharedInstance] distributeCard:@"2"];
+            [[PackOfCards sharedInstance] distributeCard:@"3"];
+            [[PackOfCards sharedInstance] distributeCard:@"4"];
+            [[PackOfCards sharedInstance] distributeCard:@"5"];
+            [[PackOfCards sharedInstance] distributeCard:@"6"];
+   */         NSLog(@"This was the DEALER'S turn");
         }else if (oldPlayer.betState == @"SMALL_BLIND") {
             //get money (SMALL_BLIND)
             [self substractFromPlayerAccount:self.smallBlind forPlayer:oldPlayer];
+            [self setPot:self.smallBlind];
             NSLog(@"Player paid %d", self.smallBlind);
             NSLog(@"and has left %d", oldPlayer.moneyRest);
             
@@ -267,13 +273,16 @@ static GameController *sharedInstance = nil;
         }else if (oldPlayer.betState == @"BIG_BLIND") {
             //get money (BIG_BLIND)
             [self substractFromPlayerAccount:self.bigBlind forPlayer:oldPlayer];
+            [self setPot:self.bigBlind];
             NSLog(@"Player paid %d", self.bigBlind);
             NSLog(@"and has left %d", oldPlayer.moneyRest);
-            
+            self.betRoundNr++;
             NSLog(@"This was the BIG_BLIND'S turn");
         }
         
-    }if (self.betRoundNr == 2){
+    }
+    
+    if (self.betRoundNr == 2){
         //bäm
     }if (self.betRoundNr == 3){
         //bäm
@@ -283,7 +292,7 @@ static GameController *sharedInstance = nil;
         
     }
     
-    [self activateNextPlayer];
+    
     
     
 }
@@ -294,13 +303,9 @@ static GameController *sharedInstance = nil;
 #pragma mark PlayerDelegate protocol implementation
 
 -(void)changePlayerState:(NSString *)state forPlayer:(Player *)player{
-    Player *pl;
-    //set all players INACTIVE again
-    for (id element in self.playerList) {
-        pl = element;
-        pl.playerState = @"INACTIVE";
-    }
     
+    //set all players INACTIVE again
+       
     player.playerState=state;
     
    

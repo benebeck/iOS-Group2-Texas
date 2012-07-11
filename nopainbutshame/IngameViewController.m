@@ -169,28 +169,42 @@ opencard2 = @"3";
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+/*
+ int getPosOfCard = [self distributeCard:playerNumber];
+ NSString *cardImageFileName = [NSString stringWithFormat:@"%d", getPosOfCard];
+ cardImageFileName = [cardImageFileName stringByAppendingFormat:@".png"];
+ UIImage *cardImage = [UIImage imageNamed:cardImageFileName]; 
+ showHandCardImage[m] = [[UIImageView alloc] initWithImage:cardImage];
+ CGRect newFrame = showHandCardImage[m].frame;
+ newFrame.origin = CGPointMake(240 + m * (120 + 20), 80);
+ showHandCardImage[m].frame = newFrame;
+ [self.view addSubview:showHandCardImage[m]];
+
+*/
+
+
 -(void) statusupdate{
-    if ([GameController sharedInstance].activePlayer==@"Player1") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player1") {
         player1status.backgroundColor=[UIColor greenColor];
     }else {
         player1status.backgroundColor=[UIColor yellowColor];
     }
-    if ([GameController sharedInstance].activePlayer==@"Player2") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player2") {
         player2status.backgroundColor=[UIColor greenColor];
     }else {
         player2status.backgroundColor=[UIColor yellowColor];
     }
-    if ([GameController sharedInstance].activePlayer==@"Player3") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player3") {
         player3status.backgroundColor=[UIColor greenColor];
     }else {
         player3status.backgroundColor=[UIColor yellowColor];
     }
-    if ([GameController sharedInstance].activePlayer==@"Player4") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player4") {
         player4status.backgroundColor=[UIColor greenColor];
     }else {
         player4status.backgroundColor=[UIColor yellowColor];
     }
-    if ([GameController sharedInstance].activePlayer==@"Player5") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player5") {
         player5status.backgroundColor=[UIColor greenColor];
     }else {
         player5status.backgroundColor=[UIColor yellowColor];
@@ -221,10 +235,10 @@ opencard2 = @"3";
 -(void)binichdran{
 
    
-    if ( [GameController sharedInstance].activePlayer!=@"Player1" ) {
+    if ( [[GameController sharedInstance].activePlayer playerId]!=@"Player1" ) {
      
 
- //     [self performSegueWithIdentifier:@"tobot" sender:nil];
+      [self performSegueWithIdentifier:@"tobot" sender:nil];
     }
 
 }
@@ -278,7 +292,7 @@ int canwin=0;
         int playerIDint=[playerid intValue];
         int opencardindex=0;
         for (int anfang=0; anfang<52; anfang++) {
-               if([packofcards givemeinfo:anfang forWho:1]==playerIDint)
+               if([packofcards givemeinfo:anfang ]==playerIDint)
                {
                    if(opencardindex==0){
                        backofcardsright.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i",anfang]];

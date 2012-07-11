@@ -34,10 +34,12 @@
 
 //@property (nonatomic,strong) IBOutlet UIImageView *showHandCardImage; 
 - (int) givemeinfo:(int) i;
+- (int) whogotthecard:(int) i;
 - (void)initializePackOfCards;
 - (void)initializeInfoAboutPackOfCards;
 - (int)distributeCard:(NSString *) openCardOrPlayer;
 - (void)changeStatusOfCard:(int) distributedCardPos forWho: (NSString *) openCardOrPlayer;
+- (NSArray *)erayscheck:(int(int[2])) erayslist;
 //- (void)showOwnTwoCardsOfHand;  
 -(NSArray *)showdownComparison:(NSDictionary *) cardsOfPlayer_1 compareWith: (NSDictionary *) cardsOfPlayer_2;
 @end

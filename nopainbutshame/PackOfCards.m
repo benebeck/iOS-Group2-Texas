@@ -142,7 +142,9 @@ static PackOfCards *sharedInstance = nil;
 - (int)givemeinfo:(int) i{
     return [[[recordInfoAboutPackOfCards objectAtIndex:i] objectAtIndex:0] intValue];
 }
-
+- (int)whogotthecard:(int) i{
+    return [[[recordInfoAboutPackOfCards objectAtIndex:i] objectAtIndex:1] intValue];
+}
 
 /***
  - (void)showOwnTwoCardsOfHand:(int) playerNumber{ //playerNumber muss be (Position_of_Player_in_Array + 1) because 1 in recordInfoAboutPackOfCards is for open_card
@@ -264,6 +266,19 @@ static PackOfCards *sharedInstance = nil;
     return cardsNSArray;
 }
 
+
+-(NSArray*) erayscheck:(int [][2]) eraysarray{
+    
+    NSDictionary* hallo=[self bestFiveCardsCombination:eraysarray];
+    NSArray* result;
+    for (id key in hallo) {
+        NSLog(@"key: %@, value: %@", key, [hallo objectForKey:key]);
+        result=key;
+      //  NSLog(@"key:%@",key );
+
+    }
+    return result;
+}
 
 /**
  * Check if there is Ace in array, which should be extraly treated at finding best five cards combination, because Ace can be either

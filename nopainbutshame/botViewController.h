@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalmone;
 
 
+
 @end
