@@ -78,21 +78,21 @@ static PackOfCards *sharedInstance = nil;
 /**
  * Initialization of the Information about each card, and the positions in array recordInfoAboutPackOfCards correspond to the 
  * positions of each card in array aPackOfCards. 
- */
+ 
 
 - (void)initializeInfoAboutPackOfCards{
     recordInfoAboutPackOfCards = [NSMutableArray arrayWithCapacity:52];
     for(int i = 0; i < 52; i++){
         NSMutableArray * infoAboutOneCard = [NSMutableArray arrayWithCapacity:2]; 
         [infoAboutOneCard addObject:[NSNumber numberWithInt:0]];   // value on the position with index 0 initialized with object NSNumber with value 0; if the card is opened: NSNumber 1. 
-        [infoAboutOneCard addObject:@"nil"]; // index 1: initialized with NSString "nil", then the card is distributed to): 1=open_card, 2=player_1, 3=player_2,...)
+        [infoAboutOneCard addObject:0]; // index 1: initialized with NSString "nil", then the card is distributed to): 1=open_card, 2=player_1, 3=player_2,...)
         [recordInfoAboutPackOfCards addObject:infoAboutOneCard];
         
     }
 }
 
 
-
+*/
 /**
  * Create a random number between 0 and 51 which corresponds to position in aPackOfCards and recordInfoAboutPackOfCards. 
  * It is a preparing for function distributeCard.
@@ -110,16 +110,18 @@ static PackOfCards *sharedInstance = nil;
  * @param openCardOrPlayer Denoting that the card now will be distributed for opend card or a certain player  
  * @return Position of the distributed card in array aPackOfCards
  */
-- (int)distributeCard:(NSString *) openCardOrPlayer{
+- (int)distributeCard:(int) openCardOrPlayer{
     int randomPos = [self getRandomNumber];
     //if the card on this position is still not opened...
-    if ([[[recordInfoAboutPackOfCards objectAtIndex:randomPos] objectAtIndex:0] isEqualToNumber:[NSNumber numberWithInt:0]]){
+    if (recordInfoAboutPackOfCards[randomPos][0]==0 ){
         [self changeStatusOfCard:randomPos forWho:openCardOrPlayer];
     }
     //else run distributeCard again
     else {
         [self distributeCard:openCardOrPlayer];
     }
+    
+    
     return randomPos;
 }
 
@@ -128,9 +130,9 @@ static PackOfCards *sharedInstance = nil;
  * Change status of the card which is distributed. 
  * @param distributedCardPos forWho:openCardOrPlayer Position of card in array and to whom the card will be distributed
  */
-- (void)changeStatusOfCard:(int) distributedCardPos forWho:(NSString *) openCardOrPlayer{
-    [[recordInfoAboutPackOfCards objectAtIndex:distributedCardPos] replaceObjectAtIndex:0 withObject:[NSNumber numberWithInt:1]];
-    [[recordInfoAboutPackOfCards objectAtIndex:distributedCardPos] replaceObjectAtIndex:1 withObject:openCardOrPlayer];
+- (void)changeStatusOfCard:(int) distributedCardPos forWho:(int)openCardOrPlayer{
+    recordInfoAboutPackOfCards[distributedCardPos][0]=1;
+    recordInfoAboutPackOfCards[distributedCardPos][1]=openCardOrPlayer;
 }
 
 
@@ -140,10 +142,10 @@ static PackOfCards *sharedInstance = nil;
  * @return Value shows if the card is already distributed or not yet 
  */
 - (int)givemeinfo:(int) i{
-    return [[[recordInfoAboutPackOfCards objectAtIndex:i] objectAtIndex:0] intValue];
+     return recordInfoAboutPackOfCards[i][0];
 }
 - (int)whogotthecard:(int) i{
-    return [[[recordInfoAboutPackOfCards objectAtIndex:i] objectAtIndex:1] intValue];
+    return recordInfoAboutPackOfCards[i][1];
 }
 
 /***
@@ -275,6 +277,7 @@ static PackOfCards *sharedInstance = nil;
         NSLog(@"key: %@, value: %@", key, [hallo objectForKey:key]);
         result=key;
       //  NSLog(@"key:%@",key );
+        
 
     }
     return result;

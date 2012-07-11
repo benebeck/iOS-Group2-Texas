@@ -46,13 +46,13 @@ static GameController *sharedInstance = nil;
         sharedInstance.smallBlind = 5;
         sharedInstance.bigBlind = 10;
         sharedInstance.betRoundNr = 1;
-        NSLog(@"GameControl is up...");
+       // NSLog(@"GameControl is up...");
     }
     //hardcoded dummy values
     
     sharedInstance.maxPlayers = 5;
     sharedInstance.totalMoney = 1000;
-    NSLog(@"GameControl is up...");
+   // NSLog(@"GameControl is up...");
     
     return sharedInstance;
         
@@ -117,7 +117,7 @@ static GameController *sharedInstance = nil;
 
 
     -(void)activateNextPlayer{
-    
+  
            
             Player *player;
             for (player in self.playerList)
@@ -244,17 +244,16 @@ static GameController *sharedInstance = nil;
         NSLog(@"We are in round %d", self.betRoundNr);
         //Wir sind in der ersten Wettrunde
         if (oldPlayer.betState == @"DEALER") {
-  /*          [[PackOfCards sharedInstance] distributeCard:@"2"];
-            [[PackOfCards sharedInstance] distributeCard:@"3"];
-            [[PackOfCards sharedInstance] distributeCard:@"4"];
-            [[PackOfCards sharedInstance] distributeCard:@"5"];
-            [[PackOfCards sharedInstance] distributeCard:@"6"];
-            [[PackOfCards sharedInstance] distributeCard:@"2"];
-            [[PackOfCards sharedInstance] distributeCard:@"3"];
-            [[PackOfCards sharedInstance] distributeCard:@"4"];
-            [[PackOfCards sharedInstance] distributeCard:@"5"];
-            [[PackOfCards sharedInstance] distributeCard:@"6"];
-   */         NSLog(@"This was the DEALER'S turn");
+            
+            for (int k=0; k<2; k++) {
+                for (int m=2; m<7; m++) {
+                    [[PackOfCards sharedInstance] distributeCard:m];
+                }
+            }
+            
+                   
+
+            NSLog(@"This was the DEALER'S turn");
         }else if (oldPlayer.betState == @"SMALL_BLIND") {
             //get money (SMALL_BLIND)
             [self substractFromPlayerAccount:self.smallBlind forPlayer:oldPlayer];
@@ -267,7 +266,7 @@ static GameController *sharedInstance = nil;
             
             
             
-            [self changeBetState:nil forPlayer:oldPlayer];
+            [self changeBetState:@"INACTIVE" forPlayer:oldPlayer];
             NSLog(@"This was the SMALL_BLIND'S turn");
             
         }else if (oldPlayer.betState == @"BIG_BLIND") {
