@@ -12,6 +12,7 @@
 #import "PackOfCards.h"
 #import "Player.h"
 #import "GCHelper.h"
+#import "PackOfCards.h"
 //lösche es gleich wieder GCHELPER.H
 //nur zum pushcen
 @interface IngameViewController : UIViewController

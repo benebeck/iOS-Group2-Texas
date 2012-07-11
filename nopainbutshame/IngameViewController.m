@@ -138,28 +138,28 @@ opencard2 = @"3";
     player5status.layer.cornerRadius=10;
     [self.view addSubview:player5status];
     
-    opencard1image =[UIImage imageNamed:@"10.png"];
-    opencard1imageview=[[UIImageView alloc] initWithImage:opencard1image];
+   
+    opencard1imageview=[[UIImageView alloc] init];
     [opencard1imageview setFrame:CGRectMake(250, 80, 40, 60)];
     [[self view]addSubview:opencard1imageview];
     
-    opencard2image =[UIImage imageNamed:@"11.png"];
-    opencard2imageview=[[UIImageView alloc] initWithImage:opencard2image];
+ 
+    opencard2imageview=[[UIImageView alloc] init];
     [opencard2imageview setFrame:CGRectMake(295, 80, 40, 60)];
     [[self view]addSubview:opencard2imageview];
     
-    opencard3image =[UIImage imageNamed:@"12.png"];
-    opencard3imageview=[[UIImageView alloc] initWithImage:opencard3image];
+    
+    opencard3imageview=[[UIImageView alloc] init];
     [opencard3imageview setFrame:CGRectMake(340, 80, 40, 60)];
     [[self view]addSubview:opencard3imageview];
     
-    opencard4image =[UIImage imageNamed:@"13.png"];
-    opencard4imageview=[[UIImageView alloc] initWithImage:opencard4image];
+   
+    opencard4imageview=[[UIImageView alloc] init];
     [opencard4imageview setFrame:CGRectMake(385, 80, 40, 60)];
     [[self view]addSubview:opencard4imageview];
     
-    opencard5image =[UIImage imageNamed:@"14.png"];
-    opencard5imageview=[[UIImageView alloc] initWithImage:opencard5image];
+    
+    opencard5imageview=[[UIImageView alloc] init];
     [opencard5imageview setFrame:CGRectMake(430, 80, 40, 60)];
     [[self view]addSubview:opencard5imageview];
     
@@ -169,28 +169,33 @@ opencard2 = @"3";
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+
+
+
 -(void) statusupdate{
-    if ([GameController sharedInstance].activePlayer==@"Player1") {
+
+    
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player1") {
         player1status.backgroundColor=[UIColor greenColor];
     }else {
         player1status.backgroundColor=[UIColor yellowColor];
     }
-    if ([GameController sharedInstance].activePlayer==@"Player2") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player2") {
         player2status.backgroundColor=[UIColor greenColor];
     }else {
         player2status.backgroundColor=[UIColor yellowColor];
     }
-    if ([GameController sharedInstance].activePlayer==@"Player3") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player3") {
         player3status.backgroundColor=[UIColor greenColor];
     }else {
         player3status.backgroundColor=[UIColor yellowColor];
     }
-    if ([GameController sharedInstance].activePlayer==@"Player4") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player4") {
         player4status.backgroundColor=[UIColor greenColor];
     }else {
         player4status.backgroundColor=[UIColor yellowColor];
     }
-    if ([GameController sharedInstance].activePlayer==@"Player5") {
+    if ([[GameController sharedInstance].activePlayer playerId]==@"Player5") {
         player5status.backgroundColor=[UIColor greenColor];
     }else {
         player5status.backgroundColor=[UIColor yellowColor];
@@ -221,10 +226,10 @@ opencard2 = @"3";
 -(void)binichdran{
 
    
-    if ( [GameController sharedInstance].activePlayer!=@"Player1" ) {
+    if ( [[GameController sharedInstance].activePlayer playerId]!=@"Player1" ) {
      
 
- //     [self performSegueWithIdentifier:@"tobot" sender:nil];
+     [self performSegueWithIdentifier:@"tobot" sender:nil];
     }
 
 }
@@ -277,23 +282,34 @@ int canwin=0;
         NSLog(@"zweig4,%i",flipcardleft);
         int playerIDint=[playerid intValue];
         int opencardindex=0;
+        int handcardindex=0;
         for (int anfang=0; anfang<52; anfang++) {
-               if([packofcards givemeinfo:anfang forWho:1]==playerIDint)
-               {
-                   if(opencardindex==0){
-                       backofcardsright.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i",anfang]];
-                       opencardindex++;
-                                        }
-                    if(opencardindex==1){
-                        backofcardsleft.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i",anfang]];
-                                        }
-
-               }
+            
+            if ([[PackOfCards sharedInstance] whogotthecard:anfang]==2) {
+            
                 
+             
+             NSString *cardImageFileName = [NSString stringWithFormat:@"%d.png", anfang];
+            
+           if (opencardindex==0)  backofcardsleft.image=[UIImage imageNamed:cardImageFileName];
+            if (opencardindex==1)backofcardsright.image=[UIImage imageNamed:cardImageFileName];
+                opencardindex++;
+             
+        }
+            if ([[PackOfCards sharedInstance] whogotthecard:anfang]==1) {
+            NSString *cardImageFileName = [NSString stringWithFormat:@"%d.png", anfang];
+            if (handcardindex==0) opencard1imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==1) opencard2imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==2) opencard3imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==3) opencard4imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==4) opencard5imageview.image=[UIImage imageNamed:cardImageFileName];
+                handcardindex++;
+            }
+            
         }
         
-        backofcardsleft.image=[UIImage imageNamed:opencard1];
-        backofcardsright.image=[UIImage imageNamed:opencard2];
+        
+        
     }
   
     
@@ -310,7 +326,7 @@ int canwin=0;
         float slidefactor = 0.2 * slideMult;
         
   
-        if ( magnitude>1000 &&  [GameController sharedInstance].activePlayer==@"Player1") {
+        if ( magnitude>1000 &&  [[GameController sharedInstance].activePlayer playerId]==@"Player1") {
             CGPoint finalpoint = CGPointMake(recognizer.view.center.x, recognizer.view.center.y+(velocity.y*slidefactor));
             if(i==1){
             [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip50.frame=CGRectMake(mychip50.frame.origin.x, finalpoint.y, mychip50.frame.size.width, mychip50.frame.size.height);} completion:nil];
