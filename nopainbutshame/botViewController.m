@@ -95,7 +95,7 @@ PackOfCards * tempcards;
     totalmone.text=[NSString stringWithFormat:@"%i",hallo];
  
     if ( [[GameController sharedInstance].activePlayer playerId]==@"Player1" ) {
-      //  [self performSegueWithIdentifier:@"toplayer" sender:nil];
+       [self performSegueWithIdentifier:@"toplayer" sender:nil];
     }
 
 }
@@ -108,8 +108,8 @@ PackOfCards * tempcards;
     for (int temp1=0; temp1<52; temp1++) {
 
         if([[PackOfCards sharedInstance] whogotthecard:temp1]==aktiverspieler || [[PackOfCards sharedInstance] whogotthecard:temp1]==1){
-            int temprest=temp1%13;
-            int tempganz=temp1/13;
+            int temprest=1+temp1%13;
+            int tempganz=1+temp1/13;
             siebenkarten[temp2][0]=tempganz;
             siebenkarten[temp2][1]=temprest;
             temp2++;
@@ -122,8 +122,8 @@ PackOfCards * tempcards;
             underseven=false;
                 } else {
                     int value = arc4random() % 52;
-                    int temprest=value%13;
-                    int tempganz=value/13;
+                    int temprest=1+value%13;
+                    int tempganz=1+value/13;
                     siebenkarten[temp2][0]=tempganz;
                     siebenkarten[temp2][1]=temprest;
                     temp2++;

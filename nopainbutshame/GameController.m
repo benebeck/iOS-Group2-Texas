@@ -28,7 +28,7 @@
 @synthesize dealer = _dealer;
 @synthesize pot;
 @synthesize wetthohe;
-
+int endofturntemp=5;
 #pragma mark Initialization
 
 /*
@@ -66,7 +66,7 @@ static GameController *sharedInstance = nil;
 -(void)raisePlayers{
     self.betRoundNr=1;
     //dummy list
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(activateNextPlayer) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(activateNextPlayer) userInfo:nil repeats:YES];
  
     NSMutableArray *list = [NSMutableArray arrayWithCapacity:5];
     
@@ -145,8 +145,8 @@ static GameController *sharedInstance = nil;
                 else {
                     [self setPot:pot+wetthohe];
                 }
-            [[self.playerList objectAtIndex:0] setPlayerState:@"INACTIVE"];
-                
+           if([[self.playerList objectAtIndex:0] playerState]!=@"FOLD") [[self.playerList objectAtIndex:0] setPlayerState:@"INACTIVE"];
+                  [self endOfTurntemp];
             }   
             //jump back to first player
         }else if ([self.playerList lastObject] == self.activePlayer) {
@@ -160,8 +160,9 @@ static GameController *sharedInstance = nil;
                 else {
                     [self setPot:pot+wetthohe];
                 }
-                [[self.playerList lastObject] setPlayerState:@"INACTIVE"];
+             if([[self.playerList lastObject] playerState]!=@"FOLD")[[self.playerList lastObject] setPlayerState:@"INACTIVE"];
                 NSLog(@"dfdfdf%i",_totalMoney);
+                [self endOfTurntemp];
                 
             }
             self.activePlayer = [self.playerList objectAtIndex:0];
@@ -179,12 +180,13 @@ static GameController *sharedInstance = nil;
                         if(self.pot<=0 || self.pot>100000)
                         {
                             [self setPot:50];
+                            
                             [self setWetthohe:0];
                         }
                         else {
                             [self setPot:pot+wetthohe];
                         }
-                        [[self.playerList objectAtIndex:index] setPlayerState:@"INACTIVE"];
+                         if([[self.playerList objectAtIndex:index] playerState]!=@"FOLD")[[self.playerList objectAtIndex:index] setPlayerState:@"INACTIVE"];
                         
                     }
 
@@ -192,6 +194,7 @@ static GameController *sharedInstance = nil;
                     self.activePlayer = [self.playerList objectAtIndex:index];
                     break;
                 }
+             [self endOfTurntemp];
         }
         NSLog(@"New Player: %@", self.activePlayer.playerId);
 }
@@ -236,11 +239,204 @@ static GameController *sharedInstance = nil;
     
 }
 
+-(void) endOfTurntemp{
+    
+
+    if (endofturntemp==0) {
+        endofturntemp=5;
+        NSLog(@"%i",endofturntemp);
+        NSLog(@"%i",self.betRoundNr);
+        
+        if (self.betRoundNr == 2){
+           
+            [[PackOfCards sharedInstance] distributeCard:1];
+            [[PackOfCards sharedInstance] distributeCard:1];
+            [[PackOfCards sharedInstance] distributeCard:1];
+            
+        }if (self.betRoundNr == 3){
+          
+            [[PackOfCards sharedInstance] distributeCard:1];
+        }if (self.betRoundNr == 4){
+        
+            [[PackOfCards sharedInstance] distributeCard:1];
+        }
+        if (self.betRoundNr == 5){
+            
+            
+
+            
+            
+            int spieler1karten[7][2];
+            int spieler2karten[7][2];
+            int spieler3karten[7][2];
+            int spieler4karten[7][2];
+            int spieler5karten[7][2];
+            
+            if([[self. playerList objectAtIndex:0] playerState]==@"Fold")
+                                {
+                                    for (int j=0; j<7; j++) {
+                                            spieler1karten[j][0]=1;
+                                            spieler1karten[j][1]=(j+1)*2;
+                                    }
+                                }
+            
+            if([[self. playerList objectAtIndex:1] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=((j+1)*2)+1;
+                }
+            }
+            
+            if([[self. playerList objectAtIndex:2] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=(j+9)*2;
+                }
+            }
+            
+            if([[self. playerList objectAtIndex:3] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=((j+9)*2)+1;
+                }
+            }
+            
+            if([[self. playerList objectAtIndex:4] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=(j+17)*2;
+                }
+            }
+            
+            
+            int temp11=0;
+            int temp12=0;
+            int temp13=0;
+            int temp14=0;
+            int temp15=0;
+            
+            for (int temp1=0; temp1<52; temp1++) {
+                
+                if([[PackOfCards sharedInstance] whogotthecard:temp1]==2 || [[PackOfCards sharedInstance] whogotthecard:temp1]==1){
+                    int temprest=1+temp1%13;
+                    int tempganz=1+temp1/13;
+                    spieler1karten[temp11][0]=tempganz;
+                    spieler1karten[temp11][1]=temprest;
+                    temp11++;
+                }
+                
+                if([[PackOfCards sharedInstance] whogotthecard:temp1]==3 || [[PackOfCards sharedInstance] whogotthecard:temp1]==1){
+                    int temprest=1+temp1%13;
+                    int tempganz=1+temp1/13;
+                    spieler2karten[temp12][0]=tempganz;
+                    spieler2karten[temp12][1]=temprest;
+                    temp12++;
+                }
+                
+                if([[PackOfCards sharedInstance] whogotthecard:temp1]==4 || [[PackOfCards sharedInstance] whogotthecard:temp1]==1){
+                    int temprest=1+temp1%13;
+                    int tempganz=1+temp1/13;
+                    spieler3karten[temp13][0]=tempganz;
+                    spieler3karten[temp13][1]=temprest;
+                    temp13++;
+                }
+                
+                if([[PackOfCards sharedInstance] whogotthecard:temp1]==5 || [[PackOfCards sharedInstance] whogotthecard:temp1]==1){
+                    int temprest=1+temp1%13;
+                    int tempganz=1+temp1/13;
+                    spieler4karten[temp14][0]=tempganz;
+                    spieler4karten[temp14][1]=temprest;
+                    temp14++;
+                }
+                
+                if([[PackOfCards sharedInstance] whogotthecard:temp1]==6 || [[PackOfCards sharedInstance] whogotthecard:temp1]==1){
+                    int temprest=1+temp1%13;
+                    int tempganz=1+temp1/13;
+                    spieler5karten[temp15][0]=tempganz;
+                    spieler5karten[temp15][1]=temprest;
+                    temp15++;
+                }
+                
+            }
+            
+            NSMutableArray *comparelist = [NSMutableArray arrayWithCapacity:5];
+            
+            NSDictionary *spieler1=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler1karten];
+            [comparelist addObject:spieler1];
+            NSDictionary *spieler2=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler2karten];
+            [comparelist addObject:spieler2];
+            NSDictionary *spieler3=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler3karten];
+            [comparelist addObject:spieler3];
+            NSDictionary *spieler4=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler4karten];
+            [comparelist addObject:spieler4];
+            NSDictionary *spieler5=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler5karten];
+            [comparelist addObject:spieler5];
+            
+                       
+            NSArray *vergleichswert1; 
+            NSArray *vergleichswert2; 
+            NSArray *vergleichswert3; 
+            NSArray *vergleichswert4; 
+        vergleichswert1 = [vergleichswert1 arrayByAddingObject:@"1"];
+        vergleichswert2 = [vergleichswert2 arrayByAddingObject:@"2"];
+        vergleichswert3 = [vergleichswert3 arrayByAddingObject:@"3"];
+        vergleichswert4 = [vergleichswert4 arrayByAddingObject:@"4"];
+            
+            for (int i=0; i<4; i++) {
+              
+                if ([[PackOfCards sharedInstance] showdownComparison:[comparelist objectAtIndex:i] compareWith:[comparelist objectAtIndex:i+1]]==vergleichswert1||[[PackOfCards sharedInstance] showdownComparison:[comparelist objectAtIndex:i] compareWith:[comparelist objectAtIndex:i+1]]==vergleichswert2) {
+                   
+                    [comparelist replaceObjectAtIndex:i+1 withObject:[comparelist objectAtIndex:i]];
+                }
+               
+                
+            }
+            
+            for (id key in spieler1) {
+                NSLog(@"key: %@, value: %@", key, [spieler1 objectForKey:key]);
+                
+            }
+            for (id key in spieler2) {
+                NSLog(@"key: %@, value: %@", key, [spieler2 objectForKey:key]);
+                
+            }
+    
+            for (id key in spieler3) {
+                NSLog(@"key: %@, value: %@", key, [spieler3 objectForKey:key]);
+                
+            }
+
+            
+            for (id key in spieler4) {
+                NSLog(@"key: %@, value: %@", key, [spieler4 objectForKey:key]);
+                
+            }
+            
+            for (id key in spieler5) {
+                NSLog(@"key: %@, value: %@", key, [spieler5 objectForKey:key]);
+                
+            }
+            
+ 
+            
+            
+        }
+        self.betRoundNr++;
+    }else {
+        endofturntemp--;
+    }
+}
+
 //Diese Methode wird immer ausgeführt, wenn ein Spieler mit seinem Zug fertig ist. Hier muss ziemlich viel Entscheidung rein!!!
 -(void)endOfTurn{
     Player *oldPlayer = self.activePlayer;
     //first round
     if (self.betRoundNr == 1) {
+              self.betRoundNr++;
         NSLog(@"We are in round %d", self.betRoundNr);
         //Wir sind in der ersten Wettrunde
         if (oldPlayer.betState == @"DEALER") {
@@ -275,17 +471,13 @@ static GameController *sharedInstance = nil;
             [self setPot:self.bigBlind];
             NSLog(@"Player paid %d", self.bigBlind);
             NSLog(@"and has left %d", oldPlayer.moneyRest);
-            self.betRoundNr++;
+      
             NSLog(@"This was the BIG_BLIND'S turn");
         }
         
     }
-    
-    if (self.betRoundNr == 2){
-        //bäm
-    }if (self.betRoundNr == 3){
-        //bäm
-    }if (self.betRoundNr == 42){  //after showdown!!!
+ 
+    if (self.betRoundNr == 42){  //after showdown!!!
         [self activateNextPlayer];
         self.dealer = self.activePlayer;
         

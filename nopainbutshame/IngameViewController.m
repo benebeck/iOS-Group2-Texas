@@ -16,14 +16,16 @@
 
 NSString *playerid;
 CGPoint startpoint;
+UIImage *cardlefttemp;
+UIImage *cardrighttemp;
 int duhast5sek=5;
 
 - (void)viewDidLoad
 {
-
-    
+    cardlefttemp=[[UIImage alloc] init];
+    cardrighttemp=[[UIImage alloc] init];
   //  opencard=[[NSArray alloc] initWithArray:player.twoCards];     
-    //opencard1=[[NSString alloc]initWithFormat:@"%i",[opencard objectAtIndex:0]];
+   // opencard1=[[NSString alloc]initWithFormat:@"%i",[opencard objectAtIndex:0]];
     //opencard2=[[NSString alloc]initWithFormat:@"%i",[opencard objectAtIndex:1]];
 opencard1 = @"1";
 opencard2 = @"3";
@@ -165,7 +167,17 @@ opencard2 = @"3";
     
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
 
-    
+    int opencardindex=0;
+   
+    for (int anfang=0; anfang<52; anfang++) {
+        
+        if ([[PackOfCards sharedInstance] whogotthecard:anfang]==2) {
+            NSString *cardImageFileName = [NSString stringWithFormat:@"%d.png", anfang];
+            if (opencardindex==0) cardlefttemp=[UIImage imageNamed:cardImageFileName];
+            if (opencardindex==1) cardrighttemp=[UIImage imageNamed:cardImageFileName];
+            opencardindex++;
+        }
+    }
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -224,7 +236,21 @@ opencard2 = @"3";
 
 
 -(void)binichdran{
+  
+    int handcardindex=0;
+    for (int anfang=0; anfang<52; anfang++) {
 
+        if ([[PackOfCards sharedInstance] whogotthecard:anfang]==1) {
+            NSString *cardImageFileName = [NSString stringWithFormat:@"%d.png", anfang];
+            if (handcardindex==0) opencard1imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==1) opencard2imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==2) opencard3imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==3) opencard4imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==4) opencard5imageview.image=[UIImage imageNamed:cardImageFileName];
+            handcardindex++;
+        }
+        
+    }
    
     if ( [[GameController sharedInstance].activePlayer playerId]!=@"Player1" ) {
      
@@ -276,37 +302,13 @@ int canwin=0;
     
     if ( locationInView.x<261 && flipcardleft==3 ) {
        
-        
+        backofcardsleft.image=cardlefttemp;
+        backofcardsright.image=cardrighttemp;
         flipcardleft=1;
         flipcardback=1;
         NSLog(@"zweig4,%i",flipcardleft);
-        int playerIDint=[playerid intValue];
-        int opencardindex=0;
-        int handcardindex=0;
-        for (int anfang=0; anfang<52; anfang++) {
-            
-            if ([[PackOfCards sharedInstance] whogotthecard:anfang]==2) {
-            
-                
-             
-             NSString *cardImageFileName = [NSString stringWithFormat:@"%d.png", anfang];
-            
-           if (opencardindex==0)  backofcardsleft.image=[UIImage imageNamed:cardImageFileName];
-            if (opencardindex==1)backofcardsright.image=[UIImage imageNamed:cardImageFileName];
-                opencardindex++;
-             
-        }
-            if ([[PackOfCards sharedInstance] whogotthecard:anfang]==1) {
-            NSString *cardImageFileName = [NSString stringWithFormat:@"%d.png", anfang];
-            if (handcardindex==0) opencard1imageview.image=[UIImage imageNamed:cardImageFileName];
-            if (handcardindex==1) opencard2imageview.image=[UIImage imageNamed:cardImageFileName];
-            if (handcardindex==2) opencard3imageview.image=[UIImage imageNamed:cardImageFileName];
-            if (handcardindex==3) opencard4imageview.image=[UIImage imageNamed:cardImageFileName];
-            if (handcardindex==4) opencard5imageview.image=[UIImage imageNamed:cardImageFileName];
-                handcardindex++;
-            }
-            
-        }
+       // int playerIDint=[playerid intValue];
+        
         
         
         
