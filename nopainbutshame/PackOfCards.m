@@ -320,9 +320,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 /**
- * Check if there is royal flush in seven sorted cards. 
+ * Check if there is "royal flush" in seven sorted cards. This Function will be called by function "bestFiveCardsCombination".
  * @param sevenSortedCards seven sorted cards in NSArray
- * @return if there is royal flush then return a NSDictionary with key of NSString "Royal Flush" and with value NSArray of values of five cards; or if AKQJ10 with different suit return NSString "Straight" and with value NSArray of values of five cards; if not, return a NSDictionary with key of NSString "False" and with value NSNumber 0
+ * @return if there is royal flush then return a NSDictionary with the key of NSString "Royal Flush" and with the value NSArray of values of five cards; or if AKQJ10 with different suit, it returns NSString "Straight" and with value NSArray of values of five cards; if not, return a NSDictionary with key of NSString "False" and with value NSNumber 0
  */
 -(NSDictionary *)hasRoyalFlush:(NSArray *) sevenSortedCards{   //return Royal Flush or Straight A, K, Q, J, 10 with different suit or nothing if there isn't such cases.
     NSDictionary *res = [NSDictionary alloc];
@@ -421,9 +421,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 /**
- * Check if there is straight flush oder in seven sorted cards. 
+ * Check if there is "Straight Flush" or "Straight" (Straigt AKQJ10 is not inclusive, it will be checked in "hasRoyalFlush". AKQJ10 with same suit is royal flush, if not then it is straight) in seven sorted cards. This Function will be called by the function "bestFiveCardsCombination".
  * @param sevenSortedCards seven sorted cards in NSArray
- * @return if there is royal flush then return a NSDictionary with key of NSString "Royal Flush" and with value NSArray of values of five cards, if not, return a NSDictionary with key of NSString "False" and with value NSNumber 0
+ * @return if there is straight flush then returns a NSDictionary with the key of NSString "Straight Flush" and with the value NSArray of values of five cards; if five cards are not Straight Flush only because they have different suit, it returns NSDictionary "Straight" and with the value NSArray of values of five cards; if not, it returns a NSDictionary with key of NSString "False" and with value NSNumber 0
  */
 -(NSDictionary *)hasStraightFlushOrStraight:(NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
@@ -563,8 +563,11 @@ static PackOfCards *sharedInstance = nil;
 
 
 /**
- *
+ * Check if there is "Four of a Kind" in seven sorted cards. This Function will be called by the function "bestFiveCardsCombination".
+ * @param sevenSortedCards seven sorted cards in NSArray
+ * @return if there is four of a kind then return a NSDictionary with key of NSString "Four of a Kind" and with value NSArray of values of five cards, if not, return a NSDictionary with key of NSString "False" and with value NSNumber 0
  */
+
 -(NSDictionary *)hasFourOfAKind:(NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
     NSArray * cardsFourOfAKind = [NSArray array];
@@ -588,7 +591,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 /**
- *
+ * Check if there is "Boat" or "Three of a Kind" in seven sorted cards. This Function will be called by the function "bestFiveCardsCombination".
+ * @param sevenSortedCards seven sorted cards in NSArray
+ * @return if there is Boat then return a NSDictionary with key of NSString "Boat" and with the value NSArray of values of five cards; if five cards are not Boat only because there is not a paire in the rest cards, it returns NSDictionary with the key "Three of a Kind" and with value NSArray of values of five cards; if not, return a NSDictionary with the key of NSString "False" and with the value NSNumber 0
  */
 -(NSDictionary *)hasBoatOrThreeOfAKind: (NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
@@ -641,7 +646,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 /**
- *
+ * Check if there is "Flush" in seven sorted cards. This Function will be called by the function "bestFiveCardsCombination".
+ * @param sevenSortedCards seven sorted cards in NSArray
+ * @return if there is Flush then returns a NSDictionary with the key of NSString "Flush" and with the value NSArray of values of five cards; if not, returns a NSDictionary with key of NSString "False" and with value NSNumber 0
  */
 -(NSDictionary *)hasFlush: (NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
@@ -673,7 +680,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 /**
- *
+ * Check if there is "Two Pairs" or "Pair" in seven sorted cards. This Function will be called by the function "bestFiveCardsCombination".
+ * @param sevenSortedCards seven sorted cards in NSArray
+ * @return if there is Two Pairs then return a NSDictionary with key of NSString "Two Pairs" and with the value NSArray of values of five cards; if five cards has only one pair, it returns NSDictionary with the key "Pair" and with value NSArray of values of five cards; if not, return a NSDictionary with the key of NSString "False" and with the value NSNumber 0
  */
 -(NSDictionary *)hasTwoPairsOrPair: (NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
@@ -728,7 +737,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 /**
- *
+ * "High Card" is the last case if there is not any of cases above appearing in seven cards. It finds just five cards with largest values in the seven cards. This Function will be called by the function "bestFiveCardsCombination".
+ * @param sevenSortedCards seven sorted cards in NSArray
+ * @return NSDictionary with the key of NSString "High Card" and with the value NSArray of values of five cards
  */
 -(NSDictionary *)hasHighCard: (NSArray *) sevenSortedCards{
     NSDictionary *res = [NSDictionary alloc];
@@ -745,7 +756,9 @@ static PackOfCards *sharedInstance = nil;
 
 
 /**
- *
+ * According to priority of ten cases at showdown it finds best five cards combination from the seven cards. Result (NSDictionary) will be delivered to function "showdownComparison" to be compared with the results of other players.
+ * @param sevenCards Array sevencards with lenth 7 correpondent to 7 cards, for each card an array with length 2 will be used to store its suit and value
+ * @return Best combination of five cards. NSDictionary stores the name of combination as its key and NSArray with NSNumber of five card values as key's value.   
  */
 -(NSDictionary *)bestFiveCardsCombination:(int[][2]) sevenCards{
     NSArray * sevenSortedCards = [self sortIntArray:sevenCards];
@@ -837,6 +850,12 @@ static PackOfCards *sharedInstance = nil;
  * 8. Two Pairs
  * 9. Pair
  * 10. High Card
+ */
+
+/**
+ * Find the winner from two players. (To find the final winner from all active players we can call this function with for-loops: the winner of two players will be continuously compared with one the rest players, it will go on until the final winner is found.)
+ * @param cardsOfPlayer_1 compareWith: cardsOfPlayer_2 Results (NSDictionary) of best five cards combinations of two players (return from function "bestFiveCardsCombination")
+ * @return NSArray {"1"} if first player has better combination than than of second player; Or NSArray {"2"} if second player is winner; if they have exact same combination, it returns NSArray {"1", "2"}  
  */
 -(NSArray *)showdownComparison:(NSDictionary *) cardsOfPlayer_1 compareWith: (NSDictionary *) cardsOfPlayer_2{
     // dictionary cardsOfPlayer_1 indicate the best five final cards of the player_1 at the showdown time, e.g. {"Boat House": [3,3,3,7,5]}
