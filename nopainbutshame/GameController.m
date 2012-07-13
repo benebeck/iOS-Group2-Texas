@@ -376,54 +376,51 @@ static GameController *sharedInstance = nil;
             NSDictionary *spieler5=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler5karten];
             [comparelist addObject:spieler5];
             
-                       
-            NSArray *vergleichswert1; 
-            NSArray *vergleichswert2; 
-            NSArray *vergleichswert3; 
-            NSArray *vergleichswert4; 
-        vergleichswert1 = [vergleichswert1 arrayByAddingObject:@"1"];
-        vergleichswert2 = [vergleichswert2 arrayByAddingObject:@"2"];
-        vergleichswert3 = [vergleichswert3 arrayByAddingObject:@"3"];
-        vergleichswert4 = [vergleichswert4 arrayByAddingObject:@"4"];
+            for (id key in [comparelist objectAtIndex:0]) {
+                NSLog(@"key: %@, value: %@", key, [[comparelist objectAtIndex:0] objectForKey:key]);
+            }
+
             
+            for (id key in [comparelist objectAtIndex:1]) {
+                NSLog(@"key: %@, value: %@", key, [[comparelist objectAtIndex:1] objectForKey:key]);
+            }
+
+            
+            for (id key in [comparelist objectAtIndex:2]) {
+                NSLog(@"key: %@, value: %@", key, [[comparelist objectAtIndex:2] objectForKey:key]);
+            }
+
+            
+            for (id key in [comparelist objectAtIndex:3]) {
+                NSLog(@"key: %@, value: %@", key, [[comparelist objectAtIndex:3] objectForKey:key]);
+            }
+
+            
+            for (id key in [comparelist objectAtIndex:4]) {
+                NSLog(@"key: %@, value: %@", key, [[comparelist objectAtIndex:4] objectForKey:key]);
+            }
+
+            
+
+            NSArray *vergleich2;
             for (int i=0; i<4; i++) {
-              
-                if ([[PackOfCards sharedInstance] showdownComparison:[comparelist objectAtIndex:i] compareWith:[comparelist objectAtIndex:i+1]]==vergleichswert1||[[PackOfCards sharedInstance] showdownComparison:[comparelist objectAtIndex:i] compareWith:[comparelist objectAtIndex:i+1]]==vergleichswert2) {
+               vergleich2=[[PackOfCards sharedInstance] showdownComparison:[comparelist objectAtIndex:i] compareWith:[comparelist objectAtIndex:i+1]];
+                        
+                int a = [[vergleich2 objectAtIndex:0] intValue]; 
+               
+                NSLog(@"asdsdsa%i",a);
+                if (a==1) {
                    
                     [comparelist replaceObjectAtIndex:i+1 withObject:[comparelist objectAtIndex:i]];
                 }
                
                 
             }
-            
-            for (id key in spieler1) {
-                NSLog(@"key: %@, value: %@", key, [spieler1 objectForKey:key]);
-                
+             
+           
+            for (id key in [comparelist objectAtIndex:4]) {
+                NSLog(@"key: %@, value: %@", key, [[comparelist objectAtIndex:4] objectForKey:key]);
             }
-            for (id key in spieler2) {
-                NSLog(@"key: %@, value: %@", key, [spieler2 objectForKey:key]);
-                
-            }
-    
-            for (id key in spieler3) {
-                NSLog(@"key: %@, value: %@", key, [spieler3 objectForKey:key]);
-                
-            }
-
-            
-            for (id key in spieler4) {
-                NSLog(@"key: %@, value: %@", key, [spieler4 objectForKey:key]);
-                
-            }
-            
-            for (id key in spieler5) {
-                NSLog(@"key: %@, value: %@", key, [spieler5 objectForKey:key]);
-                
-            }
-            
- 
-            
-            
         }
         self.betRoundNr++;
     }else {
