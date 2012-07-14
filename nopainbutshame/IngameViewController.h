@@ -17,6 +17,7 @@
 //nur zum pushcen
 @interface IngameViewController : UIViewController
 {
+    
     IBOutlet UILabel *spielereins;
     IBOutlet UILabel *spielerzwei;
     IBOutlet UILabel *spielerdrei;
@@ -84,6 +85,7 @@
   
 
 }
+-(IBAction) IAMDONE: (id) sender;
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 -(void) animate:(CGPoint) msg;
 -(IBAction)buttonToTriggerCircle:(id)sender;

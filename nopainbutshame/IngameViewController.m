@@ -29,6 +29,9 @@ int duhast5sek=5;
     //opencard2=[[NSString alloc]initWithFormat:@"%i",[opencard objectAtIndex:1]];
 opencard1 = @"1";
 opencard2 = @"3";
+    
+
+
     CGRect newFrame = CGRectMake(0, 0, 480, 480); // Frame of the view to be animated
     UIView * viewToBeAnimated = [[UIView alloc] initWithFrame:newFrame];
     viewToBeAnimated.backgroundColor = [UIColor clearColor];
@@ -165,14 +168,14 @@ opencard2 = @"3";
     [opencard5imageview setFrame:CGRectMake(430, 80, 40, 60)];
     [[self view]addSubview:opencard5imageview];
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
 
     int opencardindex=0;
    
     for (int anfang=0; anfang<52; anfang++) {
         
         if ([[PackOfCards sharedInstance] whogotthecard:anfang]==2) {
-            NSString *cardImageFileName = [NSString stringWithFormat:@"%d.png", anfang];
+            NSString *cardImageFileName = [NSString stringWithFormat:@"%i.png", anfang+1];
             if (opencardindex==0) cardlefttemp=[UIImage imageNamed:cardImageFileName];
             if (opencardindex==1) cardrighttemp=[UIImage imageNamed:cardImageFileName];
             opencardindex++;
@@ -189,29 +192,83 @@ opencard2 = @"3";
     
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player1") {
         player1status.backgroundColor=[UIColor greenColor];
-    }else {
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"FOLD") {
+        player1status.backgroundColor=[UIColor grayColor];
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"RAISE")
+    {
+        for (int temp=0; temp<10000; temp++) {
+             spielereins.text=@"RAISE";
+        }
+        spielereins.text=[[[GameController sharedInstance].playerList objectAtIndex:0] playerId];
+        
+       
+    }
+        else{
         player1status.backgroundColor=[UIColor yellowColor];
     }
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player2") {
         player2status.backgroundColor=[UIColor greenColor];
-    }else {
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"FOLD") {
+        player2status.backgroundColor=[UIColor grayColor];
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"RAISE")
+    {
+        for (int temp=0; temp<10000; temp++) {
+            spielerzwei.text=@"RAISE";
+        }
+        spielerzwei.text=[[[GameController sharedInstance].playerList objectAtIndex:1] playerId];
+    }
+    
+    else{
         player2status.backgroundColor=[UIColor yellowColor];
     }
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player3") {
         player3status.backgroundColor=[UIColor greenColor];
-    }else {
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"FOLD") {
+        player3status.backgroundColor=[UIColor grayColor];
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"RAISE")
+    {
+        for (int temp=0; temp<10000; temp++) {
+            spielerdrei.text=@"RAISE";
+        }
+        spielerdrei.text=[[[GameController sharedInstance].playerList objectAtIndex:2] playerId];
+    }
+    
+    else{
         player3status.backgroundColor=[UIColor yellowColor];
     }
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player4") {
         player4status.backgroundColor=[UIColor greenColor];
-    }else {
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"FOLD") {
+        player4status.backgroundColor=[UIColor grayColor];
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"RAISE")
+    {
+        for (int temp=0; temp<10000; temp++) {
+            spielervier.text=@"RAISE";
+        }
+        spielervier.text=[[[GameController sharedInstance].playerList objectAtIndex:3] playerId];
+    }
+    
+    
+    else{
         player4status.backgroundColor=[UIColor yellowColor];
     }
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player5") {
         player5status.backgroundColor=[UIColor greenColor];
-    }else {
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"FOLD") {
+        player5status.backgroundColor=[UIColor grayColor];
+    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"RAISE")
+    {
+        for (int temp=0; temp<10000; temp++) {
+            spielerfunf.text=@"RAISE";
+        }
+        spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
+    }
+    
+    else{
         player5status.backgroundColor=[UIColor yellowColor];
     }
+    
+    
 
 }
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -222,6 +279,11 @@ opencard2 = @"3";
  //   [myView setCanDraw:YES];
  //   [myView setActiveplayer:i];
  //   [myView setNeedsDisplay];
+    if(startpoint.x>150 && startpoint.x<250 &&startpoint.y>50 &&startpoint.y<110){
+        [[GameController sharedInstance] activateNextPlayer];
+
+    }
+    
     if (startpoint.x<170) {
         if (startpoint.y>60 && startpoint.y<160 && startpoint.x<110) {
             i=1;
@@ -241,7 +303,7 @@ opencard2 = @"3";
     for (int anfang=0; anfang<52; anfang++) {
 
         if ([[PackOfCards sharedInstance] whogotthecard:anfang]==1) {
-            NSString *cardImageFileName = [NSString stringWithFormat:@"%d.png", anfang];
+            NSString *cardImageFileName = [NSString stringWithFormat:@"%i.png", anfang+1];
             if (handcardindex==0) opencard1imageview.image=[UIImage imageNamed:cardImageFileName];
             if (handcardindex==1) opencard2imageview.image=[UIImage imageNamed:cardImageFileName];
             if (handcardindex==2) opencard3imageview.image=[UIImage imageNamed:cardImageFileName];
@@ -255,10 +317,11 @@ opencard2 = @"3";
     if ( [[GameController sharedInstance].activePlayer playerId]!=@"Player1" ) {
      
 
-     [self performSegueWithIdentifier:@"tobot" sender:nil];
+    [self performSegueWithIdentifier:@"tobot" sender:nil];
     }
 
 }
+
 
 int iba=1;
 int flipcardleft=1;
@@ -366,6 +429,7 @@ int canwin=0;
  
 
 //    Pot = nil;
+
     [super viewDidUnload];
   //  [myView setCanDraw:NO];
 

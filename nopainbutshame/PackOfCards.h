@@ -36,6 +36,7 @@
 - (int) givemeinfo:(int) i;
 - (int) whogotthecard:(int) i;
 - (void)initializePackOfCards;
+- (int)givemeinfo2:(int) i;
 - (void)initializeInfoAboutPackOfCards;
 - (int)distributeCard:(int) openCardOrPlayer;
 - (void)changeStatusOfCard:(int) distributedCardPos forWho: (int) openCardOrPlayer;

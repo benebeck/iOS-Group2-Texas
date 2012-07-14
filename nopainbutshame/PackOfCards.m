@@ -54,6 +54,8 @@ static PackOfCards *sharedInstance = nil;
     int suit;
     int cardValue;
     for(int i = 1; i < 53; i++){
+        recordInfoAboutPackOfCards[i-1][0]=0;
+        recordInfoAboutPackOfCards[i-1][1]=0;
         for(int j = 0; j < 2; j++){
             if(i % 13 == 0){
                 suit = i/13;
@@ -72,7 +74,12 @@ static PackOfCards *sharedInstance = nil;
         }
         
     }
-    
+    for (int i=0;i<52;i++) {
+        NSLog(@"die KArte:%i",i);
+        NSLog(@"%i",[[PackOfCards sharedInstance] whogotthecard:i]);
+        NSLog(@"%i",aPackOfCards[i][0]);
+    }
+  
 }
 
 /**
@@ -146,6 +153,9 @@ static PackOfCards *sharedInstance = nil;
 }
 - (int)whogotthecard:(int) i{
     return recordInfoAboutPackOfCards[i][1];
+}
+- (int)givemeinfo2:(int) i{
+    return aPackOfCards[i][1];
 }
 
 /***

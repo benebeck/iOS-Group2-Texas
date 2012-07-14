@@ -372,6 +372,44 @@
         <image name="ViewMultiplayerOpengame.png" width="322" height="482"/>
         <image name="ViewSingleplayer.png" width="322" height="482"/>
     </resources>
+    <classes>
+        <class className="IngameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IngameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="IAMDONE:"/>
+                <relationship kind="action" name="buttonToTriggerCircle:"/>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="outlet" name="Pot" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerdrei" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerdreistat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielereins" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielereinsstat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerfunf" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerfunfstat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielervier" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielervierstat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerzwei" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spielerzweistat" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="presentGCTurnViewController:"/>
+            </relationships>
+        </class>
+        <class className="botViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/botViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="player2stat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="player3stat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="player4stat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="player5stat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="totalmone" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -379,5 +417,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="tnK-1D-AKL"/>
+        <segue reference="OiG-h6-G1P"/>
     </inferredMetricsTieBreakers>
 </document>

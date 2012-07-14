@@ -66,7 +66,7 @@ static GameController *sharedInstance = nil;
 -(void)raisePlayers{
     self.betRoundNr=1;
     //dummy list
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(activateNextPlayer) userInfo:nil repeats:YES];
+ 
  
     NSMutableArray *list = [NSMutableArray arrayWithCapacity:5];
     
@@ -252,7 +252,12 @@ static GameController *sharedInstance = nil;
             [[PackOfCards sharedInstance] distributeCard:1];
             [[PackOfCards sharedInstance] distributeCard:1];
             [[PackOfCards sharedInstance] distributeCard:1];
-            
+            for (int i=0;i<52;i++) {
+                NSLog(@"die KArte:%i",i);
+                NSLog(@"%i",[[PackOfCards sharedInstance] whogotthecard:i]);
+                NSLog(@"%i",[[PackOfCards sharedInstance] givemeinfo2:i]);
+            }
+   
         }if (self.betRoundNr == 3){
           
             [[PackOfCards sharedInstance] distributeCard:1];
@@ -261,8 +266,11 @@ static GameController *sharedInstance = nil;
             [[PackOfCards sharedInstance] distributeCard:1];
         }
         if (self.betRoundNr == 5){
-            
-            
+            for (int i=0;i<52;i++) {
+                NSLog(@"die KArte:%i",i);
+                NSLog(@"%i",[[PackOfCards sharedInstance] whogotthecard:i]);
+                NSLog(@"%i",[[PackOfCards sharedInstance] givemeinfo2:i]);
+            }
 
             
             
@@ -272,45 +280,7 @@ static GameController *sharedInstance = nil;
             int spieler4karten[7][2];
             int spieler5karten[7][2];
             
-            if([[self. playerList objectAtIndex:0] playerState]==@"Fold")
-                                {
-                                    for (int j=0; j<7; j++) {
-                                            spieler1karten[j][0]=1;
-                                            spieler1karten[j][1]=(j+1)*2;
-                                    }
-                                }
-            
-            if([[self. playerList objectAtIndex:1] playerState]==@"Fold")
-            {
-                for (int j=0; j<7; j++) {
-                    spieler1karten[j][0]=1;
-                    spieler1karten[j][1]=((j+1)*2)+1;
-                }
-            }
-            
-            if([[self. playerList objectAtIndex:2] playerState]==@"Fold")
-            {
-                for (int j=0; j<7; j++) {
-                    spieler1karten[j][0]=1;
-                    spieler1karten[j][1]=(j+9)*2;
-                }
-            }
-            
-            if([[self. playerList objectAtIndex:3] playerState]==@"Fold")
-            {
-                for (int j=0; j<7; j++) {
-                    spieler1karten[j][0]=1;
-                    spieler1karten[j][1]=((j+9)*2)+1;
-                }
-            }
-            
-            if([[self. playerList objectAtIndex:4] playerState]==@"Fold")
-            {
-                for (int j=0; j<7; j++) {
-                    spieler1karten[j][0]=1;
-                    spieler1karten[j][1]=(j+17)*2;
-                }
-            }
+
             
             
             int temp11=0;
@@ -362,6 +332,49 @@ static GameController *sharedInstance = nil;
                 }
                 
             }
+            
+            if([[self. playerList objectAtIndex:0] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=(j+1)*2;
+                }
+            }
+            
+            if([[self. playerList objectAtIndex:1] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=((j+1)*2)+1;
+                }
+            }
+            
+            if([[self. playerList objectAtIndex:2] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=(j+9)*2;
+                }
+            }
+            
+            if([[self. playerList objectAtIndex:3] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=((j+9)*2)+1;
+                }
+            }
+            
+            if([[self. playerList objectAtIndex:4] playerState]==@"Fold")
+            {
+                for (int j=0; j<7; j++) {
+                    spieler1karten[j][0]=1;
+                    spieler1karten[j][1]=(j+17)*2;
+                }
+            }
+            
+            
+            
             
             NSMutableArray *comparelist = [NSMutableArray arrayWithCapacity:5];
             
@@ -444,7 +457,12 @@ static GameController *sharedInstance = nil;
                 }
             }
             
-                   
+            for (int i=0;i<52;i++) {
+                NSLog(@"die KArte:%i",i);
+                NSLog(@"%i",[[PackOfCards sharedInstance] whogotthecard:i]);
+                NSLog(@"%i",[[PackOfCards sharedInstance] givemeinfo2:i]);
+            }
+             
 
             NSLog(@"This was the DEALER'S turn");
         }else if (oldPlayer.betState == @"SMALL_BLIND") {

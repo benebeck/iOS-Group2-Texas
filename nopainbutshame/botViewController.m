@@ -39,7 +39,7 @@ PackOfCards * tempcards;
 {
     [super viewDidLoad];
     
-     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(callverdammt) userInfo:nil repeats:YES];
+     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(callverdammt) userInfo:nil repeats:YES];
 	// Do any additional setup after loading the view.
 }
 
@@ -62,6 +62,8 @@ PackOfCards * tempcards;
          entschlossenheit=1.3;
          aktiverspieler=3;
          [self hartgecodedesKI];
+         }else {
+             [[GameController sharedInstance] activateNextPlayer];
          }
     }
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player3") {
@@ -69,6 +71,8 @@ PackOfCards * tempcards;
             entschlossenheit=1.1;
             aktiverspieler=4;
             [self hartgecodedesKI];
+        }else {
+            [[GameController sharedInstance] activateNextPlayer];
         }
     }
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player4") {
@@ -76,6 +80,8 @@ PackOfCards * tempcards;
             entschlossenheit=0.9;
             aktiverspieler=5;
             [self hartgecodedesKI];
+        }else {
+            [[GameController sharedInstance] activateNextPlayer];
         }
    
     }
@@ -84,6 +90,8 @@ PackOfCards * tempcards;
             entschlossenheit=0.7;
             aktiverspieler=6;
             [self hartgecodedesKI];
+        }else {
+            [[GameController sharedInstance] activateNextPlayer];
         }
       
     }
@@ -101,7 +109,7 @@ PackOfCards * tempcards;
 }
 
 -(void)hartgecodedesKI{
-    float value =(rand() %100)/100.0;
+    for(int lol=0; lol<20; lol++){
     int temp2=0;
     bool underseven=true;
     NSLog(@"myfloat:%i",12/13);
@@ -156,7 +164,8 @@ PackOfCards * tempcards;
     }else if (result==[compare objectAtIndex:9]) {
         [[GameController sharedInstance] changePlayerState:@"FOLD" forPlayer:[[GameController sharedInstance] activePlayer]];
     }
-    
+    }
+    [[GameController sharedInstance] activateNextPlayer];
     
     // if ([result objectAtIndex:0]==compPair) {
     
