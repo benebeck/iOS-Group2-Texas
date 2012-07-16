@@ -182,6 +182,7 @@ opencard2 = @"3";
         }
     }
 	// Do any additional setup after loading the view, typically from a nib.
+    [[[[GameController sharedInstance] playerList] objectAtIndex:0] setMoneyRest:[[GameController sharedInstance] totalMoney]/5];
 }
 
 
@@ -189,6 +190,7 @@ opencard2 = @"3";
 
 -(void) statusupdate{
 
+    Pot.text=[NSString stringWithFormat:@"%i",[[GameController sharedInstance] pot]];
     
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player1") {
         player1status.backgroundColor=[UIColor greenColor];

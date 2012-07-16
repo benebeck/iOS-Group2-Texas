@@ -132,6 +132,7 @@ static GameController *sharedInstance = nil;
 
         //first player to start
         if (!self.activePlayer) {
+            
             self.activePlayer = [self.playerList objectAtIndex:0];
             [self startNewRound];
             //ACTIVATE PLAYERS !!!!!!!!!....
@@ -143,7 +144,7 @@ static GameController *sharedInstance = nil;
                     [self setWetthohe:0];
                 }
                 else {
-                    [self setPot:pot+wetthohe];
+                    [self setPot:pot+50];
                 }
            if([[self.playerList objectAtIndex:0] playerState]!=@"FOLD") [[self.playerList objectAtIndex:0] setPlayerState:@"INACTIVE"];
                   [self endOfTurntemp];
@@ -158,7 +159,7 @@ static GameController *sharedInstance = nil;
                     [self setWetthohe:0];
                 }
                 else {
-                    [self setPot:pot+wetthohe];
+                    [self setPot:pot+50];
                 }
              if([[self.playerList lastObject] playerState]!=@"FOLD")[[self.playerList lastObject] setPlayerState:@"INACTIVE"];
                 NSLog(@"dfdfdf%i",_totalMoney);
@@ -184,7 +185,7 @@ static GameController *sharedInstance = nil;
                             [self setWetthohe:0];
                         }
                         else {
-                            [self setPot:pot+wetthohe];
+                            [self setPot:pot+50];
                         }
                          if([[self.playerList objectAtIndex:index] playerState]!=@"FOLD")[[self.playerList objectAtIndex:index] setPlayerState:@"INACTIVE"];
                         

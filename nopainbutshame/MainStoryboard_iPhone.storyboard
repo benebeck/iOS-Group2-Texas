@@ -6,12 +6,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Spieleinstellungen-->
         <scene sceneID="DEk-vA-Cew">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-Ze-5QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="AXd-nC-7ay" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yly-Ol-vBM">
+                <viewController id="AXd-nC-7ay" customClass="spieleinstellungen" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yly-Ol-vBM" customClass="Spieleinstellungen">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -19,12 +19,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="245-ye-qod">
-                                <rect key="frame" x="157" y="390" width="138" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="brZ-DY-NM6">
-                                <rect key="frame" x="52" y="418" width="203" height="42"/>
+                                <rect key="frame" x="45" y="69" width="203" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -39,15 +35,53 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Los Gehts!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="vwq-rf-XSm">
-                                <rect key="frame" x="100" y="420" width="106" height="42"/>
+                                <rect key="frame" x="100" y="68" width="106" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="PSA-XY-pqg">
+                                <rect key="frame" x="93" y="265" width="207" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="100"/>
+                                    <segment title="200"/>
+                                    <segment title="500"/>
+                                    <segment title="1000"/>
+                                </segments>
+                                <connections>
+                                    <action selector="budgethohesetzen:" destination="AXd-nC-7ay" eventType="valueChanged" id="I9Z-Oc-Ouy"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Gtj-ey-euc">
+                                <rect key="frame" x="93" y="318" width="217" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                    <segment title=""/>
+                                    <segment title=""/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="uSI-o5-bI7">
+                                <rect key="frame" x="166" y="380" width="115" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="blindhohe" destination="Gtj-ey-euc" id="Fgf-gI-kZe"/>
+                        <outlet property="blindhohesetzen" destination="Gtj-ey-euc" id="T2f-yZ-Ek9"/>
+                        <outlet property="blindprorunden" destination="uSI-o5-bI7" id="kgE-VD-9Aj"/>
+                        <outlet property="blindprorundesetzen" destination="uSI-o5-bI7" id="sNK-gZ-RCq"/>
+                        <outlet property="budget" destination="PSA-XY-pqg" id="I0u-RE-IqK"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="-738" y="-473"/>
@@ -62,7 +96,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="38" id="y5s-Vo-EtM">
-                                <rect key="frame" x="51" y="83" width="183" height="49"/>
+                                <rect key="frame" x="138" y="76" width="183" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="39"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -372,44 +406,6 @@
         <image name="ViewMultiplayerOpengame.png" width="322" height="482"/>
         <image name="ViewSingleplayer.png" width="322" height="482"/>
     </resources>
-    <classes>
-        <class className="IngameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IngameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="IAMDONE:"/>
-                <relationship kind="action" name="buttonToTriggerCircle:"/>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="outlet" name="Pot" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerdrei" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerdreistat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielereins" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielereinsstat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerfunf" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerfunfstat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielervier" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielervierstat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerzwei" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerzweistat" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="presentGCTurnViewController:"/>
-            </relationships>
-        </class>
-        <class className="botViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/botViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="player2stat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="player3stat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="player4stat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="player5stat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="totalmone" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -417,6 +413,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="tnK-1D-AKL"/>
-        <segue reference="OiG-h6-G1P"/>
+        <segue reference="EgM-bF-txJ"/>
     </inferredMetricsTieBreakers>
 </document>
