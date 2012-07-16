@@ -253,12 +253,7 @@ static GameController *sharedInstance = nil;
             [[PackOfCards sharedInstance] distributeCard:1];
             [[PackOfCards sharedInstance] distributeCard:1];
             [[PackOfCards sharedInstance] distributeCard:1];
-            for (int i=0;i<52;i++) {
-                NSLog(@"die KArte:%i",i);
-                NSLog(@"%i",[[PackOfCards sharedInstance] whogotthecard:i]);
-                NSLog(@"%i",[[PackOfCards sharedInstance] givemeinfo2:i]);
-            }
-   
+              
         }if (self.betRoundNr == 3){
           
             [[PackOfCards sharedInstance] distributeCard:1];
@@ -267,11 +262,7 @@ static GameController *sharedInstance = nil;
             [[PackOfCards sharedInstance] distributeCard:1];
         }
         if (self.betRoundNr == 5){
-            for (int i=0;i<52;i++) {
-                NSLog(@"die KArte:%i",i);
-                NSLog(@"%i",[[PackOfCards sharedInstance] whogotthecard:i]);
-                NSLog(@"%i",[[PackOfCards sharedInstance] givemeinfo2:i]);
-            }
+ 
 
             
             
@@ -458,11 +449,7 @@ static GameController *sharedInstance = nil;
                 }
             }
             
-            for (int i=0;i<52;i++) {
-                NSLog(@"die KArte:%i",i);
-                NSLog(@"%i",[[PackOfCards sharedInstance] whogotthecard:i]);
-                NSLog(@"%i",[[PackOfCards sharedInstance] givemeinfo2:i]);
-            }
+  
              
 
             NSLog(@"This was the DEALER'S turn");

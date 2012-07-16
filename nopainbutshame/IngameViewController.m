@@ -168,7 +168,7 @@ opencard2 = @"3";
     [opencard5imageview setFrame:CGRectMake(430, 80, 40, 60)];
     [[self view]addSubview:opencard5imageview];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
 
     int opencardindex=0;
    
@@ -198,7 +198,7 @@ opencard2 = @"3";
         player1status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<10000; temp++) {
+        for (int temp=0; temp<1000000; temp++) {
              spielereins.text=@"RAISE";
         }
         spielereins.text=[[[GameController sharedInstance].playerList objectAtIndex:0] playerId];
@@ -214,7 +214,7 @@ opencard2 = @"3";
         player2status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<10000; temp++) {
+        for (int temp=0; temp<1000000; temp++) {
             spielerzwei.text=@"RAISE";
         }
         spielerzwei.text=[[[GameController sharedInstance].playerList objectAtIndex:1] playerId];
@@ -229,7 +229,7 @@ opencard2 = @"3";
         player3status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<10000; temp++) {
+        for (int temp=0; temp<1000000; temp++) {
             spielerdrei.text=@"RAISE";
         }
         spielerdrei.text=[[[GameController sharedInstance].playerList objectAtIndex:2] playerId];
@@ -244,7 +244,7 @@ opencard2 = @"3";
         player4status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<10000; temp++) {
+        for (int temp=0; temp<1000000; temp++) {
             spielervier.text=@"RAISE";
         }
         spielervier.text=[[[GameController sharedInstance].playerList objectAtIndex:3] playerId];
@@ -260,7 +260,7 @@ opencard2 = @"3";
         player5status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<10000; temp++) {
+        for (int temp=0; temp<1000000; temp++) {
             spielerfunf.text=@"RAISE";
         }
         spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
@@ -306,7 +306,10 @@ opencard2 = @"3";
 
         if ([[PackOfCards sharedInstance] whogotthecard:anfang]==1) {
             NSString *cardImageFileName = [NSString stringWithFormat:@"%i.png", anfang+1];
-            if (handcardindex==0) opencard1imageview.image=[UIImage imageNamed:cardImageFileName];
+            if (handcardindex==0) opencard1imageview.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i.png", anfang+1]];
+            
+            NSLog(@"%@",cardImageFileName);
+            NSLog(@"%i",anfang);
             if (handcardindex==1) opencard2imageview.image=[UIImage imageNamed:cardImageFileName];
             if (handcardindex==2) opencard3imageview.image=[UIImage imageNamed:cardImageFileName];
             if (handcardindex==3) opencard4imageview.image=[UIImage imageNamed:cardImageFileName];

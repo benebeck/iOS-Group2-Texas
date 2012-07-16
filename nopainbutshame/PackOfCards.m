@@ -74,11 +74,7 @@ static PackOfCards *sharedInstance = nil;
         }
         
     }
-    for (int i=0;i<52;i++) {
-        NSLog(@"die KArte:%i",i);
-        NSLog(@"%i",[[PackOfCards sharedInstance] whogotthecard:i]);
-        NSLog(@"%i",aPackOfCards[i][0]);
-    }
+
   
 }
 
@@ -283,8 +279,8 @@ static PackOfCards *sharedInstance = nil;
     
     NSDictionary* hallo=[self bestFiveCardsCombination:eraysarray];
     NSArray* result;
-    for (id key in hallo) {
-        NSLog(@"key: %@, value: %@", key, [hallo objectForKey:key]);
+   for (id key in hallo) {
+//        NSLog(@"key: %@, value: %@", key, [hallo objectForKey:key]);
         result=key;
       //  NSLog(@"key:%@",key );
         

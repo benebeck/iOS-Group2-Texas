@@ -112,7 +112,7 @@ PackOfCards * tempcards;
     for(int lol=0; lol<20; lol++){
     int temp2=0;
     bool underseven=true;
-    NSLog(@"myfloat:%i",12/13);
+  //  NSLog(@"myfloat:%i",12/13);
     for (int temp1=0; temp1<52; temp1++) {
 
         if([[PackOfCards sharedInstance] whogotthecard:temp1]==aktiverspieler || [[PackOfCards sharedInstance] whogotthecard:temp1]==1){
