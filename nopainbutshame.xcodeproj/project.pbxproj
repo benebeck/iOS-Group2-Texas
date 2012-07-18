@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		10997A1515874D8E00895DBE /* PackOfCards.m in Sources */ = {isa = PBXBuildFile; fileRef = 10997A1415874D8E00895DBE /* PackOfCards.m */; };
 		10F1130915A6545300FE1D1E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 10F1130815A6545300FE1D1E /* icon.png */; };
+		17457F1615B6ADDB00035FAD /* pokertisch.png in Resources */ = {isa = PBXBuildFile; fileRef = 17457F1515B6ADDA00035FAD /* pokertisch.png */; };
 		7408493C15B4564200E3A0FF /* spieleinstellungen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408493B15B4564200E3A0FF /* spieleinstellungen.m */; };
 		741C3E9E1579181C0085C97E /* 1_Singleplayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 741C3E9D1579181C0085C97E /* 1_Singleplayer.png */; };
 		741C7A92155E70210056AF55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A91155E70210056AF55 /* UIKit.framework */; };
@@ -115,6 +116,7 @@
 		10997A1315874D8E00895DBE /* PackOfCards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackOfCards.h; sourceTree = "<group>"; };
 		10997A1415874D8E00895DBE /* PackOfCards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackOfCards.m; sourceTree = "<group>"; };
 		10F1130815A6545300FE1D1E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		17457F1515B6ADDA00035FAD /* pokertisch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pokertisch.png; sourceTree = "<group>"; };
 		7408493A15B4564200E3A0FF /* spieleinstellungen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spieleinstellungen.h; sourceTree = "<group>"; };
 		7408493B15B4564200E3A0FF /* spieleinstellungen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spieleinstellungen.m; sourceTree = "<group>"; };
 		741C3E9D1579181C0085C97E /* 1_Singleplayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_Singleplayer.png; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		741C7A98155E70210056AF55 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				17457F1515B6ADDA00035FAD /* pokertisch.png */,
 				10F1130815A6545300FE1D1E /* icon.png */,
 				747ED21E15A1EBDF00F8F7CA /* slidetofold.png */,
 				74BDD7171593A79D00944FC8 /* backofcards */,
@@ -563,6 +566,7 @@
 				74A6181B15B48BBE001F3C25 /* 50.png in Resources */,
 				74A6181C15B48BBE001F3C25 /* 51.png in Resources */,
 				74A6181D15B48BBE001F3C25 /* 52.png in Resources */,
+				17457F1615B6ADDB00035FAD /* pokertisch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

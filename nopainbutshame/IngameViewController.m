@@ -47,125 +47,130 @@ opencard2 = @"3";
  
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(binichdran) userInfo:nil repeats:YES];
     
+    myChip50Center = CGPointMake(105, 215);
+    myChip100Center = CGPointMake(165, 215);
+    
     chip50image =[UIImage imageNamed:@"pokerchip50.png"];
     mychip50=[[UIImageView alloc] initWithImage:chip50image];
-    [mychip50 setFrame:CGRectMake(0, 90, 110, 110)];
+    [mychip50 setFrame:CGRectMake(80, 190, 50, 50)];
     [[self view]addSubview:mychip50];
     
     chip100image =[UIImage imageNamed:@"pokerchip100.png"];
     mychip100=[[UIImageView alloc] initWithImage:chip100image];
-    [mychip100 setFrame:CGRectMake(70, 190, 110, 110)];
+    [mychip100 setFrame:CGRectMake(140, 190, 50, 50)];
     [[self view]addSubview:mychip100];
     
     tempimage =[UIImage imageNamed:@"slidetofold.png"];
     slidetofold=[[UIImageView alloc] initWithImage:tempimage];
-    [slidetofold setFrame:CGRectMake(330, 100, 150, 50)];
+    [slidetofold setFrame:CGRectMake(280, 130, 150, 50)];
     [self.view addSubview:slidetofold];
     
-    spielereins=[[UILabel alloc] initWithFrame:CGRectMake(33, 38, 140, 30)];
+    CGFloat nameSize = 18;
+    
+    spielereins=[[UILabel alloc] initWithFrame:CGRectMake(5, 50, 140, 30)];
     [self.view addSubview:spielereins];
     [spielereins setBackgroundColor:[UIColor clearColor]];
-    spielereins.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielereins setTextColor:[UIColor greenColor]];
+    spielereins.font = [UIFont fontWithName:@"Arial" size:nameSize];
+    [spielereins setTextColor:[UIColor whiteColor]];
     spielereins.text=[[[GameController sharedInstance].playerList objectAtIndex:0] playerId];
 
-    spielerzwei=[[UILabel alloc] initWithFrame:CGRectMake(128, 3, 140, 30)];
+    spielerzwei=[[UILabel alloc] initWithFrame:CGRectMake(50, 0, 140, 30)];
     [self.view addSubview:spielerzwei];
     [spielerzwei setBackgroundColor:[UIColor clearColor]];
-    spielerzwei.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerzwei setTextColor:[UIColor greenColor]];
+    spielerzwei.font = [UIFont fontWithName:@"Arial" size:nameSize];
+    [spielerzwei setTextColor:[UIColor whiteColor]];
     spielerzwei.text=[[[GameController sharedInstance].playerList objectAtIndex:1] playerId];
     
-    spielerdrei=[[UILabel alloc] initWithFrame:CGRectMake(193, 38, 140, 30)];
+    spielerdrei=[[UILabel alloc] initWithFrame:CGRectMake(193, 0, 140, 30)];
     [self.view addSubview:spielerdrei];
     [spielerdrei setBackgroundColor:[UIColor clearColor]];
-    spielerdrei.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerdrei setTextColor:[UIColor greenColor]];
+    spielerdrei.font = [UIFont fontWithName:@"Arial" size:nameSize];
+    [spielerdrei setTextColor:[UIColor whiteColor]];
     spielerdrei.text=[[[GameController sharedInstance].playerList objectAtIndex:2] playerId];
     
-    spielervier=[[UILabel alloc] initWithFrame:CGRectMake(298, 3, 140, 30)];
+    spielervier=[[UILabel alloc] initWithFrame:CGRectMake(370, 00, 140, 30)];
     [self.view addSubview:spielervier];
     [spielervier setBackgroundColor:[UIColor clearColor]];
-    spielervier.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielervier setTextColor:[UIColor greenColor]];
+    spielervier.font = [UIFont fontWithName:@"Arial" size:nameSize];
+    [spielervier setTextColor:[UIColor whiteColor]];
     spielervier.text=[[[GameController sharedInstance].playerList objectAtIndex:3] playerId];
     
-    spielerfunf=[[UILabel alloc] initWithFrame:CGRectMake(348, 38, 140, 30)];
+    spielerfunf=[[UILabel alloc] initWithFrame:CGRectMake(415.0, 50, 140, 30)];
     [self.view addSubview:spielerfunf];
     [spielerfunf setBackgroundColor:[UIColor clearColor]];
-    spielerfunf.font = [UIFont fontWithName:@"Arial" size:28];
-    [spielerfunf setTextColor:[UIColor greenColor]];
+    spielerfunf.font = [UIFont fontWithName:@"Arial" size:nameSize];
+    [spielerfunf setTextColor:[UIColor whiteColor]];
     spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
    
     
     
-    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(33, 100, 140, 30)];
+    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(100, 150, 140, 30)];
     [self.view addSubview:spielereinsstat];
     [spielereinsstat setBackgroundColor:[UIColor clearColor]];
-    spielereinsstat.font = [UIFont fontWithName:@"Arial" size:28];
+    spielereinsstat.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielereinsstat setTextColor:[UIColor whiteColor]];
-    spielereinsstat.text=[NSString stringWithFormat:@"Totalmoney:%i", [GameController sharedInstance].totalMoney];
+    spielereinsstat.text=[NSString stringWithFormat:@"Stack:%i", [GameController sharedInstance].totalMoney];
 
     
     backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsleft=[[UIImageView alloc] initWithImage:backofcardsleft1];
-    [backofcardsleft setFrame:CGRectMake(210, 170, 120, 176)];
+    [backofcardsleft setFrame:CGRectMake(230, 180, 60, 88)];
     [[self view]addSubview:backofcardsleft];
 
     backofcardsright1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsright=[[UIImageView alloc] initWithImage:backofcardsright1];
-    [backofcardsright setFrame:CGRectMake(340, 170, 120, 176)];
+    [backofcardsright setFrame:CGRectMake(300, 180, 60, 88)];
     [[self view]addSubview:backofcardsright];
     
 
-    player1status=[[UIView alloc]initWithFrame:CGRectMake(13, 43, 20, 20)];
+    player1status=[[UIView alloc]initWithFrame:CGRectMake(5, 80, 20, 20)];
     player1status.backgroundColor=[UIColor redColor];
     player1status.layer.cornerRadius=10;
     [self.view addSubview:player1status];
 
-    player2status=[[UIView alloc]initWithFrame:CGRectMake(108, 5, 20, 20)];
+    player2status=[[UIView alloc]initWithFrame:CGRectMake(85, 25, 20, 20)];
     player2status.backgroundColor=[UIColor yellowColor];
     player2status.layer.cornerRadius=10;
     [self.view addSubview:player2status];
     
-    player3status=[[UIView alloc]initWithFrame:CGRectMake(173, 43, 20, 20)];
+    player3status=[[UIView alloc]initWithFrame:CGRectMake(265, 5, 20, 20)];
     player3status.backgroundColor=[UIColor greenColor];
     player3status.layer.cornerRadius=10;
     [self.view addSubview:player3status];
     
-    player4status=[[UIView alloc]initWithFrame:CGRectMake(278, 5, 20, 20)];
+    player4status=[[UIView alloc]initWithFrame:CGRectMake(375, 25, 20, 20)];
     player4status.backgroundColor=[UIColor yellowColor];
     player4status.layer.cornerRadius=10;
     [self.view addSubview:player4status];
     
-    player5status=[[UIView alloc]initWithFrame:CGRectMake(328, 43, 20, 20)];
+    player5status=[[UIView alloc]initWithFrame:CGRectMake(450, 80, 20, 20)];
     player5status.backgroundColor=[UIColor yellowColor];
     player5status.layer.cornerRadius=10;
     [self.view addSubview:player5status];
     
    
     opencard1imageview=[[UIImageView alloc] init];
-    [opencard1imageview setFrame:CGRectMake(250, 80, 40, 60)];
+    [opencard1imageview setFrame:CGRectMake(205, 80, 40, 60)];
     [[self view]addSubview:opencard1imageview];
     
  
     opencard2imageview=[[UIImageView alloc] init];
-    [opencard2imageview setFrame:CGRectMake(295, 80, 40, 60)];
+    [opencard2imageview setFrame:CGRectMake(250, 80, 40, 60)];
     [[self view]addSubview:opencard2imageview];
     
     
     opencard3imageview=[[UIImageView alloc] init];
-    [opencard3imageview setFrame:CGRectMake(340, 80, 40, 60)];
+    [opencard3imageview setFrame:CGRectMake(295, 80, 40, 60)];
     [[self view]addSubview:opencard3imageview];
     
    
     opencard4imageview=[[UIImageView alloc] init];
-    [opencard4imageview setFrame:CGRectMake(385, 80, 40, 60)];
+    [opencard4imageview setFrame:CGRectMake(340, 80, 40, 60)];
     [[self view]addSubview:opencard4imageview];
     
     
     opencard5imageview=[[UIImageView alloc] init];
-    [opencard5imageview setFrame:CGRectMake(430, 80, 40, 60)];
+    [opencard5imageview setFrame:CGRectMake(385, 80, 40, 60)];
     [[self view]addSubview:opencard5imageview];
     
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
@@ -286,16 +291,17 @@ opencard2 = @"3";
 
     }
     
-    if (startpoint.x<170) {
-        if (startpoint.y>60 && startpoint.y<160 && startpoint.x<110) {
-            i=1;
-        } else {
-            if (startpoint.y>189 && startpoint.y<320 && startpoint.x>69) i=2;
-            else {
-                i=0;
-            }
-        }
-    } 
+    if ((startpoint.x < mychip50.center.x + 20.0 && startpoint.x > mychip50.center.x - 20.0) &&
+        (startpoint.y < mychip50.center.y + 20.0 && startpoint.y > mychip50.center.y - 20.0)) {
+            coinStuff=1;
+    }
+    else if ((startpoint.x < mychip100.center.x + 20.0 && startpoint.x > mychip100.center.x - 20.0) &&
+            (startpoint.y < mychip100.center.y + 20.0 && startpoint.y > mychip100.center.y - 20.0)) {
+            coinStuff=2;
+    }
+    else {
+        coinStuff= 0;
+    }
 }
 
 
@@ -341,8 +347,8 @@ int canwin=0;
     CGPoint locationInView = [recognizer locationInView:self.view];
  //   NSLog(@"lol:,%i",locationInView.x);
     
-    if(i==1)mychip50.center = locationInView;
-    if(i==2)mychip100.center = locationInView;
+    if(coinStuff==1)mychip50.center = locationInView;
+    if(coinStuff==2)mychip100.center = locationInView;
     
     if (startpoint.x>380&&locationInView.x>380) {
         backofcardsleft.image=[UIImage imageNamed:@"backofcards"];
@@ -374,7 +380,7 @@ int canwin=0;
         backofcardsright.image=cardrighttemp;
         flipcardleft=1;
         flipcardback=1;
-        NSLog(@"zweig4,%i",flipcardleft);
+        //NSLog(@"zweig4,%i",flipcardleft);
        // int playerIDint=[playerid intValue];
         
         
@@ -398,14 +404,14 @@ int canwin=0;
   
         if ( magnitude>1000 &&  [[GameController sharedInstance].activePlayer playerId]==@"Player1") {
             CGPoint finalpoint = CGPointMake(recognizer.view.center.x, recognizer.view.center.y+(velocity.y*slidefactor));
-            if(i==1){
+            if(coinStuff==1){
             [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip50.frame=CGRectMake(mychip50.frame.origin.x, finalpoint.y, mychip50.frame.size.width, mychip50.frame.size.height);} completion:nil];
             //    [ chooseBet:50];
                 
              [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
          
             }
-            if(i==2){
+            if(coinStuff==2){
                 [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip100.frame=CGRectMake(mychip100.frame.origin.x, finalpoint.y, mychip100.frame.size.width, mychip100.frame.size.height);} completion:nil];
           //      [player chooseBet:100];
                 
@@ -416,9 +422,9 @@ int canwin=0;
             iba++;
         }   
             else {
-            if(i==1)mychip50.center=CGPointMake(55, 145);
-            if(i==2)mychip100.center=CGPointMake(125, 245);
-            i=0;
+                if(coinStuff==1)mychip50.center=myChip50Center;
+                if(coinStuff==2)mychip100.center=myChip100Center;
+            coinStuff=0;
                 
             }
     }

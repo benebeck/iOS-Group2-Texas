@@ -34,6 +34,10 @@
     UIImageView *mychip50;
     UIImageView *mychip502;
     UIImageView *mychip100;
+    
+    CGPoint myChip50Center;
+    CGPoint myChip100Center;
+    
     UIImageView *backofcardsleft;
     UIImageView *backofcardsright;
     UIImageView *slidetofold;
@@ -79,7 +83,7 @@
   
   
 
-    int i;
+    int coinStuff;
     CGPoint *point;
    
   
