@@ -316,7 +316,7 @@ opencard2 = @"3";
             if (handcardindex==4) opencard5imageview.image=[UIImage imageNamed:cardImageFileName];
             handcardindex++;
         }
-        
+        NSLog(@"NACH SCHLEIFE");
     }
    
     if ( [[GameController sharedInstance].activePlayer playerId]!=@"Player1" ) {
