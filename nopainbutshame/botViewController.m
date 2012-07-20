@@ -102,9 +102,9 @@ PackOfCards * tempcards;
     
     totalmone.text=[NSString stringWithFormat:@"%i",hallo];
  
-    if ( [[GameController sharedInstance].activePlayer playerId]==@"Player1" ) {
+
        [self performSegueWithIdentifier:@"toplayer" sender:nil];
-    }
+    
 
 }
 
@@ -145,24 +145,32 @@ PackOfCards * tempcards;
   
     if(result==[compare objectAtIndex:0]){
       [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }else if (result==[compare objectAtIndex:1]) {
         [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }else if (result==[compare objectAtIndex:2]) {
         [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance] activePlayer]];
     }else if (result==[compare objectAtIndex:3]) {
         [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }else if (result==[compare objectAtIndex:4]) {
         [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }else if (result==[compare objectAtIndex:5]) {
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }else if (result==[compare objectAtIndex:6]) {
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }else if (result==[compare objectAtIndex:7]) {
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }else if (result==[compare objectAtIndex:8]) {
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance] activePlayer]];
     }else if (result==[compare objectAtIndex:9]) {
         [[GameController sharedInstance] changePlayerState:@"FOLD" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }
     }
     [[GameController sharedInstance] activateNextPlayer];

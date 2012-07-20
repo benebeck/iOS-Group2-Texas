@@ -7,6 +7,7 @@
 //
 
 #import "IngameViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface IngameViewController ()
 
@@ -19,6 +20,7 @@ CGPoint startpoint;
 UIImage *cardlefttemp;
 UIImage *cardrighttemp;
 int duhast5sek=5;
+bool foldmaybe;
 
 - (void)viewDidLoad
 {
@@ -194,7 +196,8 @@ opencard2 = @"3";
 
 
 -(void) statusupdate{
-
+mychip50.center=myChip50Center;
+    mychip100.center=myChip100Center;
     Pot.text=[NSString stringWithFormat:@"%i",[[GameController sharedInstance] pot]];
     
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player1") {
@@ -282,10 +285,18 @@ opencard2 = @"3";
    //this is a comment
     UITouch *betouched = [touches anyObject];
     startpoint = [betouched locationInView:self.view];
- 
- //   [myView setCanDraw:YES];
- //   [myView setActiveplayer:i];
- //   [myView setNeedsDisplay];
+
+    if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"FOLD") {
+        
+    
+    if ((startpoint.x < 480 && startpoint.x > 330) &&
+        (startpoint.y < 150 && startpoint.y > 100)) {
+        foldmaybe=true;
+    }else {
+        foldmaybe=false;
+    }
+    
+    
     if(startpoint.x>150 && startpoint.x<250 &&startpoint.y>50 &&startpoint.y<110){
         [[GameController sharedInstance] activateNextPlayer];
 
@@ -302,6 +313,8 @@ opencard2 = @"3";
     else {
         coinStuff= 0;
     }
+        }
+    
 }
 
 
@@ -322,7 +335,8 @@ opencard2 = @"3";
             if (handcardindex==4) opencard5imageview.image=[UIImage imageNamed:cardImageFileName];
             handcardindex++;
         }
-        NSLog(@"NACH SCHLEIFE");
+      
+        
     }
    
     if ( [[GameController sharedInstance].activePlayer playerId]!=@"Player1" ) {
@@ -342,7 +356,7 @@ int canwin=0;
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer{
     
     
-    
+if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"FOLD") {
    
     CGPoint locationInView = [recognizer locationInView:self.view];
  //   NSLog(@"lol:,%i",locationInView.x);
@@ -356,7 +370,7 @@ int canwin=0;
    //     NSLog(@"zweig1,%i",flipcardleft);
         flipcardleft=1;
     }
-    
+     
     if (locationInView.x<381 && locationInView.x>280 && flipcardleft==1) {
         backofcardsleft.image=[UIImage imageNamed:@"backofcardslinks"];
         backofcardsright.image=[UIImage imageNamed:@"backofcardsrechts"];
@@ -384,7 +398,7 @@ int canwin=0;
        // int playerIDint=[playerid intValue];
         
         
-        
+}
         
     }
   
@@ -400,6 +414,34 @@ int canwin=0;
         CGFloat magnitude= sqrtf(1+(velocity.y* velocity.y));
         CGFloat slideMult= magnitude /1000;
         float slidefactor = 0.2 * slideMult;
+        
+        
+        if (foldmaybe==true&&[[[GameController sharedInstance] activePlayer] playerId]==@"Player1")
+        {
+            [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ backofcardsleft.frame=CGRectMake(backofcardsleft.frame.origin.x, 100, backofcardsleft.frame.size.width/1.5, backofcardsleft.frame.size.height/1.5);} completion:nil];
+            
+                        [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ backofcardsright.frame=CGRectMake(backofcardsright.frame.origin.x-60, 100, backofcardsright.frame.size.width/1.5, backofcardsright.frame.size.height/1.5);} completion:nil];
+            
+            CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+            animation2.fromValue = [NSNumber numberWithFloat:0.0f];
+            animation2.toValue = [NSNumber numberWithFloat: 22.2];
+            animation2.duration = 1.0f;
+            [backofcardsright.layer addAnimation:animation2 forKey:@"MyAnimation"];
+               
+            
+            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+            animation.fromValue = [NSNumber numberWithFloat:0.0f];
+            animation.toValue = [NSNumber numberWithFloat: 32.2];
+            animation.duration = 1.2f;
+            [backofcardsleft.layer addAnimation:animation forKey:@"MyAnimation"];
+
+            
+                [[GameController sharedInstance] changePlayerState:@"FOLD" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+            foldmaybe=false;
+            
+        }else {
+            foldmaybe=false;
+        }
         
   
         if ( magnitude>1000 &&  [[GameController sharedInstance].activePlayer playerId]==@"Player1") {
@@ -418,7 +460,7 @@ int canwin=0;
                        [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
                 //   Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
             }
-          //  [self performSegueWithIdentifier:@"onetosecond" sender:nil];
+       coinStuff=0;
             iba++;
         }   
             else {
