@@ -206,9 +206,9 @@ mychip50.center=myChip50Center;
         player1status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<1000000; temp++) {
+       
              spielereins.text=@"RAISE";
-        }
+            sleep(4);
         spielereins.text=[[[GameController sharedInstance].playerList objectAtIndex:0] playerId];
         
        
@@ -222,9 +222,9 @@ mychip50.center=myChip50Center;
         player2status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<1000000; temp++) {
+       
             spielerzwei.text=@"RAISE";
-        }
+        sleep(4);
         spielerzwei.text=[[[GameController sharedInstance].playerList objectAtIndex:1] playerId];
     }
     
@@ -237,9 +237,9 @@ mychip50.center=myChip50Center;
         player3status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<1000000; temp++) {
+        
             spielerdrei.text=@"RAISE";
-        }
+        sleep(4);
         spielerdrei.text=[[[GameController sharedInstance].playerList objectAtIndex:2] playerId];
     }
     
@@ -252,9 +252,9 @@ mychip50.center=myChip50Center;
         player4status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<1000000; temp++) {
+        
             spielervier.text=@"RAISE";
-        }
+            sleep(4);
         spielervier.text=[[[GameController sharedInstance].playerList objectAtIndex:3] playerId];
     }
     
@@ -268,9 +268,9 @@ mychip50.center=myChip50Center;
         player5status.backgroundColor=[UIColor grayColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"RAISE")
     {
-        for (int temp=0; temp<1000000; temp++) {
+        
             spielerfunf.text=@"RAISE";
-        }
+        sleep(4);
         spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
     }
     
