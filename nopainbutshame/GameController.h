@@ -24,7 +24,7 @@
 @property (nonatomic) int betRoundNr;
 @property (nonatomic, strong) Player *player;
 @property (nonatomic, weak) Player *dealer;
-
+@property   NSMutableArray *dumm;
 //sollten wir die hier nicht auch nonatomic machen?
 @property             int pot;
 @property             int wetthohe;
