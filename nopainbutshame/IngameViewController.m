@@ -327,8 +327,6 @@ mychip50.center=myChip50Center;
             NSString *cardImageFileName = [NSString stringWithFormat:@"%i.png", anfang+1];
             if (handcardindex==0) opencard1imageview.image=[UIImage imageNamed:[NSString stringWithFormat:@"%i.png", anfang+1]];
             
-            NSLog(@"%@",cardImageFileName);
-            NSLog(@"%i",anfang);
             if (handcardindex==1) opencard2imageview.image=[UIImage imageNamed:cardImageFileName];
             if (handcardindex==2) opencard3imageview.image=[UIImage imageNamed:cardImageFileName];
             if (handcardindex==3) opencard4imageview.image=[UIImage imageNamed:cardImageFileName];
