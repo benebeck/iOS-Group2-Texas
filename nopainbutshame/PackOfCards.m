@@ -137,6 +137,11 @@ static PackOfCards *sharedInstance = nil;
     recordInfoAboutPackOfCards[distributedCardPos][0]=1;
     recordInfoAboutPackOfCards[distributedCardPos][1]=openCardOrPlayer;
 }
+- (void)resetStatusOfCard:(int) distributedCardPos forWho:(int)openCardOrPlayer{
+    recordInfoAboutPackOfCards[distributedCardPos][0]=0;
+    recordInfoAboutPackOfCards[distributedCardPos][1]=openCardOrPlayer;
+}
+
 
 
 /**

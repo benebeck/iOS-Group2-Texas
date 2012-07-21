@@ -11,7 +11,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-Ze-5QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="AXd-nC-7ay" customClass="spieleinstellungen" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yly-Ol-vBM" customClass="Spieleinstellungen">
+                    <view key="view" contentMode="scaleToFill" id="yly-Ol-vBM">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -31,7 +31,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3o3-SD-lDY" kind="modal" id="EgM-bF-txJ"/>
+                                    <action selector="Losgehts:" destination="AXd-nC-7ay" eventType="touchUpInside" id="7Ft-48-dJm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Los Gehts!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="vwq-rf-XSm">
@@ -72,6 +72,66 @@
                                     <segment title="Second"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="43P-Ng-12S">
+                                <rect key="frame" x="26" y="197" width="18" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setzegegner1:" destination="AXd-nC-7ay" eventType="touchUpInside" id="qcQ-k7-Zb4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="iCv-va-1CE">
+                                <rect key="frame" x="107" y="196" width="18" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setzegegner2:" destination="AXd-nC-7ay" eventType="touchUpInside" id="4vt-pD-PJM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="6Yp-PV-CB7">
+                                <rect key="frame" x="187" y="197" width="18" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setzegegner3:" destination="AXd-nC-7ay" eventType="touchUpInside" id="Zob-Ke-wwo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="OUG-2R-ZPr">
+                                <rect key="frame" x="265" y="197" width="18" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setzegegner4:" destination="AXd-nC-7ay" eventType="touchUpInside" id="4cC-f1-5Vb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -81,6 +141,8 @@
                         <outlet property="blindprorunden" destination="uSI-o5-bI7" id="kgE-VD-9Aj"/>
                         <outlet property="blindprorundesetzen" destination="uSI-o5-bI7" id="sNK-gZ-RCq"/>
                         <outlet property="budget" destination="PSA-XY-pqg" id="I0u-RE-IqK"/>
+                        <outlet property="gegner1" destination="cSI-Xn-Ffe" id="goU-H6-cju"/>
+                        <segue destination="3o3-SD-lDY" kind="modal" identifier="losgehts" id="eWj-UO-0Ts"/>
                     </connections>
                 </viewController>
             </objects>
@@ -409,57 +471,8 @@
         <image name="ViewMultiplayerLobby.png" width="322" height="482"/>
         <image name="ViewMultiplayerOpengame.png" width="322" height="482"/>
         <image name="ViewSingleplayer.png" width="322" height="482"/>
-        <image name="pokertisch.png" width="640" height="400"/>
+        <image name="pokertisch.png" width="320" height="200"/>
     </resources>
-    <classes>
-        <class className="IngameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IngameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="IAMDONE:"/>
-                <relationship kind="action" name="buttonToTriggerCircle:"/>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="outlet" name="Pot" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerdrei" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerdreistat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielereins" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielereinsstat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerfunf" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerfunfstat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielervier" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielervierstat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerzwei" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spielerzweistat" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="presentGCTurnViewController:"/>
-            </relationships>
-        </class>
-        <class className="botViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/botViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="player2stat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="player3stat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="player4stat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="player5stat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="totalmone" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="spieleinstellungen" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/spieleinstellungen.h"/>
-            <relationships>
-                <relationship kind="action" name="budgethohesetzen:"/>
-                <relationship kind="outlet" name="blindhohe" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="blindhohesetzen" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="blindprorunden" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="blindprorundesetzen" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="budget" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -467,6 +480,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="tnK-1D-AKL"/>
-        <segue reference="EgM-bF-txJ"/>
+        <segue reference="eWj-UO-0Ts"/>
     </inferredMetricsTieBreakers>
 </document>

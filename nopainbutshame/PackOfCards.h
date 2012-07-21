@@ -40,6 +40,7 @@
 - (void)initializeInfoAboutPackOfCards;
 - (int)distributeCard:(int) openCardOrPlayer;
 - (void)changeStatusOfCard:(int) distributedCardPos forWho: (int) openCardOrPlayer;
+- (void)resetStatusOfCard:(int) distributedCardPos forWho: (int) openCardOrPlayer;
 - (NSArray *)erayscheck:(int[][2]) erayslist;
 //- (void)showOwnTwoCardsOfHand;  
 -(NSArray *)showdownComparison:(NSDictionary *) cardsOfPlayer_1 compareWith: (NSDictionary *) cardsOfPlayer_2;

@@ -16,5 +16,14 @@
 - (IBAction)budgethohesetzen:(id)sender;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *blindhohesetzen;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *blindprorundesetzen;
+@property (strong, nonatomic) IBOutlet UIImageView *gegner1;
+- (IBAction)setzegegner1:(id)sender;
+@property int MaxPlayers;
+- (IBAction)Losgehts:(id)sender;
+@property int TotalMoney;
+- (IBAction)setzegegner2:(id)sender;
+- (IBAction)setzegegner3:(id)sender;
+- (IBAction)setzegegner4:(id)sender;
+
 
 @end

@@ -39,22 +39,23 @@ int endofturntemp=5;
  */
 
 static GameController *sharedInstance = nil;
+IngameViewController *ingame;
+
 +(GameController *) sharedInstance {
     if (!sharedInstance){
         sharedInstance = [[GameController alloc] init];
         
-        //hardcoded dummy values
-        sharedInstance.maxPlayers = 5;
-        sharedInstance.totalMoney = 1000;
-        sharedInstance.smallBlind = 5;
-        sharedInstance.bigBlind = 10;
-        sharedInstance.betRoundNr = 1;
+   //hardcoded dummy values
+   //     sharedInstance.maxPlayers = 5;
+   //     sharedInstance.totalMoney = 1000;
+       sharedInstance.smallBlind = 5;
+       sharedInstance.bigBlind = 10;
+   //     sharedInstance.betRoundNr = 1;
        // NSLog(@"GameControl is up...");
     }
     //hardcoded dummy values
     
-    sharedInstance.maxPlayers = 5;
-    sharedInstance.totalMoney = 1000;
+    
    // NSLog(@"GameControl is up...");
     
     return sharedInstance;
@@ -67,53 +68,61 @@ static GameController *sharedInstance = nil;
 
 //method to instantiate the players after GameControl has been started
 -(void)raisePlayers{
-    self.betRoundNr=1;
+  //  self.betRoundNr=1;
     //dummy list
  
  
     NSMutableArray *list = [NSMutableArray array];
     NSMutableArray *list2 = [NSMutableArray array];
+    NSLog(@"%i",sharedInstance.maxPlayers);
+    
+        Player *player1 = [[Player alloc] init];
+        player1.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+        player1.playerId = @"Player1";
+        [list addObject:player1];
+        [list2 addObject:player1];
+        Player *player2 = [[Player alloc] init];
+        player2.playerId = @"Player2";
+        player2.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+        [list addObject:player2];
+        [list2 addObject:player2];
+
+            
+    
+    if (sharedInstance.maxPlayers >2) {
+                Player *player3 = [[Player alloc] init];
+                player3.playerId = @"Player3";
+                player3.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+                [list addObject:player3];
+                [list2 addObject:player3];
+            }
+    
+    if (sharedInstance.maxPlayers >3) {
+                Player *player4 = [[Player alloc] init];
+                player4.playerId = @"Player4";
+                player4.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+                [list addObject:player4];
+                [list2 addObject:player4];
+            }
+    
+    if (sharedInstance.maxPlayers >4) {
+                Player *player5 = [[Player alloc] init];
+                player5.playerId = @"Player5";
+                player5.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+                [list addObject:player5];
+                [list2 addObject:player5];
+            }
     
     //foreach-Schleife : hier müssten die mitspieler rein
-    Player *player1 = [[Player alloc] init];
-    player1.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
-    player1.playerId = @"Player1";
-    [list addObject:player1];
-    [list2 addObject:player1];
-    Player *player2 = [[Player alloc] init];
-    player2.playerId = @"Player2";
-    player2.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
-    [list addObject:player2];
-    [list2 addObject:player2];
-    Player *player3 = [[Player alloc] init];
-    player3.playerId = @"Player3";
-    player3.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
-    [list addObject:player3];
-    [list2 addObject:player3];
-    Player *player4 = [[Player alloc] init];
-    player4.playerId = @"Player4";
-    player4.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
-    [list addObject:player4];
-    [list2 addObject:player4];
-    Player *player5 = [[Player alloc] init];
-    player5.playerId = @"Player5";
-    player5.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
-    [list addObject:player5];
-    [list2 addObject:player5];
+   
+    
+    NSLog(@"%i",[list count]);
     
     self.playerList = list;
     
     self.dumm=list2;
     
-    for (id element in self.playerList) {
-   
-     player1.playerState=@"ACTIVE";
-        NSLog(@"aaaaaaaaaa%@",player1.playerState);
-      
-       
-        [self changePlayerState:@"INACTIVE" forPlayer:element];
-        NSLog(@"Player: %@", [element playerId]);
-    }
+    
     //Start the game
     [self startNewRound];
     
@@ -295,13 +304,15 @@ static GameController *sharedInstance = nil;
         [self changeBetState:@"DEALER" forPlayer:[self.playerList objectAtIndex:0]]; //das ist ne ziemlich miese Lösung, einfach den ersten aus der Liste zu nehmen....
     self.activePlayer=[self.playerList objectAtIndex:0];
         
-        
+    if (sharedInstance.maxPlayers>2) {
+           [self changeBetState:@"BIG_BLIND" forPlayer:[self.playerList objectAtIndex:2]];
+    }
         //send SMALL_BLIND to the next
         [self changeBetState:@"SMALL_BLIND" forPlayer:[self.playerList objectAtIndex:1]];
         
         
         //send BIG_BLIND to the next
-        [self changeBetState:@"BIG_BLIND" forPlayer:[self.playerList objectAtIndex:2]];
+     
         
         [self endOfTurn];
     
@@ -310,7 +321,7 @@ static GameController *sharedInstance = nil;
 }
 
 -(void) endOfTurntemp{
-    if ([self.playerList count]==1) {
+    if ([self.dumm count]==1) {
         //
     }
 
@@ -386,7 +397,7 @@ static GameController *sharedInstance = nil;
                 
                 
                 
-                if([[PackOfCards sharedInstance] whogotthecard:temp1]==2 || [[PackOfCards sharedInstance] whogotthecard:temp1]==1){
+                if(([[PackOfCards sharedInstance] whogotthecard:temp1]==2 || [[PackOfCards sharedInstance] whogotthecard:temp1]==1)){
                     
                     int temprest=1+temp1%13;
                     
@@ -474,47 +485,61 @@ static GameController *sharedInstance = nil;
             
             
             
-            
-            NSMutableArray *comparelist = [NSMutableArray arrayWithCapacity:5];
-            
-            
+ 
+
+              for (int m=0; m<[apple count]-1; m++) {
+                  
+                  int temp111=0;
+                  NSMutableArray *comparelist = [NSMutableArray arrayWithCapacity:2];  
             
             NSDictionary *spieler1=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler1karten];
-            if([[apple objectAtIndex:0] playerId]==@"Player1")
+                  if([[apple objectAtIndex:m+temp111] playerId]==@"Player1"&&temp111<2){
             [comparelist addObject:spieler1];
+                      temp111++;
+                  }
             
             NSDictionary *spieler2=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler2karten];
-             if([[apple objectAtIndex:0] playerId]==@"Player2")
+                  if([[apple objectAtIndex:m+temp111] playerId]==@"Player2"&&temp111<2){
             [comparelist addObject:spieler2];
+                      temp111++;   
+                  }
             
             NSDictionary *spieler3=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler3karten];
-             if([[apple objectAtIndex:0] playerId]==@"Player3")
+                  if([[apple objectAtIndex:m+temp111] playerId]==@"Player3"&&temp111<2){
             [comparelist addObject:spieler3];
+                      temp111++;   
+                  }
             
             NSDictionary *spieler4=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler4karten];
-             if([[apple objectAtIndex:0] playerId]==@"Player4")
+                  if([[apple objectAtIndex:m+temp111] playerId]==@"Player4"&&temp111<2){
             [comparelist addObject:spieler4];
+                      temp111++;   
+                  }
             
             NSDictionary *spieler5=[[PackOfCards sharedInstance] bestFiveCardsCombination:spieler5karten];
-             if([[apple objectAtIndex:0] playerId]==@"Player5")
+             if([[apple objectAtIndex:m+temp111] playerId]==@"Player5"&&temp111<2)
             [comparelist addObject:spieler5];
             
             
             
-            for (int i = 0; i<[apple count]-1; i++) {
-               vergleich2=[[PackOfCards sharedInstance] showdownComparison:[comparelist objectAtIndex:i] compareWith:[comparelist objectAtIndex:i+1]];
+            
+
+               vergleich2=[[PackOfCards sharedInstance] showdownComparison:[comparelist objectAtIndex:0] compareWith:[comparelist objectAtIndex:1]];
                         
                int a = [[vergleich2 objectAtIndex:0] intValue]; 
               
                 if (a==1) {
                    
-                    [comparelist replaceObjectAtIndex:i+1 withObject:[comparelist objectAtIndex:i]];
+                    [apple replaceObjectAtIndex:m+1 withObject:[apple objectAtIndex:m]];
                 }
                
                 
             }
-        
-            /////////
+            
+           NSString *testi=[[apple lastObject] playerId];
+            NSLog(@"and winner is:%@",testi);
+            
+  //          [ingame endiwinnaiz:testi];
         }
         self.betRoundNr++;
     }else {
@@ -524,6 +549,8 @@ static GameController *sharedInstance = nil;
 
 //Diese Methode wird immer ausgeführt, wenn ein Spieler mit seinem Zug fertig ist. Hier muss ziemlich viel Entscheidung rein!!!
 -(void)endOfTurn{
+    ingame=[[IngameViewController alloc]init];
+
     Player *oldPlayer = self.activePlayer;
     //first round
     if (self.betRoundNr == 1) {
@@ -533,7 +560,7 @@ static GameController *sharedInstance = nil;
         if (oldPlayer.betState == @"DEALER") {
             
             for (int k=0; k<2; k++) {
-                for (int m=2; m<7; m++) {
+                for (int m=2; m<sharedInstance.maxPlayers+2; m++) {
                     [[PackOfCards sharedInstance] distributeCard:m];
                 }
             }

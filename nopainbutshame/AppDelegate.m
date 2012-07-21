@@ -12,7 +12,7 @@
 #import "ViewController.h"
 #import "PackOfCards.h"
 @implementation AppDelegate{
-    NSMutableArray *possiblegameStates;
+    
 
 }
 
@@ -21,15 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //list of possible game states
-    possiblegameStates = [NSMutableArray arrayWithObjects:@"RAISE",@"INACTIVE",@"ACTIVE",@"DEALER",@"SMALL_BLIND",@"BIG_BLIND",@"CALL",@"FOLD", nil];
-    
-    
-    
-    //start up the central game control
-    GameController *gameController = [GameController sharedInstance];
-    [gameController raisePlayers];
-    gameController.gameStates = possiblegameStates;
-    
+      
     
     //start the card deck
     [PackOfCards sharedInstance];

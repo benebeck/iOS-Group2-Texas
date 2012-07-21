@@ -55,7 +55,7 @@ PackOfCards * tempcards;
 }
 
 -(void)callverdammt{
- int hallo=[[GameController sharedInstance] pot] ;
+
 
      if ([[GameController sharedInstance].activePlayer playerId]==@"Player2") {
          if ([[GameController sharedInstance].activePlayer playerState]!=@"FOLD"){
@@ -95,12 +95,9 @@ PackOfCards * tempcards;
         }
       
     }
-        player2stat.text=[NSString stringWithFormat:@"player2:%@",[[[GameController sharedInstance].playerList objectAtIndex:1] playerState]];
-        player3stat.text=[NSString stringWithFormat:@"player3:%@",[[[GameController sharedInstance].playerList objectAtIndex:2] playerState]];
-        player4stat.text=[NSString stringWithFormat:@"player4:%@",[[[GameController sharedInstance].playerList objectAtIndex:3] playerState]];
-        player5stat.text=[NSString stringWithFormat:@"player5:%@",[[[GameController sharedInstance].playerList objectAtIndex:4] playerState]];
+
     
-    totalmone.text=[NSString stringWithFormat:@"%i",hallo];
+  
  
 
        [self performSegueWithIdentifier:@"toplayer" sender:nil];
@@ -109,7 +106,7 @@ PackOfCards * tempcards;
 }
 
 -(void)hartgecodedesKI{
-    for(int lol=0; lol<20; lol++){
+   
     int temp2=0;
     bool underseven=true;
   //  NSLog(@"myfloat:%i",12/13);
@@ -138,11 +135,13 @@ PackOfCards * tempcards;
                         }
         
     }
+    NSArray * compare = [NSArray arrayWithObjects: @"Royal Flush",@"Straight Flush", @"Four of a Kind", @"Boat", @"Flush", @"Straight", @"Three of a Kind", @"Two Pairs", @"Pair", @"Hight Card", nil];
+
+     for(int lol=0; lol<40; lol++){
     NSArray *result;  
     result=[[PackOfCards sharedInstance] erayscheck:siebenkarten];
 
-    NSArray * compare = [NSArray arrayWithObjects: @"Royal Flush",@"Straight Flush", @"Four of a Kind", @"Boat", @"Flush", @"Straight", @"Three of a Kind", @"Two Pairs", @"Pair", @"Hight Card", nil];
-  
+     
     if(result==[compare objectAtIndex:0]){
       [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance] activePlayer]];
         break;

@@ -11,6 +11,7 @@
 #import "GCHelper.h"
 #import "Player.h"
 #import "PackOfCards.h"
+#import "IngameViewController.h"
 
 @interface GameController : NSObject<PlayerDelegate, PackOfCardsDelegate>
 

@@ -22,6 +22,7 @@ UIImage *cardrighttemp;
 int duhast5sek=5;
 bool foldmaybe;
 
+
 - (void)viewDidLoad
 {
     cardlefttemp=[[UIImage alloc] init];
@@ -49,17 +50,17 @@ opencard2 = @"3";
  
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(binichdran) userInfo:nil repeats:YES];
     
-    myChip50Center = CGPointMake(105, 215);
-    myChip100Center = CGPointMake(165, 215);
+    myChip50Center = CGPointMake(80, 240);
+    myChip100Center = CGPointMake(180, 220);
     
     chip50image =[UIImage imageNamed:@"pokerchip50.png"];
     mychip50=[[UIImageView alloc] initWithImage:chip50image];
-    [mychip50 setFrame:CGRectMake(80, 190, 50, 50)];
+    [mychip50 setFrame:CGRectMake(30, 190, 100, 100)];
     [[self view]addSubview:mychip50];
     
     chip100image =[UIImage imageNamed:@"pokerchip100.png"];
     mychip100=[[UIImageView alloc] initWithImage:chip100image];
-    [mychip100 setFrame:CGRectMake(140, 190, 50, 50)];
+    [mychip100 setFrame:CGRectMake(130, 170, 100, 100)];
     [[self view]addSubview:mychip100];
     
     tempimage =[UIImage imageNamed:@"slidetofold.png"];
@@ -69,40 +70,47 @@ opencard2 = @"3";
     
     CGFloat nameSize = 18;
     
+    hastgewonnen=[[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 100)];
+    [self.view addSubview:hastgewonnen];
+    [hastgewonnen setBackgroundColor:[UIColor clearColor]];
+    hastgewonnen.font = [UIFont fontWithName:@"Arial" size:nameSize+12];
+    [hastgewonnen setTextColor:[UIColor whiteColor]];
+
+    
     spielereins=[[UILabel alloc] initWithFrame:CGRectMake(5, 50, 140, 30)];
     [self.view addSubview:spielereins];
     [spielereins setBackgroundColor:[UIColor clearColor]];
     spielereins.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielereins setTextColor:[UIColor whiteColor]];
-    spielereins.text=[[[GameController sharedInstance].playerList objectAtIndex:0] playerId];
+    if([GameController sharedInstance].maxPlayers>1)spielereins.text=[[[GameController sharedInstance].playerList objectAtIndex:0] playerId];
 
     spielerzwei=[[UILabel alloc] initWithFrame:CGRectMake(50, 0, 140, 30)];
     [self.view addSubview:spielerzwei];
     [spielerzwei setBackgroundColor:[UIColor clearColor]];
     spielerzwei.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielerzwei setTextColor:[UIColor whiteColor]];
-    spielerzwei.text=[[[GameController sharedInstance].playerList objectAtIndex:1] playerId];
+    if([GameController sharedInstance].maxPlayers>1)spielerzwei.text=[[[GameController sharedInstance].playerList objectAtIndex:1] playerId];
     
     spielerdrei=[[UILabel alloc] initWithFrame:CGRectMake(193, 0, 140, 30)];
     [self.view addSubview:spielerdrei];
     [spielerdrei setBackgroundColor:[UIColor clearColor]];
     spielerdrei.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielerdrei setTextColor:[UIColor whiteColor]];
-    spielerdrei.text=[[[GameController sharedInstance].playerList objectAtIndex:2] playerId];
+    if([GameController sharedInstance].maxPlayers>2)spielerdrei.text=[[[GameController sharedInstance].playerList objectAtIndex:2] playerId];
     
     spielervier=[[UILabel alloc] initWithFrame:CGRectMake(370, 00, 140, 30)];
     [self.view addSubview:spielervier];
     [spielervier setBackgroundColor:[UIColor clearColor]];
     spielervier.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielervier setTextColor:[UIColor whiteColor]];
-    spielervier.text=[[[GameController sharedInstance].playerList objectAtIndex:3] playerId];
+    if([GameController sharedInstance].maxPlayers>3)spielervier.text=[[[GameController sharedInstance].playerList objectAtIndex:3] playerId];
     
     spielerfunf=[[UILabel alloc] initWithFrame:CGRectMake(415.0, 50, 140, 30)];
     [self.view addSubview:spielerfunf];
     [spielerfunf setBackgroundColor:[UIColor clearColor]];
     spielerfunf.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielerfunf setTextColor:[UIColor whiteColor]];
-    spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
+    if([GameController sharedInstance].maxPlayers>4)spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
    
     
     
@@ -111,17 +119,17 @@ opencard2 = @"3";
     [spielereinsstat setBackgroundColor:[UIColor clearColor]];
     spielereinsstat.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielereinsstat setTextColor:[UIColor whiteColor]];
-    spielereinsstat.text=[NSString stringWithFormat:@"Stack:%i", [GameController sharedInstance].totalMoney];
+    spielereinsstat.text=[NSString stringWithFormat:@"Stack:%i", [GameController sharedInstance].pot];
 
     
     backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsleft=[[UIImageView alloc] initWithImage:backofcardsleft1];
-    [backofcardsleft setFrame:CGRectMake(230, 180, 60, 88)];
+    [backofcardsleft setFrame:CGRectMake(250, 140, 90, 132)];
     [[self view]addSubview:backofcardsleft];
 
     backofcardsright1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsright=[[UIImageView alloc] initWithImage:backofcardsright1];
-    [backofcardsright setFrame:CGRectMake(300, 180, 60, 88)];
+    [backofcardsright setFrame:CGRectMake(350, 125, 90, 132)];
     [[self view]addSubview:backofcardsright];
     
 
@@ -199,7 +207,8 @@ opencard2 = @"3";
 mychip50.center=myChip50Center;
     mychip100.center=myChip100Center;
     Pot.text=[NSString stringWithFormat:@"%i",[[GameController sharedInstance] pot]];
-    
+    if ([GameController sharedInstance].maxPlayers>1) {
+   
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player1") {
         player1status.backgroundColor=[UIColor greenColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"FOLD") {
@@ -216,6 +225,9 @@ mychip50.center=myChip50Center;
         else{
         player1status.backgroundColor=[UIColor yellowColor];
     }
+    }
+    if ([GameController sharedInstance].maxPlayers>1) {
+        
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player2") {
         player2status.backgroundColor=[UIColor greenColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"FOLD") {
@@ -231,6 +243,9 @@ mychip50.center=myChip50Center;
     else{
         player2status.backgroundColor=[UIColor yellowColor];
     }
+    }
+    if ([GameController sharedInstance].maxPlayers>2) {
+        
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player3") {
         player3status.backgroundColor=[UIColor greenColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"FOLD") {
@@ -246,6 +261,9 @@ mychip50.center=myChip50Center;
     else{
         player3status.backgroundColor=[UIColor yellowColor];
     }
+    }
+    if ([GameController sharedInstance].maxPlayers>3) {
+        
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player4") {
         player4status.backgroundColor=[UIColor greenColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"FOLD") {
@@ -262,6 +280,8 @@ mychip50.center=myChip50Center;
     else{
         player4status.backgroundColor=[UIColor yellowColor];
     }
+    }
+        if ([GameController sharedInstance].maxPlayers>4) {
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player5") {
         player5status.backgroundColor=[UIColor greenColor];
     }else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"FOLD") {
@@ -279,7 +299,12 @@ mychip50.center=myChip50Center;
     }
     
     
+        }
+}
 
+-(void)endiwinnaiz:(NSString*) lol{
+    hastgewonnen.text=lol;
+    sleep(5);
 }
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
    //this is a comment

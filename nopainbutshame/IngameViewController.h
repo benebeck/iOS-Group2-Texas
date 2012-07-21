@@ -17,6 +17,8 @@
 //nur zum pushcen
 @interface IngameViewController : UIViewController
 {
+        IBOutlet UILabel *hastgewonnen;
+    
     
     IBOutlet UILabel *spielereins;
     IBOutlet UILabel *spielerzwei;
@@ -92,6 +94,7 @@
 -(IBAction) IAMDONE: (id) sender;
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 -(void) animate:(CGPoint) msg;
+-(void) endiwinnaiz:(NSString*)lol;
 -(IBAction)buttonToTriggerCircle:(id)sender;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end
