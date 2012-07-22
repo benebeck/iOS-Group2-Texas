@@ -106,7 +106,7 @@ PackOfCards * tempcards;
 }
 
 -(void)hartgecodedesKI{
-   
+   for(int lol=0; lol<40; lol++){
     int temp2=0;
     bool underseven=true;
   //  NSLog(@"myfloat:%i",12/13);
@@ -137,7 +137,7 @@ PackOfCards * tempcards;
     }
     NSArray * compare = [NSArray arrayWithObjects: @"Royal Flush",@"Straight Flush", @"Four of a Kind", @"Boat", @"Flush", @"Straight", @"Three of a Kind", @"Two Pairs", @"Pair", @"Hight Card", nil];
 
-     for(int lol=0; lol<40; lol++){
+     
     NSArray *result;  
     result=[[PackOfCards sharedInstance] erayscheck:siebenkarten];
 

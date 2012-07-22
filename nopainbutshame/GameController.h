@@ -29,6 +29,11 @@
 //sollten wir die hier nicht auch nonatomic machen?
 @property             int pot;
 @property             int wetthohe;
+@property int spieler1geldgerade;
+@property int spieler2geldgerade;
+@property int spieler3geldgerade;
+@property int spieler4geldgerade;
+@property int spieler5geldgerade;
 
 
 

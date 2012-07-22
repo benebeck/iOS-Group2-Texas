@@ -34,6 +34,7 @@
     
     IBOutlet UILabel *Pot;
     IBOutlet UILabel *spielereinsstat;
+    IBOutlet UILabel *meingeld;
     IBOutlet UILabel *spielerzweistat;
     IBOutlet UILabel *spielerdreistat;
     IBOutlet UILabel *spielervierstat;
@@ -49,6 +50,7 @@
     UIImageView *backofcardsleft;
     UIImageView *backofcardsright;
     UIImageView *slidetofold;
+    UIImageView *clicktobet;
     UIImageView *opencard1imageview;
     UIImageView *opencard2imageview;
     UIImageView *opencard3imageview;
@@ -80,11 +82,6 @@
     NSString    *opencard1;
     NSString    *opencard2;
     
-    int spielereinsgeld;
-    int spielerzweigeld;
-    int spielerdreigeld;
-    int spielerviergeld;
-    int spielerfunfgeld;
     
 
     PackOfCards     *packofcards;

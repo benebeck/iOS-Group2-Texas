@@ -30,6 +30,12 @@
 @synthesize wetthohe;
 @synthesize dumm;
 int endofturntemp=5;
+int nuramanfanggebegeldaus=0;
+@synthesize spieler1geldgerade;
+@synthesize spieler2geldgerade;
+@synthesize spieler3geldgerade;
+@synthesize spieler4geldgerade;
+@synthesize spieler5geldgerade;
 
 
 #pragma mark Initialization
@@ -70,20 +76,75 @@ IngameViewController *ingame;
 -(void)raisePlayers{
   //  self.betRoundNr=1;
     //dummy list
- 
- 
-    NSMutableArray *list = [NSMutableArray array];
-    NSMutableArray *list2 = [NSMutableArray array];
-    NSLog(@"%i",sharedInstance.maxPlayers);
-    
+    if(nuramanfanggebegeldaus>0){
+        NSMutableArray *list = [NSMutableArray array];
+        NSMutableArray *list2 = [NSMutableArray array];
+                
         Player *player1 = [[Player alloc] init];
-        player1.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+        player1.moneyRest=spieler1geldgerade;
         player1.playerId = @"Player1";
         [list addObject:player1];
         [list2 addObject:player1];
         Player *player2 = [[Player alloc] init];
         player2.playerId = @"Player2";
-        player2.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+        player2.moneyRest=spieler2geldgerade;
+        [list addObject:player2];
+        [list2 addObject:player2];
+        
+        
+        
+        if (sharedInstance.maxPlayers >2) {
+            Player *player3 = [[Player alloc] init];
+            player3.playerId = @"Player3";
+            player3.moneyRest=spieler3geldgerade;
+            [list addObject:player3];
+            [list2 addObject:player3];
+        }
+        
+        if (sharedInstance.maxPlayers >3) {
+            Player *player4 = [[Player alloc] init];
+            player4.playerId = @"Player4";
+            player4.moneyRest=spieler4geldgerade;
+            [list addObject:player4];
+            [list2 addObject:player4];
+        }
+        
+        if (sharedInstance.maxPlayers >4) {
+            Player *player5 = [[Player alloc] init];
+            player5.playerId = @"Player5";
+            player5.moneyRest=spieler5geldgerade;
+            [list addObject:player5];
+            [list2 addObject:player5];
+        }
+        
+        //foreach-Schleife : hier müssten die mitspieler rein
+        nuramanfanggebegeldaus++;
+        
+        NSLog(@"%i",[list count]);
+        
+        self.playerList = list;
+        
+        self.dumm=list2;
+        
+
+    }
+    else {
+        
+    
+    int playermoney=[self totalMoney]/[self maxPlayers];
+ 
+    NSMutableArray *list = [NSMutableArray array];
+    NSMutableArray *list2 = [NSMutableArray array];
+    NSLog(@"maxplayer:%i",sharedInstance.maxPlayers);
+    
+        Player *player1 = [[Player alloc] init];
+if(nuramanfanggebegeldaus==0) player1.moneyRest=playermoney;
+        player1.playerId = @"Player1";
+        [list addObject:player1];
+        [list2 addObject:player1];
+        Player *player2 = [[Player alloc] init];
+        player2.playerId = @"Player2";
+if(nuramanfanggebegeldaus==0)player2.moneyRest=playermoney;
         [list addObject:player2];
         [list2 addObject:player2];
 
@@ -92,7 +153,7 @@ IngameViewController *ingame;
     if (sharedInstance.maxPlayers >2) {
                 Player *player3 = [[Player alloc] init];
                 player3.playerId = @"Player3";
-                player3.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+if(nuramanfanggebegeldaus==0)player3.moneyRest=playermoney;
                 [list addObject:player3];
                 [list2 addObject:player3];
             }
@@ -100,7 +161,7 @@ IngameViewController *ingame;
     if (sharedInstance.maxPlayers >3) {
                 Player *player4 = [[Player alloc] init];
                 player4.playerId = @"Player4";
-                player4.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+if(nuramanfanggebegeldaus==0)player4.moneyRest=playermoney;
                 [list addObject:player4];
                 [list2 addObject:player4];
             }
@@ -108,20 +169,20 @@ IngameViewController *ingame;
     if (sharedInstance.maxPlayers >4) {
                 Player *player5 = [[Player alloc] init];
                 player5.playerId = @"Player5";
-                player5.moneyRest=sharedInstance.totalMoney/sharedInstance.maxPlayers;
+if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
                 [list addObject:player5];
                 [list2 addObject:player5];
             }
     
     //foreach-Schleife : hier müssten die mitspieler rein
-   
+    nuramanfanggebegeldaus++;
     
     NSLog(@"%i",[list count]);
     
     self.playerList = list;
     
     self.dumm=list2;
-    
+    }
     
     //Start the game
     [self startNewRound];
@@ -138,43 +199,13 @@ IngameViewController *ingame;
     -(void)activateNextPlayer{
   
       //  NSLog(@"jetzt kommt der nächste spieler%@ mit%@",[self.activePlayer playerId],[self.activePlayer playerState]);
-        
-            Player *player;
-            for (player in self.playerList)
-                if (self.activePlayer == player) {
-                    
-                    NSInteger index = [self.playerList indexOfObjectIdenticalTo:player];
-                    if ([[self.playerList objectAtIndex:index] playerState]==@"RAISE") {
-                  [sharedInstance changePlayerState:@"CALL" forPlayer:[sharedInstance.playerList objectAtIndex:index]];
-                        self.wetthohe+=50;
-                    }
-                }
+    
 
         //first player to start
-        if (!self.activePlayer) {
-            
-            self.activePlayer = [self.playerList objectAtIndex:0];
-            [self startNewRound];
-            //ACTIVATE PLAYERS !!!!!!!!!....
-            if ([[self.playerList objectAtIndex:0] playerState]==@"CALL") {
-                [[self.playerList objectAtIndex:0] setMoneyRest:[[self.playerList objectAtIndex:0] moneyRest]-50];
-                if(self.wetthohe<=0 || self.wetthohe>100000)
-                {
-                    [self setPot:50];
-                    [self setWetthohe:0];
-                }
-                else {
-                    [self setPot:pot+50];
-                }
-                if([[self.playerList objectAtIndex:0] playerState]!=@"FOLD") {[[self.playerList objectAtIndex:0] setPlayerState:@"INACTIVE"];}else {
-                    [dumm removeObject:[self.playerList objectAtIndex:0]];                }
-                  [self endOfTurntemp];
-            }   
-            //jump back to first player
-        }else if ([self.playerList lastObject] == self.activePlayer) {
+       if ([self.playerList lastObject] == self.activePlayer) {
             
             if ([[self.playerList lastObject] playerState]==@"CALL") {
-        [[self.playerList lastObject] setMoneyRest:[[self.playerList lastObject] moneyRest]-50];
+        [self substractFromPlayerAccount:50 forPlayer:[self.playerList lastObject]];
                 if(self.pot<=0 || self.pot>100000)
                 {
                     [self setPot:50];
@@ -184,13 +215,13 @@ IngameViewController *ingame;
                     [self setPot:pot+50];
                 }
                               
-                [self endOfTurntemp];
+          
                 
             }else {
                 if ([[self.playerList lastObject] playerState]!=@"RAISE") {
                     if([[self.playerList lastObject] playerState]!=@"FOLD")
                     {[[self.playerList lastObject] setPlayerState:@"INACTIVE"];
-                        [self endOfTurntemp];
+                      
                     }else {
                     [dumm removeObject:[self.playerList lastObject]];   
                         NSLog(@"spieleisraus");
@@ -202,19 +233,21 @@ IngameViewController *ingame;
                     {
                         [self setPot:100];
                         [self setWetthohe:0];
+                        [self substractFromPlayerAccount:100 forPlayer:[self.playerList lastObject]];
                     }
                     else {
                         [self setPot:pot+100];
+                        [self substractFromPlayerAccount:100 forPlayer:[self.playerList lastObject]];
                     }
                     
-                    [self endOfTurntemp];
+                    
                     
                 
                 }
                 
             }
             self.activePlayer = [self.playerList objectAtIndex:0];
-            
+            [self endOfTurntemp];
             //next player    
         }else {
             NSLog(@"old active player: %@", self.activePlayer.playerId);
@@ -227,7 +260,7 @@ IngameViewController *ingame;
                 if (self.activePlayer == player) {
                     
                     if ([[self.playerList objectAtIndex:index] playerState]==@"CALL") {
-                        [[self.playerList objectAtIndex:index] setMoneyRest:[[self.playerList objectAtIndex:index] moneyRest]-50];
+                    [self substractFromPlayerAccount:50 forPlayer:[self.playerList objectAtIndex:index]];
                         if(self.pot<=0 || self.pot>100000)
                         {
                             [self setPot:50];
@@ -255,9 +288,12 @@ IngameViewController *ingame;
                             {
                                 [self setPot:100];
                                 [self setWetthohe:0];
+                          [self substractFromPlayerAccount:100 forPlayer:[self.playerList objectAtIndex:index]];
                             }
                             else {
                                 [self setPot:pot+100];
+                                
+                                [self substractFromPlayerAccount:100 forPlayer:[self.playerList objectAtIndex:index]];
                             }
                             
                          
@@ -321,8 +357,16 @@ IngameViewController *ingame;
 }
 
 -(void) endOfTurntemp{
+ NSLog(@"player1money:%i",[[[sharedInstance playerList] objectAtIndex:0]moneyRest]); 
+NSLog(@"player1money:%i",[self.dumm count]); 
     if ([self.dumm count]==1) {
-        [self addToPlayerAccount:pot forPlayer:[sharedInstance.playerList lastObject]];
+        if(sharedInstance.maxPlayers<3)spieler1geldgerade=[[[sharedInstance playerList] objectAtIndex:0] moneyRest];
+        if(sharedInstance.maxPlayers<3)spieler2geldgerade=[[[sharedInstance playerList] objectAtIndex:1] moneyRest];
+        if(sharedInstance.maxPlayers>2)spieler3geldgerade=[[[sharedInstance playerList] objectAtIndex:2] moneyRest];
+        if(sharedInstance.maxPlayers>3)spieler4geldgerade=[[[sharedInstance playerList] objectAtIndex:3] moneyRest];
+        if(sharedInstance.maxPlayers>4)spieler5geldgerade=[[[sharedInstance playerList] objectAtIndex:4] moneyRest];
+
+        [self addToPlayerAccount:pot forPlayer:[sharedInstance.playerList objectAtIndex:0]];
         sharedInstance.betRoundNr=1;
         [self.playerList removeAllObjects];
         [self.dumm removeAllObjects];
@@ -331,10 +375,11 @@ IngameViewController *ingame;
         for (int h=0; h<51; h++) {
             [[PackOfCards sharedInstance] resetStatusOfCard:h forWho:0];
         }
+        [sharedInstance setPot:0];
         [self raisePlayers];
         [self startNewRound];
 
-        [sharedInstance setPot:0];
+        endofturntemp=5;
         for (int h=0; h<51; h++) {
             [[PackOfCards sharedInstance] resetStatusOfCard:h forWho:0];
         }
@@ -345,8 +390,8 @@ IngameViewController *ingame;
 
     if (endofturntemp==0) {
         endofturntemp=5;
-        NSLog(@"%i",endofturntemp);
-        NSLog(@"%i",self.betRoundNr);
+        
+        NSLog(@"asdasdasdasd%i",self.betRoundNr);
         
         if (self.betRoundNr == 2){
            
@@ -638,11 +683,28 @@ IngameViewController *ingame;
                
                 
             }
+            for (int i=0; i<5; i++) {
+                if ([[apple lastObject] isEqual:[[sharedInstance playerList]objectAtIndex:i]]) {
+                     [self addToPlayerAccount:pot forPlayer:[[sharedInstance playerList]objectAtIndex:i]];
+                }
+            }
             
        
             [ingame endiwinnaiz:[[apple lastObject] playerId]]; 
+           
+            NSLog(@"%i",[[sharedInstance.playerList objectAtIndex:0] moneyRest]);
+            if(sharedInstance.maxPlayers>1)
+        [self setSpieler1geldgerade:[[sharedInstance.playerList objectAtIndex:0] moneyRest]];
+            if(sharedInstance.maxPlayers>1)
+        [self setSpieler2geldgerade:[[sharedInstance.playerList objectAtIndex:1] moneyRest]];
+            if(sharedInstance.maxPlayers>2)
+        [self setSpieler3geldgerade:[[sharedInstance.playerList objectAtIndex:2] moneyRest]];
+            if(sharedInstance.maxPlayers>3)
+        [self setSpieler4geldgerade:[[sharedInstance.playerList objectAtIndex:3] moneyRest]];
+            if(sharedInstance.maxPlayers>4)
+        [self setSpieler5geldgerade:[[sharedInstance.playerList objectAtIndex:4] moneyRest]];
+
             
-            [self addToPlayerAccount:pot forPlayer:[apple lastObject]];
             sharedInstance.betRoundNr=0;
             endofturntemp=5;
             [self.playerList removeAllObjects];
@@ -654,10 +716,12 @@ IngameViewController *ingame;
             }
             
   //          [ingame endiwinnaiz:testi];
+               
+            [self raisePlayers];
+            [self startNewRound];
         }
         self.betRoundNr++;
-        [self raisePlayers];
-        [self startNewRound];
+
     }else {
         endofturntemp--;
     }
@@ -667,49 +731,49 @@ IngameViewController *ingame;
 -(void)endOfTurn{
     ingame=[[IngameViewController alloc]init];
 
-    Player *oldPlayer = self.activePlayer;
+    self.activePlayer = [self.playerList objectAtIndex:0];
     //first round
     if (self.betRoundNr == 1) {
               self.betRoundNr++;
         NSLog(@"We are in round %d", self.betRoundNr);
         //Wir sind in der ersten Wettrunde
-        if (oldPlayer.betState == @"DEALER") {
+       
             
             for (int k=0; k<2; k++) {
                 for (int m=2; m<sharedInstance.maxPlayers+2; m++) {
                     [[PackOfCards sharedInstance] distributeCard:m];
                 }
-            }
+            
             
   
              
 
             NSLog(@"This was the DEALER'S turn");
-        }else if (oldPlayer.betState == @"SMALL_BLIND") {
+      
             //get money (SMALL_BLIND)
-            [self substractFromPlayerAccount:self.smallBlind forPlayer:oldPlayer];
+            [self substractFromPlayerAccount:self.smallBlind forPlayer:[self.playerList objectAtIndex:1]];
             [self setPot:self.smallBlind];
             NSLog(@"Player paid %d", self.smallBlind);
-            NSLog(@"and has left %d", oldPlayer.moneyRest);
+            
             
             //get cards
             //[self twoCardsForPlayer:oldPlayer]; //CRASH in PackOfCards!!!
             
             
             
-            [self changeBetState:@"INACTIVE" forPlayer:oldPlayer];
+            [self changeBetState:@"INACTIVE" forPlayer:[self.playerList objectAtIndex:1]];
             NSLog(@"This was the SMALL_BLIND'S turn");
             
-        }else if (oldPlayer.betState == @"BIG_BLIND") {
+        
             //get money (BIG_BLIND)
-            [self substractFromPlayerAccount:self.bigBlind forPlayer:oldPlayer];
+            [self substractFromPlayerAccount:self.bigBlind forPlayer:[self.playerList objectAtIndex:2]];
             [self setPot:self.bigBlind];
             NSLog(@"Player paid %d", self.bigBlind);
-            NSLog(@"and has left %d", oldPlayer.moneyRest);
+        
       
             NSLog(@"This was the BIG_BLIND'S turn");
-        }
         
+            }
     }
  
     if (self.betRoundNr == 42){  //after showdown!!!
@@ -760,13 +824,12 @@ IngameViewController *ingame;
 }
 
 -(void)substractFromPlayerAccount:(int)money forPlayer:(Player *)player{
-    Player *pl = player;
-    pl.moneyRest = pl.moneyRest - money;
+    
+  [player setMoneyRest:[player moneyRest]-money];
 }
 
 -(void)addToPlayerAccount:(int)money forPlayer:(Player *)player{
-    Player *pl = player;
-    pl.moneyRest = pl.moneyRest + money;
+     [player setMoneyRest:[player moneyRest]+money];
 }
 
 

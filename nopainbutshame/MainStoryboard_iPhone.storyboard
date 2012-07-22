@@ -45,10 +45,10 @@
                                 <rect key="frame" x="93" y="265" width="207" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="100"/>
-                                    <segment title="200"/>
-                                    <segment title="500"/>
                                     <segment title="1000"/>
+                                    <segment title="2000"/>
+                                    <segment title="5000"/>
+                                    <segment title="10000"/>
                                 </segments>
                                 <connections>
                                     <action selector="budgethohesetzen:" destination="AXd-nC-7ay" eventType="valueChanged" id="I9Z-Oc-Ouy"/>

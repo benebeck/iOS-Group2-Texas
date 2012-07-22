@@ -31,16 +31,16 @@
 
 -(IBAction)budgethohesetzen:(id)sender{
     if (budget.selectedSegmentIndex==0) {
-        [self setTotalMoney:100];
+        [self setTotalMoney:1000];
     }
     if (budget.selectedSegmentIndex==1) {
-        [self setTotalMoney:200];
+        [self setTotalMoney:2000];
     }
     if (budget.selectedSegmentIndex==2) {
-        [self setTotalMoney:500];
+        [self setTotalMoney:5000];
     }
     if (budget.selectedSegmentIndex==3) {
-        [self  setTotalMoney:1000];
+        [self  setTotalMoney:10000];
     }
 }
 -(IBAction)setzegegner1:(id)sender{
@@ -80,11 +80,12 @@
     
     //start up the central game control
     GameController *gameController = [GameController sharedInstance];
-    gameController.maxPlayers=MaxPlayers;
-    gameController.betRoundNr=1;
+    [gameController setMaxPlayers:MaxPlayers];
+    [gameController setTotalMoney:TotalMoney];
+    [gameController setBetRoundNr:1];
+    [gameController setGameStates:possiblegameStates];
     [gameController raisePlayers];
-    gameController.gameStates = possiblegameStates;
-    gameController.totalMoney=TotalMoney;
+    
     [self performSegueWithIdentifier:@"losgehts" sender:nil];
     
 }

@@ -19,6 +19,7 @@ NSString *playerid;
 CGPoint startpoint;
 UIImage *cardlefttemp;
 UIImage *cardrighttemp;
+UIImage *clicktobettemp;
 int duhast5sek=5;
 bool foldmaybe;
 
@@ -53,6 +54,17 @@ opencard2 = @"3";
     myChip50Center = CGPointMake(75, 245);
     myChip100Center = CGPointMake(190, 225);
     
+    tempimage =[UIImage imageNamed:@"slidetofold.png"];
+    slidetofold=[[UIImageView alloc] initWithImage:tempimage];
+    [slidetofold setFrame:CGRectMake(280, 100, 165, 55)];
+    [self.view addSubview:slidetofold];
+    
+    clicktobettemp =[UIImage imageNamed:@"clicktoBet.png"];
+    clicktobet=[[UIImageView alloc] initWithImage:clicktobettemp];
+    [clicktobet setFrame:CGRectMake(35, 115, 150, 30)];
+    [self.view addSubview:clicktobet];
+
+    
     chip50image =[UIImage imageNamed:@"pokerchip50.png"];
     mychip50=[[UIImageView alloc] initWithImage:chip50image];
     [mychip50 setFrame:CGRectMake(20, 190, 110, 110)];
@@ -63,11 +75,7 @@ opencard2 = @"3";
     [mychip100 setFrame:CGRectMake(135, 170, 110, 110)];
     [[self view]addSubview:mychip100];
     
-    tempimage =[UIImage imageNamed:@"slidetofold.png"];
-    slidetofold=[[UIImageView alloc] initWithImage:tempimage];
-    [slidetofold setFrame:CGRectMake(280, 130, 150, 50)];
-    [self.view addSubview:slidetofold];
-    
+       
     CGFloat nameSize = 18;
     
 
@@ -162,13 +170,19 @@ opencard2 = @"3";
     
     
     
-    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(100, 150, 140, 30)];
+    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(180, 140, 140, 30)];
     [self.view addSubview:spielereinsstat];
     [spielereinsstat setBackgroundColor:[UIColor clearColor]];
     spielereinsstat.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielereinsstat setTextColor:[UIColor whiteColor]];
-    spielereinsstat.text=[NSString stringWithFormat:@"Stack:%i", [GameController sharedInstance].pot];
-
+    spielereinsstat.text=[NSString stringWithFormat:@"Pot:%i", [GameController sharedInstance].pot];
+    
+    meingeld=[[UILabel alloc] initWithFrame:CGRectMake(30, 140, 140, 30)];
+    [self.view addSubview:meingeld];
+    [meingeld setBackgroundColor:[UIColor clearColor]];
+    meingeld.font = [UIFont fontWithName:@"Arial" size:nameSize];
+    [meingeld setTextColor:[UIColor whiteColor]];
+    meingeld.text=[NSString stringWithFormat:@"MoneyRest:%i", [[[[GameController sharedInstance] playerList] objectAtIndex:0] moneyRest]];
     
     backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsleft=[[UIImageView alloc] initWithImage:backofcardsleft1];
@@ -234,7 +248,7 @@ opencard2 = @"3";
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
 
    	// Do any additional setup after loading the view, typically from a nib.
-    [[[[GameController sharedInstance] playerList] objectAtIndex:0] setMoneyRest:[[GameController sharedInstance] totalMoney]/5];
+
 }
 
 
@@ -253,7 +267,8 @@ opencard2 = @"3";
 -(void) statusupdate{
     mychip50.center=myChip50Center;
     mychip100.center=myChip100Center;
-    Pot.text=[NSString stringWithFormat:@"%i",[[GameController sharedInstance] pot]];
+    spielereinsstat.text=[NSString stringWithFormat:@"Pot%i",[[GameController sharedInstance] pot]];
+    meingeld.text=[NSString stringWithFormat:@"MoneyRest:%i",[[[[GameController sharedInstance] playerList] objectAtIndex:0] moneyRest]];
     if ([GameController sharedInstance].maxPlayers>1) {
    
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player1") {
@@ -431,6 +446,9 @@ opencard2 = @"3";
 
 -(void)endiwinnaiz:(NSString*) lol{
     [self merkwuerdig:lol];
+    [backofcardsleft setFrame:CGRectMake(260, 160, 90, 132)];
+    [backofcardsright setFrame:CGRectMake(360, 145, 90, 132)];
+    
 }
 -(void)merkwuerdig:(NSString*)pol{
     NSString *temp=[NSString stringWithFormat:@"%@",pol];
@@ -453,22 +471,24 @@ opencard2 = @"3";
     UITouch *betouched = [touches anyObject];
     startpoint = [betouched locationInView:self.view];
 
+    
+    if(startpoint.x>0 && startpoint.x<200 &&startpoint.y>80 &&startpoint.y<160){
+        [[GameController sharedInstance] activateNextPlayer];
+        
+    }
+
+    
     if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"FOLD") {
         
     
-    if ((startpoint.x < 480 && startpoint.x > 330) &&
-        (startpoint.y < 150 && startpoint.y > 100)) {
+    if ((startpoint.x < 480 && startpoint.x > 280) &&
+        (startpoint.y < 150 && startpoint.y > 60)) {
         foldmaybe=true;
     }else {
         foldmaybe=false;
     }
     
-    
-    if(startpoint.x>150 && startpoint.x<250 &&startpoint.y>50 &&startpoint.y<110){
-        [[GameController sharedInstance] activateNextPlayer];
 
-    }
-    
     if ((startpoint.x < mychip50.center.x + 20.0 && startpoint.x > mychip50.center.x - 20.0) &&
         (startpoint.y < mychip50.center.y + 20.0 && startpoint.y > mychip50.center.y - 20.0)) {
             coinStuff=1;
@@ -546,7 +566,7 @@ int canwin=0;
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer{
     
     
-if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"FOLD") {
+
    
     CGPoint locationInView = [recognizer locationInView:self.view];
  //   NSLog(@"lol:,%i",locationInView.x);
@@ -590,7 +610,7 @@ if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!
         
 }
         
-    }
+    
   
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
@@ -606,7 +626,7 @@ if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!
         float slidefactor = 0.2 * slideMult;
         
         
-        if (foldmaybe==true&&[[[GameController sharedInstance] activePlayer] playerId]==@"Player1")
+        if (foldmaybe==true&&[[[GameController sharedInstance] activePlayer] playerId]==@"Player1"&&locationInView.x>360)
         {
             [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ backofcardsleft.frame=CGRectMake(backofcardsleft.frame.origin.x, 100, backofcardsleft.frame.size.width/1.5, backofcardsleft.frame.size.height/1.5);} completion:nil];
             
