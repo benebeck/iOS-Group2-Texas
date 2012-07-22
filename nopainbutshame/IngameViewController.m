@@ -50,17 +50,17 @@ opencard2 = @"3";
  
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(binichdran) userInfo:nil repeats:YES];
     
-    myChip50Center = CGPointMake(80, 240);
-    myChip100Center = CGPointMake(180, 220);
+    myChip50Center = CGPointMake(75, 245);
+    myChip100Center = CGPointMake(190, 225);
     
     chip50image =[UIImage imageNamed:@"pokerchip50.png"];
     mychip50=[[UIImageView alloc] initWithImage:chip50image];
-    [mychip50 setFrame:CGRectMake(30, 190, 100, 100)];
+    [mychip50 setFrame:CGRectMake(20, 190, 110, 110)];
     [[self view]addSubview:mychip50];
     
     chip100image =[UIImage imageNamed:@"pokerchip100.png"];
     mychip100=[[UIImageView alloc] initWithImage:chip100image];
-    [mychip100 setFrame:CGRectMake(130, 170, 100, 100)];
+    [mychip100 setFrame:CGRectMake(135, 170, 110, 110)];
     [[self view]addSubview:mychip100];
     
     tempimage =[UIImage imageNamed:@"slidetofold.png"];
@@ -70,11 +70,7 @@ opencard2 = @"3";
     
     CGFloat nameSize = 18;
     
-    hastgewonnen=[[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 100)];
-    [self.view addSubview:hastgewonnen];
-    [hastgewonnen setBackgroundColor:[UIColor clearColor]];
-    hastgewonnen.font = [UIFont fontWithName:@"Arial" size:nameSize+12];
-    [hastgewonnen setTextColor:[UIColor whiteColor]];
+
 
     
     spielereins=[[UILabel alloc] initWithFrame:CGRectMake(5, 50, 140, 30)];
@@ -116,7 +112,7 @@ opencard2 = @"3";
     //###########################################################################################
     spielereinsCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(5, 50, 60, 30)];
     [self.view addSubview:spielereinsCHOICE];
-    [spielereinsCHOICE setBackgroundColor:[UIColor blueColor]];
+    [spielereinsCHOICE setBackgroundColor:[UIColor blackColor]];
     spielereinsCHOICE.textAlignment = UITextAlignmentCenter;
     spielereinsCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
     [spielereinsCHOICE setTextColor:[UIColor whiteColor]];
@@ -124,7 +120,7 @@ opencard2 = @"3";
     
     spielerzweiCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 60, 30)];
     [self.view addSubview:spielerzweiCHOICE];
-    [spielerzweiCHOICE setBackgroundColor:[UIColor blueColor]];
+    [spielerzweiCHOICE setBackgroundColor:[UIColor blackColor]];
     spielerzweiCHOICE.textAlignment = UITextAlignmentCenter;
     spielerzweiCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
     [spielerzweiCHOICE setTextColor:[UIColor whiteColor]];
@@ -132,7 +128,7 @@ opencard2 = @"3";
     
     spielerdreiCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(193, 0, 60, 30)];
     [self.view addSubview:spielerdreiCHOICE];
-    [spielerdreiCHOICE setBackgroundColor:[UIColor blueColor]];
+    [spielerdreiCHOICE setBackgroundColor:[UIColor blackColor]];
     spielerdreiCHOICE.textAlignment = UITextAlignmentCenter;
     spielerdreiCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
     [spielerdreiCHOICE setTextColor:[UIColor whiteColor]];
@@ -140,7 +136,7 @@ opencard2 = @"3";
     
     spielervierCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(370, 0, 60, 30)];
     [self.view addSubview:spielervierCHOICE];
-    [spielervierCHOICE setBackgroundColor:[UIColor blueColor]];
+    [spielervierCHOICE setBackgroundColor:[UIColor blackColor]];
     spielervierCHOICE.textAlignment = UITextAlignmentCenter;
     spielervierCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
     [spielervierCHOICE setTextColor:[UIColor whiteColor]];
@@ -148,12 +144,22 @@ opencard2 = @"3";
     
     spielerfunfCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(415, 50, 60, 30)];
     [self.view addSubview:spielerfunfCHOICE];
-    [spielerfunfCHOICE setBackgroundColor:[UIColor blueColor]];
+    [spielerfunfCHOICE setBackgroundColor:[UIColor blackColor]];
     spielerfunfCHOICE.textAlignment = UITextAlignmentCenter;
     spielerfunfCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
     [spielerfunfCHOICE setTextColor:[UIColor whiteColor]];
     spielerfunfCHOICE.hidden = YES;
     //###########################################################################################   
+    
+    hastgewonnen=[[UILabel alloc] initWithFrame:CGRectMake(50, 50, 400, 100)];
+    [self.view addSubview:hastgewonnen];
+    [hastgewonnen setBackgroundColor:[UIColor clearColor]];
+    hastgewonnen.font = [UIFont fontWithName:@"Arial" size:nameSize+12];
+    [hastgewonnen setTextColor:[UIColor whiteColor]];
+    hastgewonnen.text=@"spielerhatgewonnen";
+    hastgewonnen.hidden=YES;
+    
+    
     
     
     spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(100, 150, 140, 30)];
@@ -166,12 +172,12 @@ opencard2 = @"3";
     
     backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsleft=[[UIImageView alloc] initWithImage:backofcardsleft1];
-    [backofcardsleft setFrame:CGRectMake(250, 140, 90, 132)];
+    [backofcardsleft setFrame:CGRectMake(260, 160, 90, 132)];
     [[self view]addSubview:backofcardsleft];
 
     backofcardsright1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsright=[[UIImageView alloc] initWithImage:backofcardsright1];
-    [backofcardsright setFrame:CGRectMake(350, 125, 90, 132)];
+    [backofcardsright setFrame:CGRectMake(360, 145, 90, 132)];
     [[self view]addSubview:backofcardsright];
     
 
@@ -202,43 +208,32 @@ opencard2 = @"3";
     
    
     opencard1imageview=[[UIImageView alloc] init];
-    [opencard1imageview setFrame:CGRectMake(205, 80, 40, 60)];
+    [opencard1imageview setFrame:CGRectMake(125, 30, 40, 60)];
     [[self view]addSubview:opencard1imageview];
     
  
     opencard2imageview=[[UIImageView alloc] init];
-    [opencard2imageview setFrame:CGRectMake(250, 80, 40, 60)];
+    [opencard2imageview setFrame:CGRectMake(170, 30, 40, 60)];
     [[self view]addSubview:opencard2imageview];
     
     
     opencard3imageview=[[UIImageView alloc] init];
-    [opencard3imageview setFrame:CGRectMake(295, 80, 40, 60)];
+    [opencard3imageview setFrame:CGRectMake(215, 30, 40, 60)];
     [[self view]addSubview:opencard3imageview];
     
    
     opencard4imageview=[[UIImageView alloc] init];
-    [opencard4imageview setFrame:CGRectMake(340, 80, 40, 60)];
+    [opencard4imageview setFrame:CGRectMake(260, 30, 40, 60)];
     [[self view]addSubview:opencard4imageview];
     
     
     opencard5imageview=[[UIImageView alloc] init];
-    [opencard5imageview setFrame:CGRectMake(385, 80, 40, 60)];
+    [opencard5imageview setFrame:CGRectMake(305, 30, 40, 60)];
     [[self view]addSubview:opencard5imageview];
     
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
 
-    int opencardindex=0;
-   
-    for (int anfang=0; anfang<52; anfang++) {
-        
-        if ([[PackOfCards sharedInstance] whogotthecard:anfang]==2) {
-            NSString *cardImageFileName = [NSString stringWithFormat:@"%i.png", anfang+1];
-            if (opencardindex==0) cardlefttemp=[UIImage imageNamed:cardImageFileName];
-            if (opencardindex==1) cardrighttemp=[UIImage imageNamed:cardImageFileName];
-            opencardindex++;
-        }
-    }
-	// Do any additional setup after loading the view, typically from a nib.
+   	// Do any additional setup after loading the view, typically from a nib.
     [[[[GameController sharedInstance] playerList] objectAtIndex:0] setMoneyRest:[[GameController sharedInstance] totalMoney]/5];
 }
 
@@ -435,15 +430,23 @@ opencard2 = @"3";
 }
 
 -(void)endiwinnaiz:(NSString*) lol{
-    hastgewonnen.text=lol;
-    sleep(5);
-    opencard1imageview.image = nil;
-    opencard2imageview.image = nil;
-    opencard3imageview.image = nil;
-    opencard4imageview.image = nil;
-    opencard5imageview.image = nil;
-    backofcardsleft.image = nil;
-    backofcardsright.image = nil;
+    [self merkwuerdig:lol];
+}
+-(void)merkwuerdig:(NSString*)pol{
+    NSString *temp=[NSString stringWithFormat:@"%@",pol];
+    spielereins.text=temp;
+    spielerzwei.text=temp;
+    spielerdrei.text=temp;
+    spielervier.text=temp;
+    spielerfunf.text=temp;
+    hastgewonnen.hidden=NO;
+    hastgewonnen.text=pol;
+    [self textLabelChanger:hastgewonnen];
+    [self textLabelChanger:spielereins];
+    [self textLabelChanger:spielerzwei];
+    [self textLabelChanger:spielerdrei];
+    [self textLabelChanger:spielervier];
+    [self textLabelChanger:spielerfunf];
 }
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
    //this is a comment
@@ -485,6 +488,7 @@ opencard2 = @"3";
 -(void)binichdran{
   
     int handcardindex=0;
+     int opencardindex=0;
     for (int anfang=0; anfang<52; anfang++) {
 
         if ([[PackOfCards sharedInstance] whogotthecard:anfang]==1) {
@@ -497,10 +501,34 @@ opencard2 = @"3";
             if (handcardindex==4) opencard5imageview.image=[UIImage imageNamed:cardImageFileName];
             handcardindex++;
         }
+            if ([[PackOfCards sharedInstance] whogotthecard:anfang]==2) {
+                NSString *cardImageFileName = [NSString stringWithFormat:@"%i.png", anfang+1];
+                if (opencardindex==0) cardlefttemp=[UIImage imageNamed:cardImageFileName];
+                if (opencardindex==1) cardrighttemp=[UIImage imageNamed:cardImageFileName];
+                opencardindex++;
+            }
+    
       
         
     }
    
+
+if (handcardindex<2) {
+    
+    opencard1imageview.image=nil;
+    opencard2imageview.image=nil;
+    opencard3imageview.image=nil;
+    opencard4imageview.image=nil;
+    opencard5imageview.image=nil;
+    
+    opencard2imageview.image=[UIImage imageNamed:@"leer.png"];
+    opencard3imageview.image=[UIImage imageNamed:@"leer.png"];
+    opencard4imageview.image=[UIImage imageNamed:@"leer.png"];
+    opencard5imageview.image=[UIImage imageNamed:@"leer.png"];
+}
+
+
+
     if ( [[GameController sharedInstance].activePlayer playerId]!=@"Player1" ) {
      
 

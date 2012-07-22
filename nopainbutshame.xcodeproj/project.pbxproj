@@ -12,6 +12,7 @@
 		17457F1615B6ADDB00035FAD /* pokertisch.png in Resources */ = {isa = PBXBuildFile; fileRef = 17457F1515B6ADDA00035FAD /* pokertisch.png */; };
 		7408493C15B4564200E3A0FF /* spieleinstellungen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408493B15B4564200E3A0FF /* spieleinstellungen.m */; };
 		74164EC915B94B59004E44AB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74164EC815B94B59004E44AB /* QuartzCore.framework */; };
+		74164ED015BC1309004E44AB /* leer.png in Resources */ = {isa = PBXBuildFile; fileRef = 74164ECF15BC1309004E44AB /* leer.png */; };
 		741C3E9E1579181C0085C97E /* 1_Singleplayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 741C3E9D1579181C0085C97E /* 1_Singleplayer.png */; };
 		741C7A92155E70210056AF55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A91155E70210056AF55 /* UIKit.framework */; };
 		741C7A94155E70210056AF55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741C7A93155E70210056AF55 /* Foundation.framework */; };
@@ -121,6 +122,7 @@
 		7408493A15B4564200E3A0FF /* spieleinstellungen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spieleinstellungen.h; sourceTree = "<group>"; };
 		7408493B15B4564200E3A0FF /* spieleinstellungen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spieleinstellungen.m; sourceTree = "<group>"; };
 		74164EC815B94B59004E44AB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		74164ECF15BC1309004E44AB /* leer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leer.png; sourceTree = "<group>"; };
 		741C3E9D1579181C0085C97E /* 1_Singleplayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_Singleplayer.png; sourceTree = "<group>"; };
 		741C7A8D155E70210056AF55 /* nopainbutshame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nopainbutshame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		741C7A91155E70210056AF55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -313,6 +315,7 @@
 		741C7A98155E70210056AF55 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				74164ECF15BC1309004E44AB /* leer.png */,
 				17457F1515B6ADDA00035FAD /* pokertisch.png */,
 				10F1130815A6545300FE1D1E /* icon.png */,
 				747ED21E15A1EBDF00F8F7CA /* slidetofold.png */,
@@ -571,6 +574,7 @@
 				74A6181C15B48BBE001F3C25 /* 51.png in Resources */,
 				74A6181D15B48BBE001F3C25 /* 52.png in Resources */,
 				17457F1615B6ADDB00035FAD /* pokertisch.png in Resources */,
+				74164ED015BC1309004E44AB /* leer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -326,7 +326,14 @@ IngameViewController *ingame;
         sharedInstance.betRoundNr=1;
         [self.playerList removeAllObjects];
         [self.dumm removeAllObjects];
-        
+        [ingame endiwinnaiz:@"Spieler1"];
+        [sharedInstance setPot:0];
+        for (int h=0; h<51; h++) {
+            [[PackOfCards sharedInstance] resetStatusOfCard:h forWho:0];
+        }
+        [self raisePlayers];
+        [self startNewRound];
+
         [sharedInstance setPot:0];
         for (int h=0; h<51; h++) {
             [[PackOfCards sharedInstance] resetStatusOfCard:h forWho:0];
@@ -633,9 +640,11 @@ IngameViewController *ingame;
             }
             
        
-       //     NSLog(@"and winner is:%@",[[apple lastObject] playerId]);
+            [ingame endiwinnaiz:[[apple lastObject] playerId]]; 
+            
             [self addToPlayerAccount:pot forPlayer:[apple lastObject]];
-            sharedInstance.betRoundNr=1;
+            sharedInstance.betRoundNr=0;
+            endofturntemp=5;
             [self.playerList removeAllObjects];
             [self.dumm removeAllObjects];
           
@@ -643,11 +652,12 @@ IngameViewController *ingame;
             for (int h=0; h<51; h++) {
                 [[PackOfCards sharedInstance] resetStatusOfCard:h forWho:0];
             }
-            [self raisePlayers];
-            [self startNewRound];
+            
   //          [ingame endiwinnaiz:testi];
         }
         self.betRoundNr++;
+        [self raisePlayers];
+        [self startNewRound];
     }else {
         endofturntemp--;
     }

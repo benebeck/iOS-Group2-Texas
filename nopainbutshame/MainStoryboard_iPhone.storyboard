@@ -165,7 +165,7 @@
                                 <color key="highlightedColor" red="0.92149633290816324" green="0.0" blue="0.26121267916174018" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pokertisch.png" id="1sj-9m-6aN">
-                                <rect key="frame" x="20" y="20" width="440" height="260"/>
+                                <rect key="frame" x="-222" y="76" width="924" height="449"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
