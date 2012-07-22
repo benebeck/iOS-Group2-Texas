@@ -225,7 +225,7 @@ opencard2 = @"3";
     [opencard5imageview setFrame:CGRectMake(385, 80, 40, 60)];
     [[self view]addSubview:opencard5imageview];
     
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
 
     int opencardindex=0;
    
