@@ -25,7 +25,13 @@
     IBOutlet UILabel *spielerdrei;
     IBOutlet UILabel *spielervier;
     IBOutlet UILabel *spielerfunf;
-
+    
+    IBOutlet UILabel *spielereinsCHOICE;
+    IBOutlet UILabel *spielerzweiCHOICE;
+    IBOutlet UILabel *spielerdreiCHOICE;
+    IBOutlet UILabel *spielervierCHOICE;
+    IBOutlet UILabel *spielerfunfCHOICE;
+    
     IBOutlet UILabel *Pot;
     IBOutlet UILabel *spielereinsstat;
     IBOutlet UILabel *spielerzweistat;
