@@ -167,6 +167,7 @@ PackOfCards * tempcards;
         break;
     }else if (result==[compare objectAtIndex:8]) {
         [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance] activePlayer]];
+        break;
     }else if (result==[compare objectAtIndex:9]) {
         [[GameController sharedInstance] changePlayerState:@"FOLD" forPlayer:[[GameController sharedInstance] activePlayer]];
         break;
