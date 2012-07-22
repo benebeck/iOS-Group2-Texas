@@ -305,6 +305,13 @@ mychip50.center=myChip50Center;
 -(void)endiwinnaiz:(NSString*) lol{
     hastgewonnen.text=lol;
     sleep(5);
+    opencard1imageview.image = nil;
+    opencard2imageview.image = nil;
+    opencard3imageview.image = nil;
+    opencard4imageview.image = nil;
+    opencard5imageview.image = nil;
+    backofcardsleft.image = nil;
+    backofcardsright.image = nil;
 }
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
    //this is a comment
