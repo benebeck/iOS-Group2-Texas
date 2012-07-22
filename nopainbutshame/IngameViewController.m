@@ -111,7 +111,49 @@ opencard2 = @"3";
     spielerfunf.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielerfunf setTextColor:[UIColor whiteColor]];
     if([GameController sharedInstance].maxPlayers>4)spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
-   
+    
+    
+    //###########################################################################################
+    spielereinsCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(5, 50, 60, 30)];
+    [self.view addSubview:spielereinsCHOICE];
+    [spielereinsCHOICE setBackgroundColor:[UIColor blueColor]];
+    spielereinsCHOICE.textAlignment = UITextAlignmentCenter;
+    spielereinsCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
+    [spielereinsCHOICE setTextColor:[UIColor whiteColor]];
+    spielereinsCHOICE.hidden = YES;
+    
+    spielerzweiCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 60, 30)];
+    [self.view addSubview:spielerzweiCHOICE];
+    [spielerzweiCHOICE setBackgroundColor:[UIColor blueColor]];
+    spielerzweiCHOICE.textAlignment = UITextAlignmentCenter;
+    spielerzweiCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
+    [spielerzweiCHOICE setTextColor:[UIColor whiteColor]];
+    spielerzweiCHOICE.hidden = YES;
+    
+    spielerdreiCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(193, 0, 60, 30)];
+    [self.view addSubview:spielerdreiCHOICE];
+    [spielerdreiCHOICE setBackgroundColor:[UIColor blueColor]];
+    spielerdreiCHOICE.textAlignment = UITextAlignmentCenter;
+    spielerdreiCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
+    [spielerdreiCHOICE setTextColor:[UIColor whiteColor]];
+    spielerdreiCHOICE.hidden = YES;
+    
+    spielervierCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(370, 0, 60, 30)];
+    [self.view addSubview:spielervierCHOICE];
+    [spielervierCHOICE setBackgroundColor:[UIColor blueColor]];
+    spielervierCHOICE.textAlignment = UITextAlignmentCenter;
+    spielervierCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
+    [spielervierCHOICE setTextColor:[UIColor whiteColor]];
+    spielervierCHOICE.hidden = YES;
+    
+    spielerfunfCHOICE = [[UILabel alloc] initWithFrame:CGRectMake(415, 50, 60, 30)];
+    [self.view addSubview:spielerfunfCHOICE];
+    [spielerfunfCHOICE setBackgroundColor:[UIColor blueColor]];
+    spielerfunfCHOICE.textAlignment = UITextAlignmentCenter;
+    spielerfunfCHOICE.font = [UIFont fontWithName:@"Arial" size:16];
+    [spielerfunfCHOICE setTextColor:[UIColor whiteColor]];
+    spielerfunfCHOICE.hidden = YES;
+    //###########################################################################################   
     
     
     spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(100, 150, 140, 30)];
@@ -201,101 +243,191 @@ opencard2 = @"3";
 }
 
 
+-(void)updateTextLabel:(UILabel *)label
+{
+    label.hidden = YES;
+}
 
+-(void)textLabelChanger:(UILabel *)label
+{
+    
+    [self performSelector:@selector(updateTextLabel:) withObject:label afterDelay:2];
+    
+}
 
 -(void) statusupdate{
-mychip50.center=myChip50Center;
+    mychip50.center=myChip50Center;
     mychip100.center=myChip100Center;
     Pot.text=[NSString stringWithFormat:@"%i",[[GameController sharedInstance] pot]];
     if ([GameController sharedInstance].maxPlayers>1) {
    
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player1") {
         player1status.backgroundColor=[UIColor greenColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"FOLD") {
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"FOLD") {
         player1status.backgroundColor=[UIColor grayColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"RAISE")
+        spielereinsCHOICE.text= @"FOLD";
+        spielereinsCHOICE.hidden = NO;
+        [self textLabelChanger:spielereinsCHOICE];
+//      sleep(4);
+//      spielereinsFOLD.hidden = YES;
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"RAISE")
     {
        
-             spielereins.text=@"RAISE";
-            sleep(4);
-        spielereins.text=[[[GameController sharedInstance].playerList objectAtIndex:0] playerId];
+        spielereinsCHOICE.text= @"RAISE";
+        spielereinsCHOICE.hidden = NO;
+        [self textLabelChanger:spielereinsCHOICE];
+//        spleep(4);
+//        spielereinsRAISE.hidden = YES;
+//      sleep(4);
+//      spielereinsFOLD.hidden = YES;          
+//        spielereins.text=@"RAISE";
+//        sleep(4);
+//    spielereins.text=[[[GameController sharedInstance].playerList objectAtIndex:0] playerId];
         
        
     }
-        else{
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:0] playerState]==@"CALL"){
+        spielereinsCHOICE.text= @"CALL";
+        spielereinsCHOICE.hidden = NO;
+        [self textLabelChanger:spielereinsCHOICE];
         player1status.backgroundColor=[UIColor yellowColor];
     }
+    else{
+        //do nothing
     }
+    }
+    
+    
+    
     if ([GameController sharedInstance].maxPlayers>1) {
         
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player2") {
         player2status.backgroundColor=[UIColor greenColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"FOLD") {
-        player2status.backgroundColor=[UIColor grayColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"RAISE")
-    {
-       
-            spielerzwei.text=@"RAISE";
-        sleep(4);
-        spielerzwei.text=[[[GameController sharedInstance].playerList objectAtIndex:1] playerId];
     }
-    
-    else{
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"FOLD") {
+        player2status.backgroundColor=[UIColor grayColor];
+        spielerzweiCHOICE.text = @"FOLD";
+        spielerzweiCHOICE.hidden = NO;
+        [self textLabelChanger:spielerzweiCHOICE];
+//        sleep(3);
+//        spielerzweiCHOICE.hidden = YES;
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"RAISE"){
+       
+        spielerzweiCHOICE.text=@"RAISE";
+        spielerzweiCHOICE.hidden = NO;
+        [self textLabelChanger:spielerzweiCHOICE];
+//        sleep(3);
+//        spielerzweiCHOICE.hidden = YES;
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:1] playerState]==@"CALL"){
+        spielerzweiCHOICE.text=@"CALL";
+        spielerzweiCHOICE.hidden = NO;
+        [self textLabelChanger:spielerzweiCHOICE];
+//            sleep(3);
+//            spielerzweiCHOICE.hidden = YES;
         player2status.backgroundColor=[UIColor yellowColor];
     }
+    else {
+        //do nothing
     }
+    }
+    
+    
+    
     if ([GameController sharedInstance].maxPlayers>2) {
         
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player3") {
         player3status.backgroundColor=[UIColor greenColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"FOLD") {
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"FOLD") {
         player3status.backgroundColor=[UIColor grayColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"RAISE")
-    {
-        
-            spielerdrei.text=@"RAISE";
-        sleep(4);
-        spielerdrei.text=[[[GameController sharedInstance].playerList objectAtIndex:2] playerId];
+        spielerdreiCHOICE.text=@"FOLD";
+        spielerdreiCHOICE.hidden = NO;
+        [self textLabelChanger:spielerdreiCHOICE];
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"RAISE"){
+        spielerdreiCHOICE.text=@"RAISE";
+        spielerdreiCHOICE.hidden = NO;
+        [self textLabelChanger:spielerdreiCHOICE];
+//        spielerdrei.text=@"RAISE";
+//        sleep(4);
+//        spielerdrei.text=[[[GameController sharedInstance].playerList objectAtIndex:2] playerId];
     }
     
-    else{
+    else if(([[[[GameController sharedInstance] playerList] objectAtIndex:2] playerState]==@"CALL")){
         player3status.backgroundColor=[UIColor yellowColor];
+        spielerdreiCHOICE.text=@"CALL";
+        spielerdreiCHOICE.hidden = NO;
+        [self textLabelChanger:spielerdreiCHOICE];
+    }
+    else {
+        //do nothing
     }
     }
+    
+    
+    
     if ([GameController sharedInstance].maxPlayers>3) {
         
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player4") {
         player4status.backgroundColor=[UIColor greenColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"FOLD") {
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"FOLD") {
         player4status.backgroundColor=[UIColor grayColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"RAISE")
-    {
-        
-            spielervier.text=@"RAISE";
-            sleep(4);
-        spielervier.text=[[[GameController sharedInstance].playerList objectAtIndex:3] playerId];
+        spielervierCHOICE.text=@"FOLD";
+        spielervierCHOICE.hidden = NO;
+        [self textLabelChanger:spielervierCHOICE];
     }
-    
-    
-    else{
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"RAISE"){
+        spielervierCHOICE.text=@"RAISE";
+        spielervierCHOICE.hidden = NO;
+        [self textLabelChanger:spielervierCHOICE];
+//        spielervier.text=@"RAISE";
+//        sleep(4);
+//        spielervier.text=[[[GameController sharedInstance].playerList objectAtIndex:3] playerId];
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:3] playerState]==@"CALL"){
         player4status.backgroundColor=[UIColor yellowColor];
+        spielervierCHOICE.text=@"CALL";
+        spielervierCHOICE.hidden = NO;
+        [self textLabelChanger:spielervierCHOICE];
+    }
+    else {
+        //do nothing
     }
     }
-        if ([GameController sharedInstance].maxPlayers>4) {
+    
+    
+    if ([GameController sharedInstance].maxPlayers>4) {
     if ([[GameController sharedInstance].activePlayer playerId]==@"Player5") {
         player5status.backgroundColor=[UIColor greenColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"FOLD") {
-        player5status.backgroundColor=[UIColor grayColor];
-    }else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"RAISE")
-    {
-        
-            spielerfunf.text=@"RAISE";
-        sleep(4);
-        spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
     }
-    
-    else{
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"FOLD") {
+        spielerfunfCHOICE.text=@"FOLD";
+        spielerfunfCHOICE.hidden = NO;
+        [self textLabelChanger:spielerfunfCHOICE];
+        player5status.backgroundColor=[UIColor grayColor];
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"RAISE"){
+        spielerfunfCHOICE.text=@"RAISE";
+        spielerfunfCHOICE.hidden = NO;
+        [self textLabelChanger:spielerfunfCHOICE];
+        
+//        spielerfunf.text=@"RAISE";
+//        sleep(4);
+//        spielerfunf.text=[[[GameController sharedInstance].playerList objectAtIndex:4] playerId];
+    }
+    else if([[[[GameController sharedInstance] playerList] objectAtIndex:4] playerState]==@"CALL"){
+        spielerfunfCHOICE.text=@"CALL";
+        spielerfunfCHOICE.hidden = NO;
+        [self textLabelChanger:spielerfunfCHOICE];
         player5status.backgroundColor=[UIColor yellowColor];
+    }
+    else {
+    //do nothing
     }
     
     
