@@ -361,26 +361,23 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
 -(void) endOfTurntemp{
  NSLog(@"player1money:%i",[[[sharedInstance playerList] objectAtIndex:0]moneyRest]); 
 NSLog(@"player1money:%i",[self.dumm count]); 
-    if ([self.dumm count]==1) {
-        if(sharedInstance.maxPlayers<3)spieler1geldgerade=[[[sharedInstance playerList] objectAtIndex:0] moneyRest];
-        if(sharedInstance.maxPlayers<3)spieler2geldgerade=[[[sharedInstance playerList] objectAtIndex:1] moneyRest];
-        if(sharedInstance.maxPlayers>2)spieler3geldgerade=[[[sharedInstance playerList] objectAtIndex:2] moneyRest];
-        if(sharedInstance.maxPlayers>3)spieler4geldgerade=[[[sharedInstance playerList] objectAtIndex:3] moneyRest];
-        if(sharedInstance.maxPlayers>4)spieler5geldgerade=[[[sharedInstance playerList] objectAtIndex:4] moneyRest];
+    if ([self.dumm count]==0) {
 
-        [self addToPlayerAccount:pot forPlayer:[sharedInstance.playerList objectAtIndex:0]];
+        
+        if(sharedInstance.maxPlayers>1)
+            [self setSpieler1geldgerade:[[sharedInstance.playerList objectAtIndex:0] moneyRest]];
+        if(sharedInstance.maxPlayers>1)
+            [self setSpieler2geldgerade:[[sharedInstance.playerList objectAtIndex:1] moneyRest]];
+        if(sharedInstance.maxPlayers>2)
+            [self setSpieler3geldgerade:[[sharedInstance.playerList objectAtIndex:2] moneyRest]];
+        if(sharedInstance.maxPlayers>3)
+            [self setSpieler4geldgerade:[[sharedInstance.playerList objectAtIndex:3] moneyRest]];
+        if(sharedInstance.maxPlayers>4)
+            [self setSpieler5geldgerade:[[sharedInstance.playerList objectAtIndex:4] moneyRest]];
         sharedInstance.betRoundNr=1;
         [self.playerList removeAllObjects];
         [self.dumm removeAllObjects];
         [ingame endiwinnaiz:@"Spieler1"];
-        [sharedInstance setPot:0];
-        for (int h=0; h<51; h++) {
-            [[PackOfCards sharedInstance] resetStatusOfCard:h forWho:0];
-        }
-        [sharedInstance setPot:0];
-        [self raisePlayers];
-        [self startNewRound];
-
         endofturntemp=5;
         for (int h=0; h<51; h++) {
             [[PackOfCards sharedInstance] resetStatusOfCard:h forWho:0];
@@ -388,6 +385,31 @@ NSLog(@"player1money:%i",[self.dumm count]);
         [self raisePlayers];
         [self startNewRound];
 
+    }else if([self.dumm count]==1) {
+        
+        [self addToPlayerAccount:pot forPlayer:[dumm lastObject]];
+        
+        NSLog(@"%i",[[sharedInstance.playerList objectAtIndex:0] moneyRest]);
+        if(sharedInstance.maxPlayers>1)
+            [self setSpieler1geldgerade:[[sharedInstance.playerList objectAtIndex:0] moneyRest]];
+        if(sharedInstance.maxPlayers>1)
+            [self setSpieler2geldgerade:[[sharedInstance.playerList objectAtIndex:1] moneyRest]];
+        if(sharedInstance.maxPlayers>2)
+            [self setSpieler3geldgerade:[[sharedInstance.playerList objectAtIndex:2] moneyRest]];
+        if(sharedInstance.maxPlayers>3)
+            [self setSpieler4geldgerade:[[sharedInstance.playerList objectAtIndex:3] moneyRest]];
+        if(sharedInstance.maxPlayers>4)
+            [self setSpieler5geldgerade:[[sharedInstance.playerList objectAtIndex:4] moneyRest]];
+        sharedInstance.betRoundNr=1;
+        [self.playerList removeAllObjects];
+        [self.dumm removeAllObjects];
+        [ingame endiwinnaiz:@"Spieler1"];
+        endofturntemp=5;
+        for (int h=0; h<51; h++) {
+            [[PackOfCards sharedInstance] resetStatusOfCard:h forWho:0];
+        }
+        [self raisePlayers];
+        [self startNewRound];
     }
 
     if (endofturntemp==0) {

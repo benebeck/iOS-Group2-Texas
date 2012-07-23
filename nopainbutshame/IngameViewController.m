@@ -446,8 +446,9 @@ opencard2 = @"3";
 
 -(void)endiwinnaiz:(NSString*) lol{
     [self merkwuerdig:lol];
-    [backofcardsleft setFrame:CGRectMake(260, 160, 90, 132)];
-    [backofcardsright setFrame:CGRectMake(360, 145, 90, 132)];
+
+    backofcardsleft.frame=CGRectMake(260, 160, 90, 132);
+    backofcardsright.frame=CGRectMake(360, 145, 90, 132);
     
 }
 -(void)merkwuerdig:(NSString*)pol{
