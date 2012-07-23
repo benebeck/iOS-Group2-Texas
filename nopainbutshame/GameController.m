@@ -231,23 +231,15 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
                     }
 
                 }else {
-                    if(self.pot<=0 || self.pot>100000)
-                    {
-                        [self setPot:100];
-                        [self setWetthohe:100];
-                        [self substractFromPlayerAccount:100 forPlayer:[self.playerList lastObject]];
-                    }
-                    else {
-                        [self setPot:pot+100];
-                         [self setWetthohe:100];
-                        [self substractFromPlayerAccount:100 forPlayer:[self.playerList lastObject]];
+                    if (wetthohe==0) {
+                        wetthohe=100;
+                    } else {
+                        [self setPot:pot+wetthohe];
                     }
                     
                     
-                    
-                
-                }
-                
+                    [self substractFromPlayerAccount:wetthohe forPlayer:[self.playerList lastObject]];
+                }                
             }
            [ingame wetten:wetthohe];
             self.activePlayer = [self.playerList objectAtIndex:0];
@@ -299,10 +291,14 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
                           [self substractFromPlayerAccount:100 forPlayer:[self.playerList objectAtIndex:index]];
                             }
                             else {
+                                if (wetthohe==0) {
+                                    wetthohe=100;
+                                } else {
+                                    [self setPot:pot+wetthohe];
+                                }
+                               
                                 
-                                [self setWetthohe:100];
-                                [self setPot:pot+wetthohe];
-                                [self substractFromPlayerAccount:100 forPlayer:[self.playerList objectAtIndex:index]];
+                                [self substractFromPlayerAccount:wetthohe forPlayer:[self.playerList objectAtIndex:index]];
                             }
                             
                          

@@ -22,9 +22,9 @@ UIImage *cardrighttemp;
 UIImage *clicktobettemp;
 int duhast5sek=5;
 @synthesize  wetthoehetemp;
-int temphohetemptemp=50;
+int temphohetemptemp;
 bool foldmaybe;
-int temphohe;
+int temphohe=50;
 
 
 - (void)viewDidLoad
@@ -192,7 +192,7 @@ opencard2 = @"3";
     [biswetten setBackgroundColor:[UIColor clearColor]];
     biswetten.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [biswetten setTextColor:[UIColor whiteColor]];
-    biswetten.text=[NSString stringWithFormat:@"Callhöhe:",temphohetemptemp];
+    biswetten.text=[NSString stringWithFormat:@"Callhöhe:",temphohe];
 
     
     backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];
@@ -473,7 +473,7 @@ opencard2 = @"3";
     
 }
 -(void)merkwuerdig:(NSString*)pol{
-    NSString *temp=[NSString stringWithFormat:@"%@",pol];
+   
 
 }
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -489,7 +489,9 @@ opencard2 = @"3";
         [[GameController sharedInstance] activateNextPlayer];
         
     }else if (startpoint.x>0 && startpoint.x<200 &&startpoint.y>80 &&startpoint.y<160&&temphohe<50) {
-      
+        if (temphohe<0) {
+          [[GameController sharedInstance] setWetthohe:temphohetemptemp];
+        } 
         [[GameController sharedInstance] activateNextPlayer];
     }
 
@@ -522,6 +524,7 @@ opencard2 = @"3";
 -(void)wetten:(int)wett{
     
     temphohe=wett;
+    temphohetemptemp=0;
 }
 
 -(void)binichdran{
@@ -684,9 +687,15 @@ int canwin=0;
             [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip50.frame=CGRectMake(mychip50.frame.origin.x, finalpoint.y, mychip50.frame.size.width, mychip50.frame.size.height);} completion:nil];
             //    [ chooseBet:50];
               
-                
-             [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+         
+            
                 temphohe=temphohe-50;
+                temphohetemptemp=temphohetemptemp+50;
+                if (temphohe>=0) {
+                     [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+                }else {
+                     [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+                } 
                 [self chipcentermaker:tempimage];
             }
             if(coinStuff==2){
@@ -695,7 +704,7 @@ int canwin=0;
           //      [player chooseBet:100];
                 
                        [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
-                
+                temphohetemptemp=temphohetemptemp+100;
                temphohe=temphohe-100;
                 [self chipcentermaker:tempimage];
                 //   Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
