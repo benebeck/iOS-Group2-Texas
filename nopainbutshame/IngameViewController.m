@@ -493,7 +493,9 @@ opencard2 = @"3";
           [[GameController sharedInstance] setWetthohe:temphohetemptemp];
         } 
         [[GameController sharedInstance] activateNextPlayer];
-    }
+    }else  if (startpoint.x>0 && startpoint.x<200 &&startpoint.y>80 &&startpoint.y<160&&[[[[GameController sharedInstance] playerList] objectAtIndex:0]playerState]==@"FOLD") {
+            [[GameController sharedInstance] activateNextPlayer];
+        }
 
     
     if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"FOLD" && [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"ALL IN" ) {
