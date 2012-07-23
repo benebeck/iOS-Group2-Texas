@@ -129,9 +129,10 @@ IngameViewController *ingame;
 
     }
     else {
-        
-    
-    int playermoney=[self totalMoney]/[self maxPlayers];
+        int playermoney;
+    if ([self maxPlayers] > 0)
+        playermoney=[self totalMoney]/[self maxPlayers];
+
  
     NSMutableArray *list = [NSMutableArray array];
     NSMutableArray *list2 = [NSMutableArray array];
