@@ -31,6 +31,7 @@
 @synthesize dumm;
 int endofturntemp=5;
 int nuramanfanggebegeldaus=0;
+@synthesize blindprorunde;
 @synthesize spieler1geldgerade;
 @synthesize spieler2geldgerade;
 @synthesize spieler3geldgerade;
@@ -54,8 +55,8 @@ IngameViewController *ingame;
    //hardcoded dummy values
    //     sharedInstance.maxPlayers = 5;
    //     sharedInstance.totalMoney = 1000;
-       sharedInstance.smallBlind = 5;
-       sharedInstance.bigBlind = 10;
+       sharedInstance.smallBlind = sharedInstance.bigBlind/2;
+   //    sharedInstance.bigBlind = 10;
    //     sharedInstance.betRoundNr = 1;
        // NSLog(@"GameControl is up...");
     }
@@ -684,9 +685,11 @@ NSLog(@"player1money:%i",[self.dumm count]);
                
                 
             }
-            for (int i=0; i<5; i++) {
+            for (int i=0; i<sharedInstance.maxPlayers; i++) {
                 if ([[apple lastObject] isEqual:[[sharedInstance playerList]objectAtIndex:i]]) {
+                    NSLog(@"%i",[[sharedInstance.playerList objectAtIndex:0] moneyRest]);
                      [self addToPlayerAccount:pot forPlayer:[[sharedInstance playerList]objectAtIndex:i]];
+                    NSLog(@"%i",[[sharedInstance.playerList objectAtIndex:0] moneyRest]);
                 }
             }
             

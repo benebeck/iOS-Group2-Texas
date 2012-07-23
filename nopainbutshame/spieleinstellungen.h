@@ -19,11 +19,15 @@
 @property (strong, nonatomic) IBOutlet UIImageView *gegner1;
 - (IBAction)setzegegner1:(id)sender;
 @property int MaxPlayers;
+@property int blindprorundeint;
+@property int blindhoheint;
 - (IBAction)Losgehts:(id)sender;
 @property int TotalMoney;
 - (IBAction)setzegegner2:(id)sender;
 - (IBAction)setzegegner3:(id)sender;
 - (IBAction)setzegegner4:(id)sender;
+- (IBAction)blindhohe:(id)sender;
+- (IBAction)blindprorunden:(id)sender;
 
 
 @end

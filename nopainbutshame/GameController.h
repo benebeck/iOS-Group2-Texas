@@ -22,6 +22,7 @@
 @property (nonatomic) int smallBlind;
 @property (nonatomic) int bigBlind;
 @property (nonatomic) int totalMoney;
+@property int blindprorunde;
 @property (nonatomic) int betRoundNr;
 @property (nonatomic, strong) Player *player;
 @property (nonatomic, weak) Player *dealer;

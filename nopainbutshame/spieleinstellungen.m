@@ -14,6 +14,8 @@
 
 @implementation spieleinstellungen
 @synthesize blindhohesetzen;
+@synthesize blindhoheint;
+@synthesize blindprorundeint;
 @synthesize blindprorundesetzen;
 @synthesize gegner1;
 @synthesize budget;
@@ -73,6 +75,32 @@
     [self setMaxPlayers:5];
 }
 
+- (IBAction)blindhohe:(id)sender {
+    if (blindhohe.selectedSegmentIndex==0) {
+        [self setBlindhoheint:10];
+    }
+    if (blindhohe.selectedSegmentIndex==1) {
+        [self setBlindhoheint:20];
+    }
+    if (blindhohe.selectedSegmentIndex==2) {
+        [self setBlindhoheint:50];
+    }
+    if (blindhohe.selectedSegmentIndex==3) {
+        [self  setBlindhoheint:100];
+    }
+
+}
+
+- (IBAction)blindprorunden:(id)sender {
+    if (blindprorunden.selectedSegmentIndex==0) {
+        [self setBlindprorundeint:3];
+    }
+    if (blindprorunden.selectedSegmentIndex==1) {
+        [self setBlindprorundeint:5];
+    }
+
+}
+
 - (IBAction)Losgehts:(id)sender {
     possiblegameStates = [NSMutableArray arrayWithObjects:@"RAISE",@"INACTIVE",@"ACTIVE",@"DEALER",@"SMALL_BLIND",@"BIG_BLIND",@"CALL",@"FOLD", nil];
     
@@ -82,6 +110,8 @@
     GameController *gameController = [GameController sharedInstance];
     [gameController setMaxPlayers:MaxPlayers];
     [gameController setTotalMoney:TotalMoney];
+    [gameController setBigBlind:blindhoheint];
+    [gameController setBlindprorunde:blindprorundeint];
     [gameController setBetRoundNr:1];
     [gameController setGameStates:possiblegameStates];
     [gameController raisePlayers];
