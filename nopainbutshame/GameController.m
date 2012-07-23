@@ -205,16 +205,16 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
 
         //first player to start
        if ([self.playerList lastObject] == self.activePlayer) {
-            
+          
             if ([[self.playerList lastObject] playerState]==@"CALL") {
         [self substractFromPlayerAccount:50 forPlayer:[self.playerList lastObject]];
                 if(self.pot<=0 || self.pot>100000)
                 {
                     [self setPot:50];
-                    [self setWetthohe:0];
+                    [self setWetthohe:50];
                 }
                 else {
-                    [self setPot:pot+50];
+                    [self setPot:pot+wetthohe];
                 }
                               
           
@@ -234,11 +234,12 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
                     if(self.pot<=0 || self.pot>100000)
                     {
                         [self setPot:100];
-                        [self setWetthohe:0];
+                        [self setWetthohe:100];
                         [self substractFromPlayerAccount:100 forPlayer:[self.playerList lastObject]];
                     }
                     else {
                         [self setPot:pot+100];
+                         [self setWetthohe:100];
                         [self substractFromPlayerAccount:100 forPlayer:[self.playerList lastObject]];
                     }
                     
@@ -248,6 +249,7 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
                 }
                 
             }
+           [ingame wetten:wetthohe];
             self.activePlayer = [self.playerList objectAtIndex:0];
             [self endOfTurntemp];
             //next player    
@@ -260,17 +262,21 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
             if ([self.playerList objectAtIndex:index]!=NULL ){
                 player=[self.playerList objectAtIndex:index];
                 if (self.activePlayer == player) {
-                    
-                    if ([[self.playerList objectAtIndex:index] playerState]==@"CALL") {
+                    if ([[self.playerList objectAtIndex:index] playerState]==@"ALL IN") {
+                        
+                        index++;
+                        self.activePlayer = [self.playerList objectAtIndex:index];
+                        break;
+                    }else if ([[self.playerList objectAtIndex:index] playerState]==@"CALL") {
                     [self substractFromPlayerAccount:50 forPlayer:[self.playerList objectAtIndex:index]];
                         if(self.pot<=0 || self.pot>100000)
                         {
                             [self setPot:50];
                             
-                            [self setWetthohe:0];
+                            [self setWetthohe:50];
                         }
                         else {
-                            [self setPot:pot+50];
+                            [self setPot:pot+wetthohe];
                         }
                         
                     }else {
@@ -289,12 +295,13 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
                             if(self.pot<=0 || self.pot>100000)
                             {
                                 [self setPot:100];
-                                [self setWetthohe:0];
+                                [self setWetthohe:100];
                           [self substractFromPlayerAccount:100 forPlayer:[self.playerList objectAtIndex:index]];
                             }
                             else {
-                                [self setPot:pot+100];
                                 
+                                [self setWetthohe:100];
+                                [self setPot:pot+wetthohe];
                                 [self substractFromPlayerAccount:100 forPlayer:[self.playerList objectAtIndex:index]];
                             }
                             
@@ -304,7 +311,7 @@ if(nuramanfanggebegeldaus==0)player5.moneyRest=playermoney;
                         }
 
                     }
-
+                    [ingame wetten:wetthohe];
                     index++;
                     self.activePlayer = [self.playerList objectAtIndex:index];
                     break;

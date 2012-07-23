@@ -35,6 +35,7 @@
     IBOutlet UILabel *Pot;
     IBOutlet UILabel *spielereinsstat;
     IBOutlet UILabel *meingeld;
+    IBOutlet UILabel *biswetten;
     IBOutlet UILabel *spielerzweistat;
     IBOutlet UILabel *spielerdreistat;
     IBOutlet UILabel *spielervierstat;
@@ -94,10 +95,12 @@
   
 
 }
+@property int wetthoehetemp;
 -(IBAction) IAMDONE: (id) sender;
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 -(void) animate:(CGPoint) msg;
 -(void) endiwinnaiz:(NSString*)lol;
+-(void) wetten:(int) wett; 
 -(IBAction)buttonToTriggerCircle:(id)sender;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 @end

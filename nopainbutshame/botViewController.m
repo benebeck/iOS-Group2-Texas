@@ -106,7 +106,7 @@ PackOfCards * tempcards;
 }
 
 -(void)hartgecodedesKI{
-   for(int lol=0; lol<40; lol++){
+   for(int lol=0; lol<10000; lol++){
     int temp2=0;
     bool underseven=true;
   //  NSLog(@"myfloat:%i",12/13);

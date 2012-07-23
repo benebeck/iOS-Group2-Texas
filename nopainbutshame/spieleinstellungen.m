@@ -102,7 +102,7 @@
 }
 
 - (IBAction)Losgehts:(id)sender {
-    possiblegameStates = [NSMutableArray arrayWithObjects:@"RAISE",@"INACTIVE",@"ACTIVE",@"DEALER",@"SMALL_BLIND",@"BIG_BLIND",@"CALL",@"FOLD", nil];
+    possiblegameStates = [NSMutableArray arrayWithObjects:@"RAISE",@"INACTIVE",@"ACTIVE",@"DEALER",@"SMALL_BLIND",@"BIG_BLIND",@"CALL",@"FOLD",@"ALL IN", nil];
     
     
     

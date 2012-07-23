@@ -21,7 +21,10 @@ UIImage *cardlefttemp;
 UIImage *cardrighttemp;
 UIImage *clicktobettemp;
 int duhast5sek=5;
+@synthesize  wetthoehetemp;
+int temphohetemptemp=50;
 bool foldmaybe;
+int temphohe;
 
 
 - (void)viewDidLoad
@@ -61,7 +64,7 @@ opencard2 = @"3";
     
     clicktobettemp =[UIImage imageNamed:@"clicktoBet.png"];
     clicktobet=[[UIImageView alloc] initWithImage:clicktobettemp];
-    [clicktobet setFrame:CGRectMake(35, 115, 150, 30)];
+    [clicktobet setFrame:CGRectMake(35, 105, 150, 30)];
     [self.view addSubview:clicktobet];
 
     
@@ -170,19 +173,27 @@ opencard2 = @"3";
     
     
     
-    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(180, 140, 140, 30)];
+    spielereinsstat=[[UILabel alloc] initWithFrame:CGRectMake(180, 130, 140, 30)];
     [self.view addSubview:spielereinsstat];
     [spielereinsstat setBackgroundColor:[UIColor clearColor]];
     spielereinsstat.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [spielereinsstat setTextColor:[UIColor whiteColor]];
     spielereinsstat.text=[NSString stringWithFormat:@"Pot:%i", [GameController sharedInstance].pot];
     
-    meingeld=[[UILabel alloc] initWithFrame:CGRectMake(30, 140, 140, 30)];
+    meingeld=[[UILabel alloc] initWithFrame:CGRectMake(30, 130, 140, 30)];
     [self.view addSubview:meingeld];
     [meingeld setBackgroundColor:[UIColor clearColor]];
     meingeld.font = [UIFont fontWithName:@"Arial" size:nameSize];
     [meingeld setTextColor:[UIColor whiteColor]];
     meingeld.text=[NSString stringWithFormat:@"MoneyRest:%i", [[[[GameController sharedInstance] playerList] objectAtIndex:0] moneyRest]];
+    
+    biswetten=[[UILabel alloc] initWithFrame:CGRectMake(30, 155, 140, 30)];
+    [self.view addSubview:biswetten];
+    [biswetten setBackgroundColor:[UIColor clearColor]];
+    biswetten.font = [UIFont fontWithName:@"Arial" size:nameSize];
+    [biswetten setTextColor:[UIColor whiteColor]];
+    biswetten.text=[NSString stringWithFormat:@"Callhöhe:",temphohetemptemp];
+
     
     backofcardsleft1 =[UIImage imageNamed:@"backofcards.png"];
     backofcardsleft=[[UIImageView alloc] initWithImage:backofcardsleft1];
@@ -246,7 +257,7 @@ opencard2 = @"3";
     [[self view]addSubview:opencard5imageview];
     
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(statusupdate) userInfo:nil repeats:YES];    [super viewDidLoad];
-
+    
    	// Do any additional setup after loading the view, typically from a nib.
 
 }
@@ -262,6 +273,16 @@ opencard2 = @"3";
     
     [self performSelector:@selector(updateTextLabel:) withObject:label afterDelay:2];
     
+}
+-(void)chipcentermaker:(UIImage *) image
+{
+    [self performSelector:@selector(makechipcenter:) withObject:image afterDelay:1];
+}
+
+-(void)makechipcenter:(UIImage *)image
+{
+    mychip50.center=myChip50Center;
+   mychip100.center=myChip100Center;
 }
 
 -(void) statusupdate{
@@ -445,27 +466,15 @@ opencard2 = @"3";
 }
 
 -(void)endiwinnaiz:(NSString*) lol{
-    [self merkwuerdig:lol];
-
+    hastgewonnen.hidden=NO;
+    hastgewonnen.text=@"DU HAST VERLOREN BRO";
     backofcardsleft.frame=CGRectMake(260, 160, 90, 132);
     backofcardsright.frame=CGRectMake(360, 145, 90, 132);
     
 }
 -(void)merkwuerdig:(NSString*)pol{
     NSString *temp=[NSString stringWithFormat:@"%@",pol];
-    spielereins.text=temp;
-    spielerzwei.text=temp;
-    spielerdrei.text=temp;
-    spielervier.text=temp;
-    spielerfunf.text=temp;
-    hastgewonnen.hidden=NO;
-    hastgewonnen.text=pol;
-    [self textLabelChanger:hastgewonnen];
-    [self textLabelChanger:spielereins];
-    [self textLabelChanger:spielerzwei];
-    [self textLabelChanger:spielerdrei];
-    [self textLabelChanger:spielervier];
-    [self textLabelChanger:spielerfunf];
+
 }
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
    //this is a comment
@@ -473,13 +482,19 @@ opencard2 = @"3";
     startpoint = [betouched locationInView:self.view];
 
     
-    if(startpoint.x>0 && startpoint.x<200 &&startpoint.y>80 &&startpoint.y<160){
+    if(startpoint.x>0 && startpoint.x<200 &&startpoint.y>80 &&startpoint.y<160&&temphohe>49&&[[[[GameController sharedInstance] playerList] objectAtIndex:0]moneyRest]<1){
+         [[GameController sharedInstance] changePlayerState:@"ALL IN" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+          biswetten.text=@"ALL IN";
+        
         [[GameController sharedInstance] activateNextPlayer];
         
+    }else if (startpoint.x>0 && startpoint.x<200 &&startpoint.y>80 &&startpoint.y<160&&temphohe<50) {
+      
+        [[GameController sharedInstance] activateNextPlayer];
     }
 
     
-    if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"FOLD") {
+    if ( [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"FOLD" && [[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"ALL IN" ) {
         
     
     if ((startpoint.x < 480 && startpoint.x > 280) &&
@@ -504,10 +519,18 @@ opencard2 = @"3";
         }
     
 }
-
+-(void)wetten:(int)wett{
+    
+    temphohe=wett;
+}
 
 -(void)binichdran{
-  
+    
+    
+   
+    if ([[[[GameController sharedInstance] playerList]objectAtIndex:0]playerState]!=@"ALL IN") {
+         biswetten.text=[NSString stringWithFormat:@"Callhöhe:%i",temphohe];
+    } 
     int handcardindex=0;
      int opencardindex=0;
     for (int anfang=0; anfang<52; anfang++) {
@@ -660,15 +683,21 @@ int canwin=0;
             if(coinStuff==1){
             [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip50.frame=CGRectMake(mychip50.frame.origin.x, finalpoint.y, mychip50.frame.size.width, mychip50.frame.size.height);} completion:nil];
             //    [ chooseBet:50];
+              
                 
              [[GameController sharedInstance] changePlayerState:@"CALL" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
-         
+                temphohe=temphohe-50;
+                [self chipcentermaker:tempimage];
             }
             if(coinStuff==2){
                 [UIView animateWithDuration:slidefactor*2 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{ mychip100.frame=CGRectMake(mychip100.frame.origin.x, finalpoint.y, mychip100.frame.size.width, mychip100.frame.size.height);} completion:nil];
+                
           //      [player chooseBet:100];
                 
                        [[GameController sharedInstance] changePlayerState:@"RAISE" forPlayer:[[GameController sharedInstance].playerList objectAtIndex:0]];
+                
+               temphohe=temphohe-100;
+                [self chipcentermaker:tempimage];
                 //   Pot.text=[NSString stringWithFormat:@"Pot:%i",canwin];
             }
        coinStuff=0;
